@@ -32,6 +32,8 @@ function beautifyDoc(file) {
     const first_method_name_match = data.match((new RegExp(`<a name="${class_name}\\+([^"]+)"><\/a>`,'')));
     const first_method_name = first_method_name_match && first_method_name_match[1] ? first_method_name_match[1] : null;
     data = data.replace(kind_line_regex,'');
+    data = data.replace(/^\*\*Example\*\*\s*$/gm,"\n**Example**");
+    data = data.replace(/^\*\*Returns\*\*/gm,"\n**Returns**");
     data = data.replace(arrow_right_char_regex,'&rarr;');
     data = data.replace(function_description_regex,'<a name="String"></a>');
     if(first_method_name) {

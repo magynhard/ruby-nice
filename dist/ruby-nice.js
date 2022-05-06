@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.2
- * @date 2022-05-06T13:05:37.682Z
+ * @version 0.0.3
+ * @date 2022-05-06T15:01:18.462Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -25,8 +25,9 @@ Object.assign(String.prototype, {
      * Convert all characters inside the string
      * into lower case
      *
-     * @example conversion
-     *      'this-isAnExample_string' => 'this-isanexample_string'
+     * @example
+     *  'this-isAnExample_string'
+     *  // => 'this-isanexample_string'
      *
      * @returns {string}
      */
@@ -49,6 +50,8 @@ Object.assign(String.prototype, {
         return this.toLocaleUpperCase();
     }
 });
+
+
 
 
 /**
@@ -89,6 +92,6 @@ class RubyNice {
  * @type {String}
  * @private
  */
-RubyNice._version = "0.0.2";
+RubyNice._version = "0.0.3";
 
 

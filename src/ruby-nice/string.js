@@ -16,8 +16,9 @@
          * Convert all characters inside the string
          * into lower case
          *
-         * @example conversion
-         *      'this-isAnExample_string' => 'this-isanexample_string'
+         * @example
+         *      'this-isAnExample_string'.downcase()
+         *      // => 'this-isanexample_string'
          *
          * @returns {string}
          */
@@ -29,8 +30,9 @@
          * Convert all characters inside the string
          * into upper case
          *
-         * @example conversion
-         *      'this-isAnExample_string' => 'THIS-ISANEXAMPLE_STRING'
+         * @example
+         *  'this-isAnExample_string'.upcase()
+         *  // => 'THIS-ISANEXAMPLE_STRING'
          *
          * @returns {string}
          */
@@ -50,8 +52,9 @@ Object.assign(String.prototype, {
      * Convert all characters inside the string
      * into lower case
      *
-     * @example conversion
-     *      'this-isAnExample_string' => 'this-isanexample_string'
+     * @example
+     *  'this-isAnExample_string'
+     *  // => 'this-isanexample_string'
      *
      * @returns {string}
      */

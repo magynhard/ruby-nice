@@ -12,18 +12,20 @@ RubyNice version to add methods directly to the class by monkey patching
 ### string.downcase() &rarr; <code>string</code>
 Convert all characters inside the string
 into lower case
-**Example**  
+
+**Example**
 ```js
-conversion
-     'this-isAnExample_string' => 'this-isanexample_string'
+'this-isAnExample_string'.downcase()
+     // => 'this-isanexample_string'
 ```
 <a name="String+upcase"></a>
 
 ### string.upcase() &rarr; <code>string</code>
 Convert all characters inside the string
 into upper case
-**Example**  
+
+**Example**
 ```js
-conversion
-     'this-isAnExample_string' => 'THIS-ISANEXAMPLE_STRING'
+'this-isAnExample_string'.upcase()
+ // => 'THIS-ISANEXAMPLE_STRING'
 ```

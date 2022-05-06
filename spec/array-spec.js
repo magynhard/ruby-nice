@@ -1,7 +1,7 @@
 
 
 
-describe('String', function () {
+describe('Array', function () {
     beforeEach(function () {
         // require inside, to make not available in other tests but only here in this file
         require('../src/ruby-nice/array.js');

@@ -1,3 +1,11 @@
+//<!-- MODULE -->//
+if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
+    require('./array');
+    var File = require('./file');
+    require('./string');
+}
+//<!-- /MODULE -->//
+
 /**
  * RubyNice
  *
@@ -36,7 +44,7 @@ class RubyNice {
  * @type {String}
  * @private
  */
-RubyNice._version = "0.0.2";
+RubyNice._version = "0.0.3";
 
 //<!-- MODULE -->//
 if (typeof module !== 'undefined' && module.exports) {
