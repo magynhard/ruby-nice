@@ -1665,6 +1665,11 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lucky-case@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/lucky-case/-/lucky-case-1.1.3.tgz#b8844eb9c99c21349c0562ae4814f2ea79466281"
+  integrity sha512-lanf2o9ui/Kayx/Scx7Q7J2z+Y2Dt1HNHG79tv5oFTWyR1O32W5blF/1lUQbqHk9OKa0cCUzTbJHgaWv4S+8ow==
+
 map-cache@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"

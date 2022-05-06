@@ -44,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/magynhard/ruby-nice/issues"
   },
-  "homepage": "https://github.com/magynhard/ruby-nice#readme"
+  "homepage": "https://github.com/magynhard/ruby-nice#readme",
+  "dependencies": {
+    "lucky-case": "^1.1.3"
+  }
 }
