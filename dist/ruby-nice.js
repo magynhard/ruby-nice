@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.1
- * @date 2022-05-06T10:45:57.115Z
+ * @version 0.0.2
+ * @date 2022-05-06T13:05:37.682Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -62,12 +62,33 @@ class RubyNice {
         const self = RubyNice;
         return self._version;
     }
+
+    /**
+     * Check if this javascript is running in node js
+     *
+     * @returns {Boolean} true if running inside node js (not browser)
+     */
+    static isRunningInNodeJs() {
+        return (typeof module !== 'undefined' && module.exports);
+    }
+
+    //----------------------------------------------------------------------------------------------------
+
+    /**
+     * Check if this javascript is running in a browser
+     *
+     * @returns {Boolean} true if running inside browser
+     */
+    static isRunningInBrowser() {
+        const self = CurlyBracketParser;
+        return !self._runByNode();
+    }
 }
 
 /**
- * @type {string}
+ * @type {String}
  * @private
  */
-RubyNice._version = "0.0.1";
+RubyNice._version = "0.0.2";
 
 
