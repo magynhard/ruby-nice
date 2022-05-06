@@ -148,7 +148,7 @@ class File {
      * @param {'utf8' | 'binary' | 'buffer' | 'base64'} opt.encoding='utf8'
      * @param {Number} opt.length
      * @param {Number} opt.offset
-     * @returns {string}
+     * @returns {String}
      */
     static read(file_name, opt) {
         const self = File;
@@ -187,7 +187,7 @@ class File {
      * @param {Object} opt
      * @param {'utf8' | 'binary' | 'buffer'} opt.encoding='utf8'
      * @param {'rs+' | 'ws' | 'as'} opt.flag='ws'
-     * @returns {string}
+     * @returns {String}
      */
     static write(name, data, opt) {
         const self = File;
