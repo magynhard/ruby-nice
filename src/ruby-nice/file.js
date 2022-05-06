@@ -131,6 +131,16 @@ class File {
     }
 
     /**
+     * Normalize path and replace all back slashes to slashes
+     *
+     * @param {String} path
+     * @returns {String} normalized path
+     */
+    static normalizePath(path) {
+        return path.replace(/\\/g, '/');
+    }
+
+    /**
      * Read file and return its content synchronously
      *
      * @param {String} file_name path to file
@@ -167,15 +177,6 @@ class File {
         } else {
             throw `No mime type found for file '${file_name}'`;
         }
-    }
-
-    /**
-     * Normalize path and replace all back slashes to slashes
-     *
-     * @param {String} path
-     */
-    static normalizePath(path) {
-        return path.replace(/\\/g, '/');
     }
 
     /**

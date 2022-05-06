@@ -12,9 +12,9 @@ For node js only, does not work inside a browser.
     * [.isDirectory(file_name)](#File.isDirectory) &rarr; <code>Boolean</code>
     * [.isExisting(file_name)](#File.isExisting) &rarr; <code>Boolean</code>
     * [.isFile(file_name)](#File.isFile) &rarr; <code>Boolean</code>
+    * [.normalizePath(path)](#File.normalizePath) &rarr; <code>String</code>
     * [.read(file_name, opt)](#File.read) &rarr; <code>string</code>
     * [.readAsDataUri(file_name)](#File.readAsDataUri) &rarr; <code>String</code>
-    * [.normalizePath(path)](#File.normalizePath)
     * [.write(name, data, opt)](#File.write) &rarr; <code>string</code>
 
 <a name="File.getBasename"></a>
@@ -117,6 +117,17 @@ Check if given file name exists and is a file
 | --- | --- | --- |
 | file_name | <code>String</code> | path of the file to check |
 
+<a name="File.normalizePath"></a>
+
+### File.normalizePath(path) &rarr; <code>String</code>
+Normalize path and replace all back slashes to slashes
+
+**Returns**: <code>String</code> - normalized path  
+
+| Param | Type |
+| --- | --- |
+| path | <code>String</code> | 
+
 <a name="File.read"></a>
 
 ### File.read(file_name, opt) &rarr; <code>string</code>
@@ -140,15 +151,6 @@ Read a file and return as data URI that can be embedded on HTML for example
 | Param | Type | Description |
 | --- | --- | --- |
 | file_name | <code>String</code> | path to file |
-
-<a name="File.normalizePath"></a>
-
-### File.normalizePath(path)
-Normalize path and replace all back slashes to slashes
-
-| Param | Type |
-| --- | --- |
-| path | <code>String</code> | 
 
 <a name="File.write"></a>
 
