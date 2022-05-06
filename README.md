@@ -94,8 +94,8 @@ Optionally you may the source file to your build pipeline, if you are using webp
 * Loops
 * Classes
   * [Array](#)
-  * [File](#)
-  * [String](#)
+  * [File](doc/file.jsdoc.md)
+  * [String](doc/string.jsdoc.md)
 
 
 
