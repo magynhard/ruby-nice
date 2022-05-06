@@ -46,10 +46,10 @@ const String = require('ruby-nice/string');
 
 // -- code samples --
         
-"Sample".reverse // reverse a string
-// => "elpmaS"
+"sample".capitalize() // capitalize a string
+// => "Sample"
         
-[1,2,3].sample // get a random element of an Array
+[1,2,3].sample() // get random element of an Array
 // => 3
 
 ```
