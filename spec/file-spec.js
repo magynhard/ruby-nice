@@ -4,7 +4,7 @@ var File = require('./../src/ruby-nice/file.js');
 describe('File', function () {
     beforeEach(function () {
     });
-    describe('basename()', function () {
+    describe('getBasename()', function () {
         it('extracts basename without suffix parameter', function () {
             expect(File.getBasename('/home/user/document1.txt')).toEqual('document1.txt');
         });
@@ -52,7 +52,7 @@ describe('File', function () {
 describe('File', function () {
     beforeEach(function () {
     });
-    describe('dirname()', function () {
+    describe('getDirname()', function () {
         it('extracts dirname when file with extension', function () {
             expect(File.getDirname('/home/user/document1.txt')).toEqual('/home/user');
         });
@@ -73,12 +73,45 @@ describe('File', function () {
 describe('File', function () {
     beforeEach(function () {
     });
-    describe('exist()', function () {
+    describe('isExisting()', function () {
         it('detects an existing file', function () {
-            expect(File.exist(__dirname + '/test_files/sample.txt')).toEqual(true);
+            expect(File.isExisting(__dirname + '/test_files/sample.txt')).toEqual(true);
         });
         it('detects a not existing file', function () {
-            expect(File.exist(__dirname + '/test_files/not_existing_sample.txt')).toEqual(false);
+            expect(File.isExisting(__dirname + '/test_files/not_existing_sample.txt')).toEqual(false);
+        });
+    });
+});
+
+
+
+describe('File', function () {
+    beforeEach(function () {
+    });
+    describe('expandPath()', function () {
+        it('expands a path', function () {
+            expect(File.expandPath('test/suppe')).toEqual(process.cwd() + '/test/suppe');
+        });
+        it('expands a path with double dots', function () {
+            expect(File.expandPath('test/suppe/..')).toEqual(process.cwd() + '/test');
+        });
+        it('expands a path beginning at root', function () {
+            expect(File.expandPath('/test/super')).toEqual('/test/super');
+        });
+        it('expands a path ending with slash at root', function () {
+            expect(File.expandPath('test/super/')).toEqual(process.cwd() + '/test/super');
+        });
+        it('expands a path with home tilde', function () {
+            expect(File.expandPath('~/super/')).toEqual(process.env.HOME + '/super');
+        });
+        it('expands a path with home tilde of specific user', function () {
+            expect(File.expandPath('~other/super/')).toEqual('/home/other/super');
+        });
+        it('expands a path with home tilde in start dir', function () {
+            expect(File.expandPath('super/','~/bad')).toEqual(process.env.HOME + '/bad/super');
+        });
+        it('expands a path with home tilde in path and start dir', function () {
+            expect(File.expandPath('~/super/','~/bad')).toEqual(process.env.HOME + '/super');
         });
     });
 });

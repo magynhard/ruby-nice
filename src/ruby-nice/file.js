@@ -20,6 +20,31 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 class File {
 
     /**
+     * Converts a pathname to an absolute pathname
+     *
+     * '~' are not resolved.
+     *
+     * @param {String} file_name path of the file to expand
+     * @param {String} dir_string optional starting point of the given path
+     * @returns {String} absolute pathname
+     *
+     */
+    static getAbsolutePath(file_name, dir_string) {
+        const self = File;
+        return self.expandPath(file_name, dir_string, { expand_user_dir: false });
+    }
+
+    /**
+     * Returns the last access time for the file as a Date object.
+     *
+     * @param {String} file_name
+     * @returns {Date}
+     */
+    static getAccessTime(file_name) {
+        return Fs.lstatSync(file_name).atime;
+    }
+
+    /**
      * Get the last component of the given file name
      *
      * @example
@@ -52,6 +77,16 @@ class File {
     }
 
     /**
+     * Returns the birth time for the file as a Date object.
+     *
+     * @param {String} file_name
+     * @returns {Date}
+     */
+    static getBirthTime(file_name) {
+        return Fs.lstatSync(file_name).birthtime;
+    }
+
+    /**
      * Get all components of the given file name except of the last one
      *
      * @example
@@ -71,28 +106,34 @@ class File {
      */
     static getDirname(file_name) {
         const self = File;
-        if(file_name.endsWith('/')) {
-            file_name = file_name.substring(0, file_name.length-1);
-        }
+        file_name = self.normalizePath(file_name);
         return file_name.substring(0,self.normalizePath(file_name).lastIndexOf('/'));
     }
 
     /**
      * Converts a pathname to an absolute pathname
      *
+     * '~' is resolved to the home directory, '~user' to the given users home directory.
+     *
      * @param {String} file_name path of the file to expand
      * @param {String} dir_string optional starting point of the given path
+     * @param {Object} options
+     * @param {Boolean} expand_user_dir=true
      * @returns {String} absolute pathname
      *
      */
-    static expandPath(file_name, dir_string = "") {
-        if(dir_string) {
-            if(dir_string.endsWith('/')) {
-                dir_string = dir_string.substring(0,dir_string.length-1);
-            }
-            file_name = dir_string + '/' + file_name;
+    static expandPath(file_name, dir_string = "", options = {}) {
+        const self = File;
+        if(!options) options = {};
+        if(typeof options.expand_user_dir === 'undefined') options.expand_user_dir = true;
+        file_name = self.normalizePath(file_name);
+        dir_string = self.normalizePath(dir_string);
+        if(file_name.startsWith('~') && dir_string && dir_string.startsWith('~')) {
+            return Path.resolve(self._resolveUserDirInPath(file_name));
+        } else {
+            file_name = dir_string ? self._resolveUserDirInPath(dir_string) + '/' + self._resolveUserDirInPath(file_name) : self._resolveUserDirInPath(file_name);
+            return Path.resolve(file_name);
         }
-        return Path.resolve(file_name);
     }
 
     /**
@@ -132,12 +173,14 @@ class File {
 
     /**
      * Normalize path and replace all back slashes to slashes
+     * and remove trailing slashes
      *
      * @param {String} path
      * @returns {String} normalized path
      */
     static normalizePath(path) {
-        return path.replace(/\\/g, '/');
+        const self = File;
+        return self._cutTrailingSlash(path.replace(/\\/g, '/'));
     }
 
     /**
@@ -198,6 +241,41 @@ class File {
             if (['binary', 'buffer'].includes(opt.encoding)) options.encoding = null;
         }
         return Fs.writeFileSync(name, data, options);
+    }
+
+    /**
+     * Cut a trailing slash at the end of the path
+     *
+     * @param {String} path
+     * @private
+     */
+    static _cutTrailingSlash(path) {
+        if(path.endsWith('/')) {
+            return file_name.substring(0, file_name.length-1);
+        } else {
+            return path;
+        }
+    }
+
+    /**
+     * Resolves '~' and '~username' to user dirs inside given path
+     *
+     * @param {String} path
+     * @returns {String}
+     * @private
+     */
+    static _resolveUserDirInPath(path) {
+        const self = File;
+        const user_home_regex = /^~([^\/]*)\//;
+        const user_dir_match = path.match(user_home_regex);
+        if(user_dir_match) {
+            if(user_dir_match[1]) {
+                path = self.getDirname(process.env.HOME) + '/' + user_dir_match[1] + '/' + path.replace(user_home_regex, '');
+            } else {
+                path = path.replace(user_home_regex, process.env.HOME + '/');
+            }
+        }
+        return path;
     }
 
     /**
