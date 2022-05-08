@@ -24,9 +24,9 @@ class File {
      *
      * '~' are not resolved.
      *
-     * @param {String} file_name path of the file to expand
-     * @param {String} dir_string optional starting point of the given path
-     * @returns {String} absolute pathname
+     * @param {string} file_name path of the file to expand
+     * @param {string} dir_string optional starting point of the given path
+     * @returns {string} absolute pathname
      *
      */
     static getAbsolutePath(file_name, dir_string) {
@@ -37,7 +37,7 @@ class File {
     /**
      * Returns the last access time for the file as a Date object.
      *
-     * @param {String} file_name
+     * @param {string} file_name
      * @returns {Date}
      */
     static getAccessTime(file_name) {
@@ -59,13 +59,13 @@ class File {
      *  File.getBasename('/home/user/documents/image.jpg','.*')
      *  // => 'image'
      *
-     * @param {String} file_name
-     * @param {String} suffix If suffix is given and present at the end of file_name, it is removed. If suffix is '.*', any extension will be removed.
+     * @param {string} file_name
+     * @param {string} suffix If suffix is given and present at the end of file_name, it is removed. If suffix is '.*', any extension will be removed.
      */
     static getBasename(file_name, suffix) {
         const self = File;
         file_name = self.normalizePath(file_name);
-        let base_name = file_name.split('/').filter(e=>e !== '').last();
+        let base_name = file_name.split('/').filter(e=>e !== '').getLast();
         if (suffix) {
             if (suffix === '.*' && base_name.includes('.')) {
                 base_name = base_name.substring(0, base_name.lastIndexOf('.'));
@@ -79,7 +79,7 @@ class File {
     /**
      * Returns the birth time for the file as a Date object.
      *
-     * @param {String} file_name
+     * @param {string} file_name
      * @returns {Date}
      */
     static getBirthTime(file_name) {
@@ -101,8 +101,8 @@ class File {
      *  File.getDirname('/home/user/documents/')
      *  // => '/home/user'
      *
-     * @param {String} file_name
-     * @returns {String}
+     * @param {string} file_name
+     * @returns {string}
      */
     static getDirname(file_name) {
         const self = File;
@@ -115,11 +115,11 @@ class File {
      *
      * '~' is resolved to the home directory, '~user' to the given users home directory.
      *
-     * @param {String} file_name path of the file to expand
-     * @param {String} dir_string optional starting point of the given path
+     * @param {string} file_name path of the file to expand
+     * @param {string} dir_string optional starting point of the given path
      * @param {Object} options
-     * @param {Boolean} expand_user_dir=true
-     * @returns {String} absolute pathname
+     * @param {boolean} expand_user_dir=true
+     * @returns {string} absolute pathname
      *
      */
     static expandPath(file_name, dir_string = "", options = {}) {
@@ -139,8 +139,8 @@ class File {
     /**
      * Check if given file name exists and is a directory
      *
-     * @param {String} file_name path of the file to check
-     * @returns {Boolean} true if file exists and is a directory, otherwise false
+     * @param {string} file_name path of the file to check
+     * @returns {boolean} true if file exists and is a directory, otherwise false
      *
      */
     static isDirectory(file_name) {
@@ -151,8 +151,8 @@ class File {
     /**
      * Check if given file name exists
      *
-     * @param {String} file_name path of the file to check
-     * @returns {Boolean} true if file exists, otherwise false
+     * @param {string} file_name path of the file to check
+     * @returns {boolean} true if file exists, otherwise false
      *
      */
     static isExisting(file_name) {
@@ -162,8 +162,8 @@ class File {
     /**
      * Check if given file name exists and is a file
      *
-     * @param {String} file_name path of the file to check
-     * @returns {Boolean} true if file exists and is a file, otherwise false
+     * @param {string} file_name path of the file to check
+     * @returns {boolean} true if file exists and is a file, otherwise false
      *
      */
     static isFile(file_name) {
@@ -175,8 +175,8 @@ class File {
      * Normalize path and replace all back slashes to slashes
      * and remove trailing slashes
      *
-     * @param {String} path
-     * @returns {String} normalized path
+     * @param {string} path
+     * @returns {string} normalized path
      */
     static normalizePath(path) {
         const self = File;
@@ -186,12 +186,12 @@ class File {
     /**
      * Read file and return its content synchronously
      *
-     * @param {String} file_name path to file
+     * @param {string} file_name path to file
      * @param {Object} opt
      * @param {'utf8' | 'binary' | 'buffer' | 'base64'} opt.encoding='utf8'
      * @param {Number} opt.length
      * @param {Number} opt.offset
-     * @returns {String}
+     * @returns {string}
      */
     static read(file_name, opt) {
         const self = File;
@@ -209,8 +209,8 @@ class File {
     /**
      * Read a file and return as data URI that can be embedded on HTML for example
      *
-     * @param {String} file_name path to file
-     * @returns {String} base64 encoded data URI
+     * @param {string} file_name path to file
+     * @returns {string} base64 encoded data URI
      */
     static readAsDataUri(file_name) {
         const mime = Mime.getType(file_name);
@@ -225,12 +225,12 @@ class File {
     /**
      * Write into file synchronously.
      *
-     * @param {String} name path to file
+     * @param {string} name path to file
      * @param data {String|Buffer|TypedArray|DataView|Object} - data
      * @param {Object} opt
      * @param {'utf8' | 'binary' | 'buffer'} opt.encoding='utf8'
      * @param {'rs+' | 'ws' | 'as'} opt.flag='ws'
-     * @returns {String}
+     * @returns {string}
      */
     static write(name, data, opt) {
         const self = File;
@@ -246,12 +246,12 @@ class File {
     /**
      * Cut a trailing slash at the end of the path
      *
-     * @param {String} path
+     * @param {string} path
      * @private
      */
     static _cutTrailingSlash(path) {
         if(path.endsWith('/')) {
-            return file_name.substring(0, file_name.length-1);
+            return path.substring(0, path.length-1);
         } else {
             return path;
         }
@@ -260,8 +260,8 @@ class File {
     /**
      * Resolves '~' and '~username' to user dirs inside given path
      *
-     * @param {String} path
-     * @returns {String}
+     * @param {string} path
+     * @returns {string}
      * @private
      */
     static _resolveUserDirInPath(path) {

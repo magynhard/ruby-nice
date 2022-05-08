@@ -12,32 +12,72 @@
      * RubyNice version to add methods directly to the class by monkey patching
      */
     class Array {
+
         /**
-         * Returns the last element of the array
+         * Iterates over all elements of an array
          *
-         * @example usage
-         *      ['one','two','three'].last => 'three'
+         * Breaks if returning false
          *
-         * @returns {any}
+         * @example
+         *      ['one','two','three'].each((elem, index) => {
+         *          if(condition) return false;
+         *          console.log(elem);
+         *      })
+         *
+         * @param {eachLoopCallback} loop_function
+         * @returns {Array<any>} returns itself
          */
-        last() {
-            let result_index = 0;
-            if(this.length > 0) {
-                result_index = this.length-1;
-            }
-            return this[result_index];
+        each(loop_function) {
+        }
+
+        /**
+         * Iterates over all elements of an array
+         *
+         * Breaks if returning false
+         *
+         * @example
+         *      ['one','two','three'].each((elem, index) => {
+         *          if(condition) return false;
+         *          console.log(elem);
+         *      })
+         *
+         * @param {eachLoopCallback} loop_function
+         * @returns {Array<any>} returns itself
+         */
+        eachWithIndex(loop_function) {
         }
 
         /**
          * Returns the first element of the array
          *
-         * @example usage
+         * @example
          *      ['one','two','three'].first => 'one'
          *
          * @returns {any}
          */
-        first() {
-            return this[0];
+        getFirst() {
+        }
+
+        /**
+         * Returns the last element of the array
+         *
+         * @example
+         *      ['one','two','three'].last => 'three'
+         *
+         * @returns {any}
+         */
+        getLast() {
+        }
+
+        /**
+         * Returns a random element of the array
+         *
+         * @example
+         *      ['one','two','three'].sample => 'two'
+         *
+         * @returns {any}
+         */
+        getSample() {
         }
     }
 });
@@ -49,14 +89,82 @@
 
 Object.assign(Array.prototype, {
     /**
+     * Iterates over all elements of an array
+     *
+     * Breaks if returning false
+     *
+     * @example
+     *      ['one','two','three'].each((elem, index) => {
+     *          if(condition) return false;
+     *          console.log(elem);
+     *      })
+     *
+     * @param {eachLoopCallback} loop_function
+     * @returns {Array<any>} returns itself
+     */
+    each(loop_function) {
+        if(typeof loop_function === 'function') {
+            for(let i = 0; i < this.length; ++i) {
+                const state = { state: false };
+                if(loop_function(this[i], i, state) === false) {
+                    break;
+                }
+            }
+        }
+        return this;
+    }
+});
+
+Object.assign(Array.prototype, {
+    /**
+     * Iterates over all elements of an array
+     *
+     * Breaks if returning false
+     *
+     * @example
+     *      ['one','two','three'].each((elem, index) => {
+     *          if(condition) return false;
+     *          console.log(elem);
+     *      })
+     *
+     * @param {eachLoopCallback} loop_function
+     * @returns {Array<any>} returns itself
+     */
+    eachWithIndex(loop_function) {
+        return this.each(loop_function);
+    }
+});
+/**
+ * @callback eachLoopCallback
+ * @param {any} elem
+ * @param {number} index
+ */
+
+
+Object.assign(Array.prototype, {
+    /**
+     * Returns the first element of the array
+     *
+     * @example
+     *      ['one','two','three'].first => 'one'
+     *
+     * @returns {any}
+     */
+    getFirst() {
+        return this[0];
+    }
+});
+
+Object.assign(Array.prototype, {
+    /**
      * Returns the last element of the array
      *
-     * @example usage
+     * @example
      *      ['one','two','three'].last => 'three'
      *
      * @returns {any}
      */
-    last() {
+    getLast() {
         let result_index = 0;
         if(this.length > 0) {
             result_index = this.length-1;
@@ -67,15 +175,16 @@ Object.assign(Array.prototype, {
 
 Object.assign(Array.prototype, {
     /**
-     * Returns the first element of the array
+     * Returns a random element of the array
      *
-     * @example usage
-     *      ['one','two','three'].first => 'one'
+     * @example
+     *      ['one','two','three'].sample => 'two'
      *
      * @returns {any}
      */
-    first() {
-        return this[0];
+    getSample() {
+        const random_index = Math.floor(Math.random() * this.length);
+        return this[random_index];
     }
 });
 

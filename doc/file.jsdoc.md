@@ -6,16 +6,42 @@ File class port of ruby
 For node js only, does not work inside a browser.
 
 * [File](#File)
+    * [.getAbsolutePath(file_name, dir_string)](#File.getAbsolutePath) &rarr; <code>string</code>
+    * [.getAccessTime(file_name)](#File.getAccessTime) &rarr; <code>Date</code>
     * [.getBasename(file_name, suffix)](#File.getBasename)
-    * [.getDirname(file_name)](#File.getDirname) &rarr; <code>String</code>
-    * [.expandPath(file_name, dir_string)](#File.expandPath) &rarr; <code>String</code>
-    * [.isDirectory(file_name)](#File.isDirectory) &rarr; <code>Boolean</code>
-    * [.isExisting(file_name)](#File.isExisting) &rarr; <code>Boolean</code>
-    * [.isFile(file_name)](#File.isFile) &rarr; <code>Boolean</code>
-    * [.normalizePath(path)](#File.normalizePath) &rarr; <code>String</code>
+    * [.getBirthTime(file_name)](#File.getBirthTime) &rarr; <code>Date</code>
+    * [.getDirname(file_name)](#File.getDirname) &rarr; <code>string</code>
+    * [.expandPath(file_name, dir_string, options, expand_user_dir)](#File.expandPath) &rarr; <code>string</code>
+    * [.isDirectory(file_name)](#File.isDirectory) &rarr; <code>boolean</code>
+    * [.isExisting(file_name)](#File.isExisting) &rarr; <code>boolean</code>
+    * [.isFile(file_name)](#File.isFile) &rarr; <code>boolean</code>
+    * [.normalizePath(path)](#File.normalizePath) &rarr; <code>string</code>
     * [.read(file_name, opt)](#File.read) &rarr; <code>string</code>
-    * [.readAsDataUri(file_name)](#File.readAsDataUri) &rarr; <code>String</code>
+    * [.readAsDataUri(file_name)](#File.readAsDataUri) &rarr; <code>string</code>
     * [.write(name, data, opt)](#File.write) &rarr; <code>string</code>
+
+<a name="File.getAbsolutePath"></a>
+
+### File.getAbsolutePath(file_name, dir_string) &rarr; <code>string</code>
+Converts a pathname to an absolute pathname
+
+'~' are not resolved.
+
+**Returns**: <code>string</code> - absolute pathname  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| file_name | <code>string</code> | path of the file to expand |
+| dir_string | <code>string</code> | optional starting point of the given path |
+
+<a name="File.getAccessTime"></a>
+
+### File.getAccessTime(file_name) &rarr; <code>Date</code>
+Returns the last access time for the file as a Date object.
+
+| Param | Type |
+| --- | --- |
+| file_name | <code>string</code> | 
 
 <a name="File.getBasename"></a>
 
@@ -24,8 +50,8 @@ Get the last component of the given file name
 
 | Param | Type | Description |
 | --- | --- | --- |
-| file_name | <code>String</code> |  |
-| suffix | <code>String</code> | If suffix is given and present at the end of file_name, it is removed. If suffix is '.*', any extension will be removed. |
+| file_name | <code>string</code> |  |
+| suffix | <code>string</code> | If suffix is given and present at the end of file_name, it is removed. If suffix is '.*', any extension will be removed. |
 
 
 **Example**
@@ -45,14 +71,23 @@ File.getBasename('/home/user/documents/letter.txt','.txt')
 File.getBasename('/home/user/documents/image.jpg','.*')
  // => 'image'
 ```
+<a name="File.getBirthTime"></a>
+
+### File.getBirthTime(file_name) &rarr; <code>Date</code>
+Returns the birth time for the file as a Date object.
+
+| Param | Type |
+| --- | --- |
+| file_name | <code>string</code> | 
+
 <a name="File.getDirname"></a>
 
-### File.getDirname(file_name) &rarr; <code>String</code>
+### File.getDirname(file_name) &rarr; <code>string</code>
 Get all components of the given file name except of the last one
 
 | Param | Type |
 | --- | --- |
-| file_name | <code>String</code> | 
+| file_name | <code>string</code> | 
 
 
 **Example**
@@ -74,59 +109,64 @@ File.getDirname('/home/user/documents/')
 ```
 <a name="File.expandPath"></a>
 
-### File.expandPath(file_name, dir_string) &rarr; <code>String</code>
+### File.expandPath(file_name, dir_string, options, expand_user_dir) &rarr; <code>string</code>
 Converts a pathname to an absolute pathname
 
-**Returns**: <code>String</code> - absolute pathname  
+'~' is resolved to the home directory, '~user' to the given users home directory.
 
-| Param | Type | Description |
-| --- | --- | --- |
-| file_name | <code>String</code> | path of the file to expand |
-| dir_string | <code>String</code> | optional starting point of the given path |
+**Returns**: <code>string</code> - absolute pathname  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| file_name | <code>string</code> |  | path of the file to expand |
+| dir_string | <code>string</code> |  | optional starting point of the given path |
+| options | <code>Object</code> |  |  |
+| expand_user_dir | <code>boolean</code> | <code>true</code> |  |
 
 <a name="File.isDirectory"></a>
 
-### File.isDirectory(file_name) &rarr; <code>Boolean</code>
+### File.isDirectory(file_name) &rarr; <code>boolean</code>
 Check if given file name exists and is a directory
 
-**Returns**: <code>Boolean</code> - true if file exists and is a directory, otherwise false  
+**Returns**: <code>boolean</code> - true if file exists and is a directory, otherwise false  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| file_name | <code>String</code> | path of the file to check |
+| file_name | <code>string</code> | path of the file to check |
 
 <a name="File.isExisting"></a>
 
-### File.isExisting(file_name) &rarr; <code>Boolean</code>
+### File.isExisting(file_name) &rarr; <code>boolean</code>
 Check if given file name exists
 
-**Returns**: <code>Boolean</code> - true if file exists, otherwise false  
+**Returns**: <code>boolean</code> - true if file exists, otherwise false  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| file_name | <code>String</code> | path of the file to check |
+| file_name | <code>string</code> | path of the file to check |
 
 <a name="File.isFile"></a>
 
-### File.isFile(file_name) &rarr; <code>Boolean</code>
+### File.isFile(file_name) &rarr; <code>boolean</code>
 Check if given file name exists and is a file
 
-**Returns**: <code>Boolean</code> - true if file exists and is a file, otherwise false  
+**Returns**: <code>boolean</code> - true if file exists and is a file, otherwise false  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| file_name | <code>String</code> | path of the file to check |
+| file_name | <code>string</code> | path of the file to check |
 
 <a name="File.normalizePath"></a>
 
-### File.normalizePath(path) &rarr; <code>String</code>
+### File.normalizePath(path) &rarr; <code>string</code>
 Normalize path and replace all back slashes to slashes
+and remove trailing slashes
 
-**Returns**: <code>String</code> - normalized path  
+**Returns**: <code>string</code> - normalized path  
 
 | Param | Type |
 | --- | --- |
-| path | <code>String</code> | 
+| path | <code>string</code> | 
 
 <a name="File.read"></a>
 
@@ -135,7 +175,7 @@ Read file and return its content synchronously
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| file_name | <code>String</code> |  | path to file |
+| file_name | <code>string</code> |  | path to file |
 | opt | <code>Object</code> |  |  |
 | opt.encoding | <code>&#x27;utf8&#x27;</code> \| <code>&#x27;binary&#x27;</code> \| <code>&#x27;buffer&#x27;</code> \| <code>&#x27;base64&#x27;</code> | <code>&#x27;utf8&#x27;</code> |  |
 | opt.length | <code>Number</code> |  |  |
@@ -143,14 +183,14 @@ Read file and return its content synchronously
 
 <a name="File.readAsDataUri"></a>
 
-### File.readAsDataUri(file_name) &rarr; <code>String</code>
+### File.readAsDataUri(file_name) &rarr; <code>string</code>
 Read a file and return as data URI that can be embedded on HTML for example
 
-**Returns**: <code>String</code> - base64 encoded data URI  
+**Returns**: <code>string</code> - base64 encoded data URI  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| file_name | <code>String</code> | path to file |
+| file_name | <code>string</code> | path to file |
 
 <a name="File.write"></a>
 
@@ -159,7 +199,7 @@ Write into file synchronously.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| name | <code>String</code> |  | path to file |
+| name | <code>string</code> |  | path to file |
 | data | <code>String</code> \| <code>Buffer</code> \| <code>TypedArray</code> \| <code>DataView</code> \| <code>Object</code> |  | data |
 | opt | <code>Object</code> |  |  |
 | opt.encoding | <code>&#x27;utf8&#x27;</code> \| <code>&#x27;binary&#x27;</code> \| <code>&#x27;buffer&#x27;</code> | <code>&#x27;utf8&#x27;</code> |  |

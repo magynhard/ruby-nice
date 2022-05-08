@@ -13,7 +13,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
  *
  */
 class RubyNice {
-    static version() {
+    static getVersion() {
         const self = RubyNice;
         return self._version;
     }
@@ -21,7 +21,7 @@ class RubyNice {
     /**
      * Check if this javascript is running in node js
      *
-     * @returns {Boolean} true if running inside node js (not browser)
+     * @returns {boolean} true if running inside node js (not browser)
      */
     static isRunningInNodeJs() {
         return (typeof module !== 'undefined' && module.exports);
@@ -32,7 +32,7 @@ class RubyNice {
     /**
      * Check if this javascript is running in a browser
      *
-     * @returns {Boolean} true if running inside browser
+     * @returns {boolean} true if running inside browser
      */
     static isRunningInBrowser() {
         const self = CurlyBracketParser;
@@ -41,7 +41,7 @@ class RubyNice {
 }
 
 /**
- * @type {String}
+ * @type {string}
  * @private
  */
 RubyNice._version = "0.0.4";

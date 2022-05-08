@@ -22,8 +22,7 @@
          *
          * @returns {string}
          */
-        downcase() {
-            return RubyNice.toLowerCase(this);
+        toDownCase() {
         }
 
         /**
@@ -36,8 +35,7 @@
          *
          * @returns {string}
          */
-        upcase() {
-            return RubyNice.toUpperCase(this);
+        toUpCase() {
         }
     }
 });
@@ -58,7 +56,7 @@ Object.assign(String.prototype, {
      *
      * @returns {string}
      */
-    downcase() {
+    toDownCase() {
         return this.toLocaleLowerCase();
     }
 });
@@ -73,7 +71,7 @@ Object.assign(String.prototype, {
      *
      * @returns {string}
      */
-    upcase() {
+    toUpCase() {
         return this.toLocaleUpperCase();
     }
 });

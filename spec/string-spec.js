@@ -8,8 +8,8 @@ describe('String', function () {
     });
     describe('additional methods', function () {
         it('has a ruby #upcase', function () {
-            expect(typeof "TestCase".upcase).not.toEqual('undefined');
-            expect("TestCase".upcase()).toEqual('TESTCASE');
+            expect(typeof "TestCase".toUpCase).not.toEqual('undefined');
+            expect("TestCase".toUpCase()).toEqual('TESTCASE');
         });
     });
 });

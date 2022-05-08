@@ -34,6 +34,30 @@ ruby for javascript, ruby methods for javascript, ruby functions for javascript
 
 <a name="usage"></a>
 ## Usage
+### JavaScript method naming of the Ruby ports
+The javascript method names are ported to a javascript equivalent by the following rules and always written in `camelCase`:
+
+```js
+// question mark methods are ported to isMethod
+Ruby::File.exist? => JavaScript.File.isExisting()
+Ruby::File.directory? => JavaScript.File.isDirectory()
+...
+
+// getters are ported to getMethod
+Ruby::File.basename => JavaScript.File.getBasename()
+...
+
+// verbs and transformation methods starting with 'to' are only ported 
+// to camel case
+Ruby::MyClass.destroy_object => JavaScript.MyClass.destroyObject()
+Ruby::MyClass.to_hash => JavaScript.MyClass.toHash()
+...
+
+// loops should start with for, but they would collide with java script
+// methods, e.g. forEach()
+// In cases of collissions, the orignal ruby name remains
+Ruby::Array.each => JavaScript.Array.each // because .forEach() is already defined
+```
 ### Example
 ```js
 // -- node js --
@@ -49,7 +73,7 @@ const String = require('ruby-nice/string');
 "sample".capitalize() // capitalize a string
 // => "Sample"
         
-[1,2,3].sample() // get random element of an Array
+[1,2,3].getSample() // get random element of an Array
 // => 3
 
 ```

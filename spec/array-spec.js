@@ -1,4 +1,33 @@
 
+describe('Array', function () {
+    beforeEach(function () {
+        // require inside, to make not available in other tests but only here in this file
+        require('../src/ruby-nice/array.js');
+    });
+    describe('each()', function () {
+        it('function is defined', function () {
+            expect(typeof ['one','two','three'].each).toEqual('function');
+        });
+        it('breaks inside the loop', function () {
+            const sample = ['one','two','three','four','five'];
+            let collection = [];
+            sample.each((elem, index) => {
+               collection.push(elem);
+               if(index === 2) return false;
+            });
+            expect(collection).toEqual(['one','two','three']);
+        });
+        it('loops over all elements', function () {
+            const sample = ['one','two','three','four','five'];
+            let collection = [];
+            sample.each((elem, index) => {
+               collection.push(elem);
+            });
+            expect(collection).toEqual(sample);
+        });
+    });
+});
+
 
 
 describe('Array', function () {
@@ -6,10 +35,53 @@ describe('Array', function () {
         // require inside, to make not available in other tests but only here in this file
         require('../src/ruby-nice/array.js');
     });
-    describe('additional methods', function () {
-        it('has a ruby #upcase', function () {
-            expect(typeof ['one','two','three'].first).toEqual('function');
-            expect(['one','two','three'].first()).toEqual('one');
+    describe('first()', function () {
+        it('function is defined', function () {
+            expect(typeof ['one','two','three'].getFirst).toEqual('function');
+        });
+        it('returns the first element', function () {
+            expect(['one','two','three'].getFirst()).toEqual('one');
+        });
+    });
+});
+
+
+describe('Array', function () {
+    beforeEach(function () {
+        // require inside, to make not available in other tests but only here in this file
+        require('../src/ruby-nice/array.js');
+    });
+    describe('last()', function () {
+        it('function is defined', function () {
+            expect(typeof ['one','two','three'].getLast).toEqual('function');
+        });
+        it('returns the last element', function () {
+            expect(['one','two','three'].getLast()).toEqual('three');
+        });
+    });
+});
+
+
+describe('Array', function () {
+    beforeEach(function () {
+        // require inside, to make not available in other tests but only here in this file
+        require('../src/ruby-nice/array.js');
+    });
+    describe('getSample()', function () {
+        it('function is defined', function () {
+            expect(typeof ['one','two','three'].getSample).toEqual('function');
+        });
+        it('returns a random element', function () {
+            let samples = [];
+            for(let i = 0; i < 999; i++) {
+                const sample = ['one','two','three'].getSample();
+                expect(['one','two','three']).toContain(sample);
+                samples.push(sample);
+            }
+            // we expect after 999 runs, that all three samples have been included at least once
+            expect(['one','two','three']).toContain('one');
+            expect(['one','two','three']).toContain('two');
+            expect(['one','two','three']).toContain('three');
         });
     });
 });

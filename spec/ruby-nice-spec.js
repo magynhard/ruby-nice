@@ -6,7 +6,7 @@ describe('RubyNice', function () {
     beforeEach(function () {
     });
     it('can return a version', function () {
-        expect(RubyNice.version()).toContain('.');
+        expect(RubyNice.getVersion()).toContain('.');
     });
 });
 
