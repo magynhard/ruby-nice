@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.4
- * @date 2022-05-06T15:07:02.546Z
+ * @version 0.0.5
+ * @date 2022-05-08T19:47:27.620Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -31,7 +31,7 @@ Object.assign(String.prototype, {
      *
      * @returns {string}
      */
-    downcase() {
+    toDownCase() {
         return this.toLocaleLowerCase();
     }
 });
@@ -46,7 +46,7 @@ Object.assign(String.prototype, {
      *
      * @returns {string}
      */
-    upcase() {
+    toUpCase() {
         return this.toLocaleUpperCase();
     }
 });
@@ -61,7 +61,7 @@ Object.assign(String.prototype, {
  *
  */
 class RubyNice {
-    static version() {
+    static getVersion() {
         const self = RubyNice;
         return self._version;
     }
@@ -69,7 +69,7 @@ class RubyNice {
     /**
      * Check if this javascript is running in node js
      *
-     * @returns {Boolean} true if running inside node js (not browser)
+     * @returns {boolean} true if running inside node js (not browser)
      */
     static isRunningInNodeJs() {
         return (typeof module !== 'undefined' && module.exports);
@@ -80,7 +80,7 @@ class RubyNice {
     /**
      * Check if this javascript is running in a browser
      *
-     * @returns {Boolean} true if running inside browser
+     * @returns {boolean} true if running inside browser
      */
     static isRunningInBrowser() {
         const self = CurlyBracketParser;
@@ -89,9 +89,9 @@ class RubyNice {
 }
 
 /**
- * @type {String}
+ * @type {string}
  * @private
  */
-RubyNice._version = "0.0.4";
+RubyNice._version = "0.0.5";
 
 
