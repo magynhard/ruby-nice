@@ -2400,10 +2400,12 @@ typical@^6.0.1:
   resolved "https://registry.yarnpkg.com/typical/-/typical-6.0.1.tgz#89bd1a6aa5e5e96fa907fb6b7579223bff558a06"
   integrity sha512-+g3NEp7fJLe9DPa1TArHm9QAA7YciZmWnfAqEaFrBihQ7epOv9i99rjtgb6Iz0wh3WuQDjsCTDfgRoGnmHN81A==
 
-typifier@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/typifier/-/typifier-0.0.2.tgz#e07a478782fe6860bdaa15f9d3bbb1b1e1186f65"
-  integrity sha512-Gxk3AxkqlrUJMbPFEmTlO+I7XccCYemvd8NKqNHnQoY6IPB3mk120YZNUPLrE0K3YNUOESxR+2M2ZS+d1J2XvQ==
+typifier@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/typifier/-/typifier-0.0.3.tgz#3b038b34e5281b39e6dccca69ecb6329bebc46a2"
+  integrity sha512-Y5G1j5467E5RDw5gXEol4wN3D1SIn5VA7u2KOzoVOWxtNgf2HNyt85IGeSlD935jCVd6kKAKd7sFnYRsZuAE1g==
+  dependencies:
+    lucky-case "^1.1.3"
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.6"
