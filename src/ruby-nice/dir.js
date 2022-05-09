@@ -1,6 +1,8 @@
 //<!-- MODULE -->//
 if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
     var RubyNice = require('./ruby-nice');
+    var Glob = require('glob');
+    require('./array');
 }
 //<!-- /MODULE -->//
 
@@ -18,17 +20,23 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
  */
 class Dir {
     /**
-     * Get value of given environment variable name
+     * Expands pattern, which is a pattern string or an Array of pattern
+     * strings, and returns an array containing the matching filenames.
      *
-     * @param {string} name
-     * @returns {string}
+     * @param {string|Array<string>} pattern
+     * @param {object} options of npm package 'glob'
+     * @returns {Array<string>|null}
      */
-    static dir(pattern, options) {
-
-    }
-
     static glob(pattern, options) {
-
+        const is_array = pattern instanceof Array && pattern.constructor.name === 'Array';
+        if(!is_array) {
+            pattern = [pattern];
+        }
+        let results = [];
+        pattern.each((elem) => {
+            results.push(Glob.sync(elem));
+        });
+        return results.flatten();
     }
 }
 

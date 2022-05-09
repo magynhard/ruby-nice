@@ -35,7 +35,21 @@ describe('Array', function () {
         // require inside, to make not available in other tests but only here in this file
         require('../src/ruby-nice/array.js');
     });
-    describe('first()', function () {
+    describe('flatten()', function () {
+        it('flattens 3 dimension array', function () {
+            expect(['one','two',['three',['four']]].flatten()).toEqual(['one','two','three','four']);
+        });
+    });
+});
+
+
+
+describe('Array', function () {
+    beforeEach(function () {
+        // require inside, to make not available in other tests but only here in this file
+        require('../src/ruby-nice/array.js');
+    });
+    describe('getFirst()', function () {
         it('function is defined', function () {
             expect(typeof ['one','two','three'].getFirst).toEqual('function');
         });
@@ -51,7 +65,7 @@ describe('Array', function () {
         // require inside, to make not available in other tests but only here in this file
         require('../src/ruby-nice/array.js');
     });
-    describe('last()', function () {
+    describe('getLast()', function () {
         it('function is defined', function () {
             expect(typeof ['one','two','three'].getLast).toEqual('function');
         });

@@ -1,3 +1,8 @@
+//<!-- MODULE -->//
+if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
+    var Typifier = require('typifier');
+}
+//<!-- /MODULE -->//
 
 //----------------------------------------------------------------------------------------------------
 // JSDOC definition only
@@ -45,6 +50,13 @@
          * @returns {Array<any>} returns itself
          */
         eachWithIndex(loop_function) {
+        }
+
+        /**
+         * Returns a new array that is a one dimensional flattening of itself.
+         * @returns{Array}
+         */
+        flatten() {
         }
 
         /**
@@ -139,6 +151,28 @@ Object.assign(Array.prototype, {
  * @param {any} elem
  * @param {number} index
  */
+
+
+Object.assign(Array.prototype, {
+    /**
+     * Returns a new array that is a one dimensional flattening of itself.
+     *
+     * Different to Javascript flat(), which only removes one dimension.
+     *
+     * @returns{Array}
+     */
+    flatten() {
+        const recursiveFlat = (array) => {
+            if(!array) array = this;
+            const is_including_array = array.filter((el) => { return Typifier.isArray(el); }).length > 0;
+            if(is_including_array) {
+                return recursiveFlat(array.flat());
+            }
+            return array.flat();
+        }
+        return recursiveFlat();
+    }
+});
 
 
 Object.assign(Array.prototype, {
