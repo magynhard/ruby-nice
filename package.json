@@ -6,8 +6,11 @@
     ".": "./src/ruby-nice/ruby-nice.js",
     "./": "./src/ruby-nice/",
     "./array": "./src/ruby-nice/array.js",
+    "./dir": "./src/ruby-nice/dir.js",
+    "./env": "./src/ruby-nice/env.js",
     "./file": "./src/ruby-nice/file.js",
     "./string": "./src/ruby-nice/string.js"
+    "./system": "./src/ruby-nice/system.js"
   },
   "main": "src/ruby-nice/ruby-nice.js",
   "scripts": {
