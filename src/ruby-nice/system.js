@@ -3,6 +3,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     var RubyNice = require('./ruby-nice');
     var execSync = require('child_process').execSync;
     var spawnSync = require('child_process').spawnSync;
+    var spawn = require('child_process').spawn;
 }
 //<!-- /MODULE -->//
 
@@ -71,7 +72,7 @@ class System {
           detached: true,
           stdio: 'ignore'
         };
-        return spawnSync(command, null, options);
+        return spawn(command, null, options);
     }
 }
 
