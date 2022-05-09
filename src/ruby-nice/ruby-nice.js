@@ -1,8 +1,6 @@
 //<!-- MODULE -->//
 if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
-    require('./array');
-    var File = require('./file');
-    require('./string');
+
 }
 //<!-- /MODULE -->//
 
@@ -43,8 +41,8 @@ class RubyNice {
      * @returns {boolean} true if running inside browser
      */
     static isRunningInBrowser() {
-        const self = CurlyBracketParser;
-        return !self._runByNode();
+        const self = RubyNice;
+        return !self.isRunningInNodeJs();
     }
 }
 
