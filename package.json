@@ -5,6 +5,7 @@
   "exports": {
     ".": "./src/ruby-nice/ruby-nice.js",
     "./": "./src/ruby-nice/",
+    "./ruby-nice": "./src/ruby-nice/ruby-nice.js",
     "./array": "./src/ruby-nice/array.js",
     "./dir": "./src/ruby-nice/dir.js",
     "./env": "./src/ruby-nice/env.js",
