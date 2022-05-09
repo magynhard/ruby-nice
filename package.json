@@ -54,6 +54,6 @@
   "homepage": "https://github.com/magynhard/ruby-nice#readme",
   "dependencies": {
     "glob": "^8.0.1",
-    "typifier": "^0.0.3"
+    "typifier": "^0.0.6"
   }
 }

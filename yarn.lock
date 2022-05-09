@@ -2400,10 +2400,10 @@ typical@^6.0.1:
   resolved "https://registry.yarnpkg.com/typical/-/typical-6.0.1.tgz#89bd1a6aa5e5e96fa907fb6b7579223bff558a06"
   integrity sha512-+g3NEp7fJLe9DPa1TArHm9QAA7YciZmWnfAqEaFrBihQ7epOv9i99rjtgb6Iz0wh3WuQDjsCTDfgRoGnmHN81A==
 
-typifier@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/typifier/-/typifier-0.0.3.tgz#3b038b34e5281b39e6dccca69ecb6329bebc46a2"
-  integrity sha512-Y5G1j5467E5RDw5gXEol4wN3D1SIn5VA7u2KOzoVOWxtNgf2HNyt85IGeSlD935jCVd6kKAKd7sFnYRsZuAE1g==
+typifier@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/typifier/-/typifier-0.0.6.tgz#a0572ba461a20d6bf258782619321aee9c38ccbe"
+  integrity sha512-23i5HqUntnvabs6d3yTE1wUDt7WZ9teEBkiyhMMMLkgZ9tz0cCYi8V3Dpw2f5sVbhPDfmCfD+YsyYUaU9xtIbA==
   dependencies:
     lucky-case "^1.1.3"
 
