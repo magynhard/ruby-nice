@@ -1,6 +1,6 @@
 {
   "name": "ruby-nice",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "The nice javascript library to rubynize your javascript to be a happy programmer again.",
   "exports": {
     ".": "./src/ruby-nice/ruby-nice.js",
@@ -9,7 +9,7 @@
     "./dir": "./src/ruby-nice/dir.js",
     "./env": "./src/ruby-nice/env.js",
     "./file": "./src/ruby-nice/file.js",
-    "./string": "./src/ruby-nice/string.js"
+    "./string": "./src/ruby-nice/string.js",
     "./system": "./src/ruby-nice/system.js"
   },
   "main": "src/ruby-nice/ruby-nice.js",
