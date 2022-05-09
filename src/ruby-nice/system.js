@@ -45,6 +45,21 @@ class System {
     static system(command) {
         return spawnSync(command, null, { shell: true }).status || 0;
     }
+
+    /**
+     * Run a system command synchronously and return the child process Object.
+     *
+     * @param {string} command
+     * @returns {{pid: number, output: Array, stdout: Buffer|string, stderr: Buffer|string, status: number|null, signal: string|null, error: Error}} child process object
+     */
+    static execDetachedShell(command) {
+        const options = {
+          shell: true,
+          detached: true,
+          stdio: 'ignore'
+        };
+        return spawnSync(command, null, options);
+    }
 }
 
 //<!-- MODULE -->//
