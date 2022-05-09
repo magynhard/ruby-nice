@@ -6,6 +6,7 @@ File class port of ruby
 For node js only, does not work inside a browser.
 
 * [File](#File)
+    * [.delete(file_name)](#File.delete) &rarr; <code>string</code>
     * [.getAbsolutePath(file_name, dir_string)](#File.getAbsolutePath) &rarr; <code>string</code>
     * [.getAccessTime(file_name)](#File.getAccessTime) &rarr; <code>Date</code>
     * [.getBasename(file_name, suffix)](#File.getBasename)
@@ -19,6 +20,15 @@ For node js only, does not work inside a browser.
     * [.read(file_name, opt)](#File.read) &rarr; <code>string</code>
     * [.readAsDataUri(file_name)](#File.readAsDataUri) &rarr; <code>string</code>
     * [.write(name, data, opt)](#File.write) &rarr; <code>string</code>
+
+<a name="File.delete"></a>
+
+### File.delete(file_name) &rarr; <code>string</code>
+Delete file synchronously
+
+| Param | Type | Description |
+| --- | --- | --- |
+| file_name | <code>string</code> | path to file |
 
 <a name="File.getAbsolutePath"></a>
 
