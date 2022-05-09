@@ -26,7 +26,14 @@ class System {
      * @returns {string}
      */
     static run(command) {
-        return execSync(command).toString();
+        let result = spawnSync(command, null, {
+            shell: true
+        });
+        try {
+            return result.stdout.toString() + result.stderr.toString();
+        } catch (e) {
+            return e.message;
+        }
     }
 
     /**
@@ -36,7 +43,7 @@ class System {
      * @returns {number}
      */
     static system(command) {
-        return spawnSync(command).status || 0;
+        return spawnSync(command, null, { shell: true }).status || 0;
     }
 }
 
