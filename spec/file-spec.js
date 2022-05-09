@@ -115,3 +115,15 @@ describe('File', function () {
         });
     });
 });
+
+
+
+describe('File', function () {
+    beforeEach(function () {
+    });
+    describe('read()', function () {
+        it('reads contents of a file', function () {
+            expect(File.read(__dirname + '/test_files/sample.txt')).toContain("Here is some text");
+        });
+    });
+});
