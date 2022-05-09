@@ -1,6 +1,6 @@
 {
   "name": "ruby-nice",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "The nice javascript library to rubynize your javascript to be a happy programmer again.",
   "exports": {
     ".": "./src/ruby-nice/ruby-nice.js",
@@ -17,8 +17,7 @@
   "scripts": {
     "test": "jasmine",
     "build": "node scripts/build.js",
-    "doc": "node scripts/doc.js",
-    "publish": "npm publish"
+    "doc": "node scripts/doc.js"
   },
   "repository": {
     "type": "git",
