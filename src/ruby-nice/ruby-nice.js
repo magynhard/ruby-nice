@@ -13,6 +13,16 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
  *
  */
 class RubyNice {
+    /**
+     * Prevent using a method inside the browser
+     */
+    static ensureRunningInNodeJs() {
+        const self = RubyNice;
+        if (!self.isRunningInNodeJs()) {
+            throw new Error(`The used method can only be used when running with node js.`);
+        }
+    }
+
     static getVersion() {
         const self = RubyNice;
         return self._version;
@@ -26,8 +36,6 @@ class RubyNice {
     static isRunningInNodeJs() {
         return (typeof module !== 'undefined' && module.exports);
     }
-
-    //----------------------------------------------------------------------------------------------------
 
     /**
      * Check if this javascript is running in a browser

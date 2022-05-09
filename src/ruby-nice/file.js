@@ -20,6 +20,18 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 class File {
 
     /**
+     * Delete file synchronously
+     *
+     * @param {string} file_name path to file
+     * @returns {string}
+     */
+    static delete(file_name, opt) {
+        const self = File;
+        RubyNice.ensureRunningInNodeJs();
+        Fs.unlinkSync(file_name);
+    }
+
+    /**
      * Converts a pathname to an absolute pathname
      *
      * '~' are not resolved.
@@ -195,7 +207,7 @@ class File {
      */
     static read(file_name, opt) {
         const self = File;
-        self._ensureRunningInNodeJs();
+        RubyNice.ensureRunningInNodeJs();
         let encoding = 'utf8';
         if (opt && ['binary', 'buffer'].includes(opt.encoding)) encoding = null;
         let content = Fs.readFileSync(file_name, encoding);
@@ -234,7 +246,7 @@ class File {
      */
     static write(name, data, opt) {
         const self = File;
-        self._ensureRunningInNodeJs();
+        RubyNice.ensureRunningInNodeJs();
         let options = {encoding: 'utf8'};
         if (opt) {
             if (opt.flag) options.flag = opt.flag;
@@ -276,17 +288,6 @@ class File {
             }
         }
         return path;
-    }
-
-    /**
-     * Prevent using this class inside the browser
-     *
-     * @private
-     */
-    static _ensureRunningInNodeJs() {
-        if (!RubyNice.isRunningInNodeJs()) {
-            throw `Class '${this.class.name}' can only be used when running with node js.`;
-        }
     }
 }
 
