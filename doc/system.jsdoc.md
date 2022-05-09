@@ -10,7 +10,8 @@ For node js only, does not work inside a browser.
 * [System](#System)
     * [.run(command)](#System.run) &rarr; <code>string</code>
     * [.system(command)](#System.system) &rarr; <code>number</code>
-    * [.execDetachedShell(command)](#System.execDetachedShell) &rarr; <code>Object</code>
+    * [.exec(command)](#System.exec) &rarr; <code>Object</code>
+    * [.execDetached(command)](#System.execDetached) &rarr; <code>Object</code>
 
 <a name="System.run"></a>
 
@@ -30,10 +31,21 @@ Run a system command synchronously and return the return code.
 | --- | --- |
 | command | <code>string</code> | 
 
-<a name="System.execDetachedShell"></a>
+<a name="System.exec"></a>
 
-### System.execDetachedShell(command) &rarr; <code>Object</code>
+### System.exec(command) &rarr; <code>Object</code>
 Run a system command synchronously and return the child process Object.
+
+**Returns**: <code>Object</code> - child process object  
+
+| Param | Type |
+| --- | --- |
+| command | <code>string</code> | 
+
+<a name="System.execDetached"></a>
+
+### System.execDetached(command) &rarr; <code>Object</code>
+Start a system command asynchronously and detach the process from the main process and return the child process Object.
 
 **Returns**: <code>Object</code> - child process object  
 

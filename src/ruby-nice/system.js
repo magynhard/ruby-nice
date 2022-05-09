@@ -52,7 +52,20 @@ class System {
      * @param {string} command
      * @returns {{pid: number, output: Array, stdout: Buffer|string, stderr: Buffer|string, status: number|null, signal: string|null, error: Error}} child process object
      */
-    static execDetachedShell(command) {
+    static exec(command) {
+        const options = {
+          shell: true
+        };
+        return spawnSync(command, null, options);
+    }
+
+    /**
+     * Start a system command asynchronously and detach the process from the main process and return the child process Object.
+     *
+     * @param {string} command
+     * @returns {{pid: number, output: Array, stdout: Buffer|string, stderr: Buffer|string, status: number|null, signal: string|null, error: Error}} child process object
+     */
+    static execDetached(command) {
         const options = {
           shell: true,
           detached: true,
