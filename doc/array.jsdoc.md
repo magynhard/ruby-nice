@@ -6,6 +6,7 @@ RubyNice version to add methods directly to the class by monkey patching
 * [Array](#Array)
     * [.each(loop_function)](#Array+each) &rarr; <code>Array.&lt;any&gt;</code>
     * [.eachWithIndex(loop_function)](#Array+eachWithIndex) &rarr; <code>Array.&lt;any&gt;</code>
+    * [.flatten()](#Array+flatten)
     * [.getFirst()](#Array+getFirst) &rarr; <code>any</code>
     * [.getLast()](#Array+getLast) &rarr; <code>any</code>
     * [.getSample()](#Array+getSample) &rarr; <code>any</code>
@@ -52,6 +53,11 @@ Breaks if returning false
          console.log(elem);
      })
 ```
+<a name="Array+flatten"></a>
+
+### array.flatten()
+Returns a new array that is a one dimensional flattening of itself.
+**Returns{array}**:   
 <a name="Array+getFirst"></a>
 
 ### array.getFirst() &rarr; <code>any</code>

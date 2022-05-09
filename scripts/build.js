@@ -34,6 +34,8 @@ const builds = {
         destination_file: build_destination_dir + 'ruby-nice.js',
         destination_min_file: build_destination_dir + 'ruby-nice.min.js',
         source_files: [
+            './src/ruby-nice/array.js',
+            './src/ruby-nice/file.js',
             './src/ruby-nice/string.js',
             './src/ruby-nice/ruby-nice.js'
     ]}

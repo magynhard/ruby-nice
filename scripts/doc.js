@@ -12,10 +12,12 @@ require('./../src/ruby-nice/array');
 const files_to_doc = [
     './src/ruby-nice/ruby-nice.js',
     './src/ruby-nice/array.js',
+    './src/ruby-nice/array.js',
+    './src/ruby-nice/dir.js',
     './src/ruby-nice/env.js',
+    './src/ruby-nice/file.js',
     './src/ruby-nice/string.js',
     './src/ruby-nice/system.js',
-    './src/ruby-nice/file.js',
 ]
 
 function generateDoc() {
