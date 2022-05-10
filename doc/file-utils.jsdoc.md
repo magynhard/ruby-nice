@@ -12,7 +12,7 @@ For node js only, does not work inside a browser.
 <a name="FileUtils.mkdirP"></a>
 
 ### FileUtils.mkdirP(file_name)
-Create diretory recursively
+Create directory recursively
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -21,10 +21,10 @@ Create diretory recursively
 <a name="FileUtils.rmRf"></a>
 
 ### FileUtils.rmRf(file_name, opt)
-Deletes diretory recursively
+Deletes directory recursively including its contents
 
 | Param | Type | Description |
 | --- | --- | --- |
-| file_name | <code>string</code> \| <code>Array.&lt;string&gt;</code> | path(s) to create |
+| file_name | <code>string</code> \| <code>Array.&lt;string&gt;</code> | path(s) to delete recursively |
 | opt | <code>Object</code> | options |
 

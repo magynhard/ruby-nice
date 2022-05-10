@@ -87,7 +87,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * @example
          *      [3,7,2].getMax() => 7
          *
-         * @returns {number}
+         * @returns {number|null} returns null if array is empty
          */
         getMax() {
         }
@@ -98,7 +98,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * @example
          *      [3,7,2,9].getMax() => 2
          *
-         * @returns {number}
+         * @returns {number|null} returns null if array is empty
          */
         getMin() {
         }
@@ -236,9 +236,10 @@ Object.assign(Array.prototype, {
      * @example
      *      [3,7,2].getMax() => 7
      *
-     * @returns {number}
+     * @returns {number|null} returns null if array is empty
      */
     getMax() {
+        if(this.length === 0) return null;
         return Math.max(...this);
     }
 });
@@ -250,9 +251,10 @@ Object.assign(Array.prototype, {
      * @example
      *      [3,7,2,9].getMax() => 2
      *
-     * @returns {number}
+     * @returns {number|null} returns null if array is empty
      */
     getMin() {
+        if(this.length === 0) return null;
         return Math.min(...this);
     }
 });

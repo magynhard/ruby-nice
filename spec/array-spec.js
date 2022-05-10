@@ -110,6 +110,9 @@ describe('Array', function () {
         it('returns the max element in array', function () {
             expect([2,55,77,13,0].getMax()).toEqual(77);
         });
+        it('returns null when empty array', function () {
+            expect([].getMax()).toEqual(null);
+        });
     });
 });
 
@@ -122,6 +125,9 @@ describe('Array', function () {
     describe('getMin()', function () {
         it('returns the max element in array', function () {
             expect([2,55,1,13,3].getMin()).toEqual(1);
+        });
+        it('returns null when empty array', function () {
+            expect([].getMin()).toEqual(null);
         });
     });
 });
