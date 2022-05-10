@@ -9,8 +9,8 @@ RubyNice version to add methods directly to the class by monkey patching
     * [.flatten()](#Array+flatten)
     * [.getFirst()](#Array+getFirst) &rarr; <code>any</code>
     * [.getLast()](#Array+getLast) &rarr; <code>any</code>
-    * [.getMax()](#Array+getMax) &rarr; <code>number</code>
-    * [.getMin()](#Array+getMin) &rarr; <code>number</code>
+    * [.getMax()](#Array+getMax) &rarr; <code>number</code> \| <code>null</code>
+    * [.getMin()](#Array+getMin) &rarr; <code>number</code> \| <code>null</code>
     * [.getSample()](#Array+getSample) &rarr; <code>any</code>
 
 <a name="Array+each"></a>
@@ -80,8 +80,10 @@ Returns the last element of the array
 ```
 <a name="Array+getMax"></a>
 
-### array.getMax() &rarr; <code>number</code>
+### array.getMax() &rarr; <code>number</code> \| <code>null</code>
 Returns the max element of the array. All values must be of type number.
+
+**Returns**: <code>number</code> \| <code>null</code> - returns null if array is empty  
 
 **Example**
 ```js
@@ -89,8 +91,10 @@ Returns the max element of the array. All values must be of type number.
 ```
 <a name="Array+getMin"></a>
 
-### array.getMin() &rarr; <code>number</code>
+### array.getMin() &rarr; <code>number</code> \| <code>null</code>
 Returns the min element of the array. All values must be of type number.
+
+**Returns**: <code>number</code> \| <code>null</code> - returns null if array is empty  
 
 **Example**
 ```js

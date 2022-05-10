@@ -25,16 +25,19 @@ class Dir {
      *
      * @param {string|Array<string>} pattern
      * @param {object} options of npm package 'glob'
+     * @param {string} base_path shortcut of options.cwd with higher prio
      * @returns {Array<string>|null}
      */
-    static glob(pattern, options) {
+    static glob(pattern, options, base_path) {
         const is_array = pattern instanceof Array && pattern.constructor.name === 'Array';
         if(!is_array) {
             pattern = [pattern];
         }
         let results = [];
+        if(!options) options = {};
+        if(base_path) options.cwd = base_path;
         pattern.each((elem) => {
-            results.push(Glob.sync(elem));
+            results.push(Glob.sync(elem, options));
         });
         return results.flatten();
     }
