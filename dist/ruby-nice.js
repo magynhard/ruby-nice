@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.21
- * @date 2022-05-09T20:31:34.209Z
+ * @version 0.0.22
+ * @date 2022-05-10T12:32:53.580Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -126,6 +126,34 @@ Object.assign(Array.prototype, {
             result_index = this.length-1;
         }
         return this[result_index];
+    }
+});
+
+Object.assign(Array.prototype, {
+    /**
+     * Returns the max element of the array. All values must be of type number.
+     *
+     * @example
+     *      [3,7,2].getMax() => 7
+     *
+     * @returns {number}
+     */
+    getMax() {
+        return Math.max(...this);
+    }
+});
+
+Object.assign(Array.prototype, {
+    /**
+     * Returns the min element of the array. All values must be of type number.
+     *
+     * @example
+     *      [3,7,2,9].getMax() => 2
+     *
+     * @returns {number}
+     */
+    getMin() {
+        return Math.min(...this);
     }
 });
 
@@ -523,6 +551,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.21";
+RubyNice._version = "0.0.22";
 
 
