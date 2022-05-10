@@ -9,6 +9,8 @@ RubyNice version to add methods directly to the class by monkey patching
     * [.flatten()](#Array+flatten)
     * [.getFirst()](#Array+getFirst) &rarr; <code>any</code>
     * [.getLast()](#Array+getLast) &rarr; <code>any</code>
+    * [.getMax()](#Array+getMax) &rarr; <code>number</code>
+    * [.getMin()](#Array+getMin) &rarr; <code>number</code>
     * [.getSample()](#Array+getSample) &rarr; <code>any</code>
 
 <a name="Array+each"></a>
@@ -75,6 +77,24 @@ Returns the last element of the array
 **Example**
 ```js
 ['one','two','three'].last => 'three'
+```
+<a name="Array+getMax"></a>
+
+### array.getMax() &rarr; <code>number</code>
+Returns the max element of the array. All values must be of type number.
+
+**Example**
+```js
+[3,7,2].getMax() => 7
+```
+<a name="Array+getMin"></a>
+
+### array.getMin() &rarr; <code>number</code>
+Returns the min element of the array. All values must be of type number.
+
+**Example**
+```js
+[3,7,2,9].getMax() => 2
 ```
 <a name="Array+getSample"></a>
 

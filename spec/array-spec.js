@@ -99,3 +99,29 @@ describe('Array', function () {
         });
     });
 });
+
+
+describe('Array', function () {
+    beforeEach(function () {
+        // require inside, to make not available in other tests but only here in this file
+        require('../src/ruby-nice/array.js');
+    });
+    describe('getMax()', function () {
+        it('returns the max element in array', function () {
+            expect([2,55,77,13,0].getMax()).toEqual(77);
+        });
+    });
+});
+
+
+describe('Array', function () {
+    beforeEach(function () {
+        // require inside, to make not available in other tests but only here in this file
+        require('../src/ruby-nice/array.js');
+    });
+    describe('getMin()', function () {
+        it('returns the max element in array', function () {
+            expect([2,55,1,13,3].getMin()).toEqual(1);
+        });
+    });
+});

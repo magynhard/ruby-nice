@@ -82,6 +82,28 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
         }
 
         /**
+         * Returns the max element of the array. All values must be of type number.
+         *
+         * @example
+         *      [3,7,2].getMax() => 7
+         *
+         * @returns {number}
+         */
+        getMax() {
+        }
+
+        /**
+         * Returns the min element of the array. All values must be of type number.
+         *
+         * @example
+         *      [3,7,2,9].getMax() => 2
+         *
+         * @returns {number}
+         */
+        getMin() {
+        }
+
+        /**
          * Returns a random element of the array
          *
          * @example
@@ -204,6 +226,34 @@ Object.assign(Array.prototype, {
             result_index = this.length-1;
         }
         return this[result_index];
+    }
+});
+
+Object.assign(Array.prototype, {
+    /**
+     * Returns the max element of the array. All values must be of type number.
+     *
+     * @example
+     *      [3,7,2].getMax() => 7
+     *
+     * @returns {number}
+     */
+    getMax() {
+        return Math.max(...this);
+    }
+});
+
+Object.assign(Array.prototype, {
+    /**
+     * Returns the min element of the array. All values must be of type number.
+     *
+     * @example
+     *      [3,7,2,9].getMax() => 2
+     *
+     * @returns {number}
+     */
+    getMin() {
+        return Math.min(...this);
     }
 });
 
