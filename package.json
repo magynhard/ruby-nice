@@ -10,6 +10,7 @@
     "./dir": "./src/ruby-nice/dir.js",
     "./env": "./src/ruby-nice/env.js",
     "./file": "./src/ruby-nice/file.js",
+    "./file-utils": "./src/ruby-nice/file-utils.js",
     "./string": "./src/ruby-nice/string.js",
     "./system": "./src/ruby-nice/system.js"
   },
@@ -57,6 +58,7 @@
   },
   "homepage": "https://github.com/magynhard/ruby-nice#readme",
   "dependencies": {
+    "fs-extra": "^10.1.0",
     "glob": "^8.0.1",
     "typifier": "^0.0.6"
   }

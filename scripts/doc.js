@@ -6,19 +6,11 @@ const {exec} = require("child_process");
 const {execSync} = require("child_process");
 
 const LuckyCase = require("lucky-case/string");
+const Glob = require("glob");
 
 require('./../src/ruby-nice/array');
 
-const files_to_doc = [
-    './src/ruby-nice/ruby-nice.js',
-    './src/ruby-nice/array.js',
-    './src/ruby-nice/array.js',
-    './src/ruby-nice/dir.js',
-    './src/ruby-nice/env.js',
-    './src/ruby-nice/file.js',
-    './src/ruby-nice/string.js',
-    './src/ruby-nice/system.js',
-]
+const files_to_doc = Glob.sync('./src/ruby-nice/**/*.js');
 
 function generateDoc() {
     for(let source_file of files_to_doc) {
