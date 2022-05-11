@@ -12,12 +12,15 @@ For node js only, does not work inside a browser.
     * [.getBasename(file_name, suffix)](#File.getBasename)
     * [.getBirthTime(file_name)](#File.getBirthTime) &rarr; <code>Date</code>
     * [.getDirname(file_name)](#File.getDirname) &rarr; <code>string</code>
+    * [.getSize(file_name)](#File.getSize) &rarr; <code>number</code>
     * [.expandPath(file_name, dir_string, options, expand_user_dir)](#File.expandPath) &rarr; <code>string</code>
     * [.isDirectory(file_name)](#File.isDirectory) &rarr; <code>boolean</code>
+    * [.isEmpty(file_name)](#File.isEmpty) &rarr; <code>boolean</code>
     * [.isExisting(file_name)](#File.isExisting) &rarr; <code>boolean</code>
     * [.isFile(file_name)](#File.isFile) &rarr; <code>boolean</code>
     * [.normalizePath(path)](#File.normalizePath) &rarr; <code>string</code>
     * [.read(file_name, opt)](#File.read) &rarr; <code>string</code>
+    * [.rename(file_name, new_path)](#File.rename)
     * [.readAsDataUri(file_name)](#File.readAsDataUri) &rarr; <code>string</code>
     * [.write(name, data, opt)](#File.write) &rarr; <code>string</code>
 
@@ -117,6 +120,23 @@ File.getDirname('/home/user/documents/some_file_without_extension')
 File.getDirname('/home/user/documents/')
  // => '/home/user'
 ```
+<a name="File.getSize"></a>
+
+### File.getSize(file_name) &rarr; <code>number</code>
+Get the size of the given file in bytes
+
+**Returns**: <code>number</code> - size in bytes  
+
+| Param | Type |
+| --- | --- |
+| file_name | <code>string</code> | 
+
+
+**Example**
+```js
+File.getSize('myFile.txt');
+ // => 12345
+```
 <a name="File.expandPath"></a>
 
 ### File.expandPath(file_name, dir_string, options, expand_user_dir) &rarr; <code>string</code>
@@ -139,6 +159,17 @@ Converts a pathname to an absolute pathname
 Check if given file name exists and is a directory
 
 **Returns**: <code>boolean</code> - true if file exists and is a directory, otherwise false  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| file_name | <code>string</code> | path of the file to check |
+
+<a name="File.isEmpty"></a>
+
+### File.isEmpty(file_name) &rarr; <code>boolean</code>
+Check if given file exists but has no content
+
+**Returns**: <code>boolean</code> - true if file exists and has zero content, otherwise false  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -190,6 +221,16 @@ Read file and return its content synchronously
 | opt.encoding | <code>&#x27;utf8&#x27;</code> \| <code>&#x27;binary&#x27;</code> \| <code>&#x27;buffer&#x27;</code> \| <code>&#x27;base64&#x27;</code> | <code>&#x27;utf8&#x27;</code> |  |
 | opt.length | <code>Number</code> |  |  |
 | opt.offset | <code>Number</code> |  |  |
+
+<a name="File.rename"></a>
+
+### File.rename(file_name, new_path)
+Rename the given file
+
+| Param | Type | Description |
+| --- | --- | --- |
+| file_name | <code>string</code> | path to original file |
+| new_path | <code>string</code> | path to new file |
 
 <a name="File.readAsDataUri"></a>
 

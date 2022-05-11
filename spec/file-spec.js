@@ -73,6 +73,34 @@ describe('File', function () {
 describe('File', function () {
     beforeEach(function () {
     });
+    describe('getSize()', function () {
+        it('gets the size of a file', function () {
+            expect(File.getSize(__dirname + '/test_files/24_bytes_file.txt')).toEqual(24);
+        });
+    });
+});
+
+
+describe('File', function () {
+    beforeEach(function () {
+    });
+    describe('isEmpty()', function () {
+        it('checks a file for empty that does not exist', function () {
+            expect(File.isEmpty(__dirname + '/test_files/does_not_exist.txt')).toEqual(false);
+        });
+        it('checks a file for empty that is not empty', function () {
+            expect(File.isEmpty(__dirname + '/test_files/sample.txt')).toEqual(false);
+        });
+        it('checks a file that is empty', function () {
+            expect(File.isEmpty(__dirname + '/test_files/empty.txt')).toEqual(true);
+        });
+    });
+});
+
+
+describe('File', function () {
+    beforeEach(function () {
+    });
     describe('isExisting()', function () {
         it('detects an existing file', function () {
             expect(File.isExisting(__dirname + '/test_files/sample.txt')).toEqual(true);
