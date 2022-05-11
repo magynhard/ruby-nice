@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.25
- * @date 2022-05-10T14:30:31.149Z
+ * @version 0.0.26
+ * @date 2022-05-11T10:21:40.677Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -293,6 +293,22 @@ class File {
     }
 
     /**
+     * Get the size of the given file in bytes
+     *
+     * @example
+     *  File.getSize('myFile.txt');
+     *  // => 12345
+     *
+     * @param {string} file_name
+     * @returns {number} size in bytes
+     */
+    static getSize(file_name) {
+        const self = File;
+        file_name = self.normalizePath(file_name);
+        return Fs.statSync(file_name).size;
+    }
+
+    /**
      * Converts a pathname to an absolute pathname
      *
      * '~' is resolved to the home directory, '~user' to the given users home directory.
@@ -328,6 +344,18 @@ class File {
     static isDirectory(file_name) {
         const self = File;
         return self.isExisting(file_name) && Fs.lstatSync(file_name).isDirectory();
+    }
+
+    /**
+     * Check if given file exists but has no content
+     *
+     * @param {string} file_name path of the file to check
+     * @returns {boolean} true if file exists and has zero content, otherwise false
+     *
+     */
+    static isEmpty(file_name) {
+        const self = File;
+        return self.isExisting(file_name) && self.getSize(file_name) === 0;
     }
 
     /**
@@ -386,6 +414,18 @@ class File {
             if (opt.length) content = content.slice(0, opt.length);
         }
         return content;
+    }
+
+    /**
+     * Rename the given file
+     *
+     * @param {string} file_name path to original file
+     * @param {string} new_path path to new file
+     */
+    static rename(file_name, new_path) {
+        const self = File;
+        RubyNice.ensureRunningInNodeJs();
+        Fs.renameSync(file_name, new_path);
     }
 
     /**
@@ -553,6 +593,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.25";
+RubyNice._version = "0.0.26";
 
 
