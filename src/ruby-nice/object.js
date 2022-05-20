@@ -122,7 +122,7 @@ Object.assign(Object.prototype, {
                     ++index;
                 }
             } else {
-                throw new TypeError(`${Typifier.getType(this)}.each is not a function`);
+                console.warn(`${Typifier.getType(this)}.each is not a valid function`);
             }
         }
         return this;
@@ -155,7 +155,7 @@ Object.assign(Object.prototype, {
                 }
                 return result_array;
             } else {
-                throw new TypeError(`${Typifier.getType(this)}.map is not a function`);
+                console.warn(`${Typifier.getType(this)}.map is not a valid function`);
             }
         }
     }
@@ -186,7 +186,7 @@ Object.assign(Object.prototype, {
             a[first[0]] = first[1];
             return a;
         } else {
-            throw new TypeError(`${Typifier.getType(this)}.getFirst is not a function`);
+            console.warn(`${Typifier.getType(this)}.getFirst is not a valid function`);
         }
     }
 });
@@ -209,7 +209,7 @@ Object.assign(Object.prototype, {
             a[last[0]] = last[1];
             return a;
         } else {
-            throw new TypeError(`${Typifier.getType(this)}.getLast is not a function`);
+            console.warn(`${Typifier.getType(this)}.getLast is not a valid function`);
         }
     }
 });
@@ -234,7 +234,7 @@ Object.assign(Object.prototype, {
             a[random_el[0]] = random_el[1];
             return a;
         } else {
-            throw new TypeError(`${Typifier.getType(this)}.getSample is not a function`);
+            console.warn(`${Typifier.getType(this)}.getSample is not a valid function`);
         }
     }
 });
