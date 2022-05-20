@@ -50,9 +50,10 @@ in `camelCase`:
 
 ```js
 // -- node js --
-require('ruby-nice/array'); // monkey patching arrays
-require('ruby-nice/string'); // monkey patching strings
-const File = require('ruby-nice/file');
+require('ruby-nice/array'); // monkey patch arrays
+require('ruby-nice/string'); // monkey patch strings
+require('ruby-nice'); // load all monkey patches at once
+const File = require('ruby-nice/file'); // load ported ruby class
 // -- browser --
 <script type="text/javascript" src="js/lib/ruby-nice.min.js"></script>
 
@@ -65,6 +66,16 @@ const File = require('ruby-nice/file');
         
 [1,2,3].getSample() // get random element of an Array
 // => 3
+
+
+File.write("/home/user/document.txt", "some content");
+
+
+// use map() on Object
+{ a: 1, b: 2}.map((key, value, index) => { 
+    return value;
+})
+// => [1,2]
 
 ```
 

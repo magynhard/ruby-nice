@@ -1,6 +1,9 @@
 //<!-- MODULE -->//
 if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
-
+    // include all monkey patches
+    require('./array');
+    require('./object');
+    require('./string');
 }
 //<!-- /MODULE -->//
 
