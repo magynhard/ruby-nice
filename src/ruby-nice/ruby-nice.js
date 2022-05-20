@@ -53,7 +53,7 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.32";
+RubyNice._version = "0.0.33";
 
 //<!-- MODULE -->//
 if (typeof module !== 'undefined' && module.exports) {

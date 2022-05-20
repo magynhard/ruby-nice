@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.32
- * @date 2022-05-20T16:12:33.604Z
+ * @version 0.0.33
+ * @date 2022-05-20T16:17:00.702Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -661,6 +661,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.32";
+RubyNice._version = "0.0.33";
 
 
