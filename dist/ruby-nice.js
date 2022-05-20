@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.26
- * @date 2022-05-11T10:21:40.677Z
+ * @version 0.0.28
+ * @date 2022-05-20T15:32:39.435Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -21,56 +21,9 @@
 // CLASS MONKEY PATCH
 //----------------------------------------------------------------------------------------------------
 
-Object.assign(Array.prototype, {
-    /**
-     * Iterates over all elements of an array
-     *
-     * Breaks if returning false
-     *
-     * @example
-     *      ['one','two','three'].each((elem, index) => {
-     *          if(condition) return false;
-     *          console.log(elem);
-     *      })
-     *
-     * @param {eachLoopCallback} loop_function
-     * @returns {Array<any>} returns itself
-     */
-    each(loop_function) {
-        if(typeof loop_function === 'function') {
-            for(let i = 0; i < this.length; ++i) {
-                const state = { state: false };
-                if(loop_function(this[i], i, state) === false) {
-                    break;
-                }
-            }
-        }
-        return this;
-    }
-});
-
-Object.assign(Array.prototype, {
-    /**
-     * Iterates over all elements of an array
-     *
-     * Breaks if returning false
-     *
-     * @example
-     *      ['one','two','three'].each((elem, index) => {
-     *          if(condition) return false;
-     *          console.log(elem);
-     *      })
-     *
-     * @param {eachLoopCallback} loop_function
-     * @returns {Array<any>} returns itself
-     */
-    eachWithIndex(loop_function) {
-        return this.each(loop_function);
-    }
-});
 /**
- * @callback eachLoopCallback
- * @param {any} elem
+ * @callback eachArrayLoopCallback
+ * @param {any} value
  * @param {number} index
  */
 
@@ -93,39 +46,6 @@ Object.assign(Array.prototype, {
             return array.flat();
         }
         return recursiveFlat();
-    }
-});
-
-
-Object.assign(Array.prototype, {
-    /**
-     * Returns the first element of the array
-     *
-     * @example
-     *      ['one','two','three'].first => 'one'
-     *
-     * @returns {any}
-     */
-    getFirst() {
-        return this[0];
-    }
-});
-
-Object.assign(Array.prototype, {
-    /**
-     * Returns the last element of the array
-     *
-     * @example
-     *      ['one','two','three'].last => 'three'
-     *
-     * @returns {any}
-     */
-    getLast() {
-        let result_index = 0;
-        if(this.length > 0) {
-            result_index = this.length-1;
-        }
-        return this[result_index];
     }
 });
 
@@ -156,21 +76,6 @@ Object.assign(Array.prototype, {
     getMin() {
         if(this.length === 0) return null;
         return Math.min(...this);
-    }
-});
-
-Object.assign(Array.prototype, {
-    /**
-     * Returns a random element of the array
-     *
-     * @example
-     *      ['one','two','three'].sample => 'two'
-     *
-     * @returns {any}
-     */
-    getSample() {
-        const random_index = Math.floor(Math.random() * this.length);
-        return this[random_index];
     }
 });
 
@@ -503,6 +408,169 @@ class File {
 
 
 
+
+//----------------------------------------------------------------------------------------------------
+// JSDOC definition only
+//----------------------------------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------------------------------
+// CLASS MONKEY PATCH
+//----------------------------------------------------------------------------------------------------
+
+Object.assign(Object.prototype, {
+    /**
+     * Iterates over all elements of an object
+     *
+     * Breaks if returning false
+     *
+     * @example
+     *      { a: 'one', b: 'two', c: 'three'}.each((key, value, index) => {
+     *          if(condition) return false;
+     *          console.log(key, value);
+     *      })
+     *
+     * @param {eachObjectLoopCallback|eachArrayLoopCallback} loop_function
+     * @returns {Object<any>} returns itself
+     */
+    each(loop_function) {
+        if (typeof loop_function === 'function') {
+            if (Typifier.isArray(this)) {
+                for (let i = 0; i < this.length; ++i) {
+                    const state = {state: false};
+                    if (loop_function(this[i], i, state) === false) {
+                        break;
+                    }
+                }
+            } else if (Typifier.isObject(this)) {
+                let index = 0;
+                for (const [key, value] of Object.entries(this)) {
+                    if (loop_function(key, value, index) === false) {
+                        break;
+                    }
+                    ++index;
+                }
+            } else {
+                throw new TypeError(`${Typifier.getType(this)}.each is not a function`);
+            }
+        }
+        return this;
+    }
+});
+
+Object.assign(Object.prototype, {
+    /**
+     * Maps over all elements of an object
+     *
+     * @example
+     *      { a: 'one', b: 'two', c: 'three'}.map((key, value, index) => {
+     *          return value;
+     *      })
+     *      => ['one','two','three']
+     *
+     * @param {eachObjectLoopCallback} loop_function
+     * @returns {Array<any>} returns itself
+     */
+    map(loop_function) {
+        if (typeof loop_function === 'function') {
+            if (Typifier.isObject(this)) {
+                const object_array = Object.entries(this).map((value, index) => { a = {}; a[value[0]] = value[1]; return a })
+                let result_array = [];
+                let index = 0;
+                for (const [key, value] of Object.entries(this)) {
+                    const result = loop_function(key, value, index);
+                    result_array.push(result);
+                    ++index;
+                }
+                return result_array;
+            } else {
+                throw new TypeError(`${Typifier.getType(this)}.map is not a function`);
+            }
+        }
+    }
+});
+
+/**
+ * @callback eachObjectLoopCallback
+ * @param {any} key
+ * @param {any} value
+ * @param {number} index
+ */
+
+Object.assign(Object.prototype, {
+    /**
+     * Returns the first element of the array
+     *
+     * @example
+     *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+     *
+     * @returns {Object}
+     */
+    getFirst() {
+        if (Typifier.isArray(this) && this.length > 0) {
+            return this[0];
+        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+            const first = Object.entries(this)[0];
+            let a = {};
+            a[first[0]] = first[1];
+            return a;
+        } else {
+            throw new TypeError(`${Typifier.getType(this)}.getFirst is not a function`);
+        }
+    }
+});
+
+Object.assign(Object.prototype, {
+    /**
+     * Returns the last element of the array
+     *
+     * @example
+     *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+     *
+     * @returns {Object}
+     */
+    getLast() {
+        if (Typifier.isArray(this) && this.length > 0) {
+            return this[this.length - 1];
+        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+            const last = Object.entries(this)[Object.entries(this).length - 1];
+            let a = {};
+            a[last[0]] = last[1];
+            return a;
+        } else {
+            throw new TypeError(`${Typifier.getType(this)}.getLast is not a function`);
+        }
+    }
+});
+
+Object.assign(Object.prototype, {
+    /**
+     * Returns a random element of the array
+     *
+     * @example
+     *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+     *
+     * @returns {Object}
+     */
+    getSample() {
+        if (Typifier.isArray(this) && this.length > 0) {
+            const random_index = Math.floor(Math.random() * this.length);
+            return this[random_index];
+        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+            const random_index = Math.floor(Math.random() * Object.entries(this).length);
+            const random_el = Object.entries(this)[random_index];
+            let a = {};
+            a[random_el[0]] = random_el[1];
+            return a;
+        } else {
+            throw new TypeError(`${Typifier.getType(this)}.getSample is not a function`);
+        }
+    }
+});
+
+
+
 //----------------------------------------------------------------------------------------------------
 // JSDOC definition only
 //----------------------------------------------------------------------------------------------------
@@ -593,6 +661,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.26";
+RubyNice._version = "0.0.28";
 
 
