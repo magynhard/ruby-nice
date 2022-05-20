@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.34
- * @date 2022-05-20T18:23:40.967Z
+ * @version 0.0.35
+ * @date 2022-05-20T18:37:33.492Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -508,6 +508,7 @@ Object.assign(Object.prototype, {
      * @returns {Object}
      */
     getFirst() {
+        if(Typifier.is('Column')) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             return this[0];
         } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
@@ -531,6 +532,7 @@ Object.assign(Object.prototype, {
      * @returns {Object}
      */
     getLast() {
+        if(Typifier.is('Column')) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             return this[this.length - 1];
         } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
@@ -554,6 +556,7 @@ Object.assign(Object.prototype, {
      * @returns {Object}
      */
     getSample() {
+        if(Typifier.is('Column')) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             const random_index = Math.floor(Math.random() * this.length);
             return this[random_index];
@@ -661,6 +664,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.34";
+RubyNice._version = "0.0.35";
 
 
