@@ -13,6 +13,7 @@
     "doc": "node scripts/doc.js"
   },
   "files": [
+    "dist/ruby-nice.js",
     "src/**/*",
     "doc/**/*"
   ],
