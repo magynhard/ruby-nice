@@ -36,6 +36,7 @@ const builds = {
         source_files: [
             './src/ruby-nice/array.js',
             './src/ruby-nice/file.js',
+            './src/ruby-nice/object.js',
             './src/ruby-nice/string.js',
             './src/ruby-nice/ruby-nice.js'
     ]}

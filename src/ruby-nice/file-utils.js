@@ -32,7 +32,7 @@ class FileUtils {
         if(!Typifier.isArray(file_name)) {
             file_name = [file_name];
         }
-        file_name.eachWithIndex((path, index) => {
+        file_name.each((path, index) => {
             Fs.mkdirSync(path, { recursive: true });
         });
     }
@@ -48,7 +48,7 @@ class FileUtils {
         if(!Typifier.isArray(file_name)) {
             file_name = [file_name];
         }
-        file_name.eachWithIndex((path, index) => {
+        file_name.each((path, index) => {
             Fs.rmSync(path, { recursive: true, force: opt ? opt.force : false });
         });
     }

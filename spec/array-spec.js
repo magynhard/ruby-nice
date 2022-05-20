@@ -93,9 +93,9 @@ describe('Array', function () {
                 samples.push(sample);
             }
             // we expect after 999 runs, that all three samples have been included at least once
-            expect(['one','two','three']).toContain('one');
-            expect(['one','two','three']).toContain('two');
-            expect(['one','two','three']).toContain('three');
+            expect(samples).toContain('one');
+            expect(samples).toContain('two');
+            expect(samples).toContain('three');
         });
     });
 });

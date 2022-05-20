@@ -5,7 +5,6 @@ RubyNice version to add methods directly to the class by monkey patching
 
 * [Array](#Array)
     * [.each(loop_function)](#Array+each) &rarr; <code>Array.&lt;any&gt;</code>
-    * [.eachWithIndex(loop_function)](#Array+eachWithIndex) &rarr; <code>Array.&lt;any&gt;</code>
     * [.flatten()](#Array+flatten)
     * [.getFirst()](#Array+getFirst) &rarr; <code>any</code>
     * [.getLast()](#Array+getLast) &rarr; <code>any</code>
@@ -24,28 +23,7 @@ Breaks if returning false
 
 | Param | Type |
 | --- | --- |
-| loop_function | [<code>eachLoopCallback</code>](#eachLoopCallback) | 
-
-
-**Example**
-```js
-['one','two','three'].each((elem, index) => {
-         if(condition) return false;
-         console.log(elem);
-     })
-```
-<a name="Array+eachWithIndex"></a>
-
-### array.eachWithIndex(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
-Iterates over all elements of an array
-
-Breaks if returning false
-
-**Returns**: <code>Array.&lt;any&gt;</code> - returns itself  
-
-| Param | Type |
-| --- | --- |
-| loop_function | [<code>eachLoopCallback</code>](#eachLoopCallback) | 
+| loop_function | [<code>eachArrayLoopCallback</code>](#eachArrayLoopCallback) | 
 
 
 **Example**
@@ -109,3 +87,42 @@ Returns a random element of the array
 ```js
 ['one','two','three'].sample => 'two'
 ```
+<a name="flatten"></a>
+
+## flatten()
+Returns a new array that is a one dimensional flattening of itself.
+
+Different to Javascript flat(), which only removes one dimension.
+**Returns{array}**:   
+<a name="getMax"></a>
+
+## getMax() &rarr; <code>number</code> \| <code>null</code>
+Returns the max element of the array. All values must be of type number.
+
+**Returns**: <code>number</code> \| <code>null</code> - returns null if array is empty  
+
+**Example**
+```js
+[3,7,2].getMax() => 7
+```
+<a name="getMin"></a>
+
+## getMin() &rarr; <code>number</code> \| <code>null</code>
+Returns the min element of the array. All values must be of type number.
+
+**Returns**: <code>number</code> \| <code>null</code> - returns null if array is empty  
+
+**Example**
+```js
+[3,7,2,9].getMax() => 2
+```
+<a name="eachArrayLoopCallback"></a>
+
+## eachArrayLoopCallback : <code>function</code>
+**Kind**: global typedef  
+
+| Param | Type |
+| --- | --- |
+| value | <code>any</code> | 
+| index | <code>number</code> | 
+
