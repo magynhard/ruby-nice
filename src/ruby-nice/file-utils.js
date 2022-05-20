@@ -41,7 +41,7 @@ class FileUtils {
                 throw new Error(`Parameter 'src' is a array of files. Then the parameter 'dest' must be a valid directory! Directory not found: '${dest}'`);
             }
         } else {
-            fs.copyFileSync(src, dest, mode);
+            Fs.copyFileSync(src, dest, mode);
         }
     }
 
