@@ -35,7 +35,7 @@ class FileUtils {
         if(Typifier.isArray(src)) {
             if(File.isDirectory(dest)) {
                 src.each((file, index) => {
-                   fs.copyFileSync(file, dest, mode);
+                   Fs.copyFileSync(file, dest, mode);
                 });
             } else {
                 throw new Error(`Parameter 'src' is a array of files. Then the parameter 'dest' must be a valid directory! Directory not found: '${dest}'`);
