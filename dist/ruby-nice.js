@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.33
- * @date 2022-05-20T16:17:00.702Z
+ * @version 0.0.34
+ * @date 2022-05-20T18:23:40.967Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -452,7 +452,7 @@ Object.assign(Object.prototype, {
                     ++index;
                 }
             } else {
-                throw new TypeError(`${Typifier.getType(this)}.each is not a function`);
+                console.warn(`${Typifier.getType(this)}.each is not a valid function`);
             }
         }
         return this;
@@ -485,7 +485,7 @@ Object.assign(Object.prototype, {
                 }
                 return result_array;
             } else {
-                throw new TypeError(`${Typifier.getType(this)}.map is not a function`);
+                console.warn(`${Typifier.getType(this)}.map is not a valid function`);
             }
         }
     }
@@ -516,7 +516,7 @@ Object.assign(Object.prototype, {
             a[first[0]] = first[1];
             return a;
         } else {
-            throw new TypeError(`${Typifier.getType(this)}.getFirst is not a function`);
+            console.warn(`${Typifier.getType(this)}.getFirst is not a valid function`);
         }
     }
 });
@@ -539,7 +539,7 @@ Object.assign(Object.prototype, {
             a[last[0]] = last[1];
             return a;
         } else {
-            throw new TypeError(`${Typifier.getType(this)}.getLast is not a function`);
+            console.warn(`${Typifier.getType(this)}.getLast is not a valid function`);
         }
     }
 });
@@ -564,7 +564,7 @@ Object.assign(Object.prototype, {
             a[random_el[0]] = random_el[1];
             return a;
         } else {
-            throw new TypeError(`${Typifier.getType(this)}.getSample is not a function`);
+            console.warn(`${Typifier.getType(this)}.getSample is not a valid function`);
         }
     }
 });
@@ -661,6 +661,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.33";
+RubyNice._version = "0.0.34";
 
 
