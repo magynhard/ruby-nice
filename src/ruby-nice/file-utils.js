@@ -34,7 +34,7 @@ class FileUtils {
         RubyNice.ensureRunningInNodeJs();
         if(Typifier.isArray(src)) {
             if(File.isDirectory(dest)) {
-                src.each((file, index) => {
+                src.eachWithIndex((file, index) => {
                    Fs.copyFileSync(file, dest, mode);
                 });
             } else {
@@ -56,7 +56,7 @@ class FileUtils {
         if(!Typifier.isArray(file_name)) {
             file_name = [file_name];
         }
-        file_name.each((path, index) => {
+        file_name.eachWithIndex((path, index) => {
             Fs.mkdirSync(path, { recursive: true });
         });
     }
@@ -73,7 +73,7 @@ class FileUtils {
         if(!Typifier.isArray(file_name)) {
             file_name = [file_name];
         }
-        file_name.each((path, index) => {
+        file_name.eachWithIndex((path, index) => {
             Fs.rmSync(path, { recursive: true, force: opt ? opt.force : false });
         });
     }

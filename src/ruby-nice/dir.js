@@ -36,7 +36,7 @@ class Dir {
         let results = [];
         if(!options) options = {};
         if(base_path) options.cwd = base_path;
-        pattern.each((elem) => {
+        pattern.eachWithIndex((elem) => {
             results.push(Glob.sync(elem, options));
         });
         return results.flatten();

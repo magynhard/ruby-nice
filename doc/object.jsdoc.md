@@ -4,15 +4,15 @@
 RubyNice version to add methods directly to the class by monkey patching
 
 * [Object](#Object)
-    * [.each(loop_function)](#Object+each) &rarr; <code>Object.&lt;any&gt;</code>
-    * [.map(loop_function)](#Object+map) &rarr; <code>Array.&lt;any&gt;</code>
+    * [.eachWithIndex(loop_function)](#Object+eachWithIndex) &rarr; <code>Object.&lt;any&gt;</code>
+    * [.mapObject(loop_function)](#Object+mapObject) &rarr; <code>Array.&lt;any&gt;</code>
     * [.getFirst()](#Object+getFirst) &rarr; [<code>Object</code>](#Object)
     * [.getLast()](#Object+getLast) &rarr; [<code>Object</code>](#Object)
     * [.getSample()](#Object+getSample) &rarr; [<code>Object</code>](#Object)
 
-<a name="Object+each"></a>
+<a name="Object+eachWithIndex"></a>
 
-### object.each(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
+### object.eachWithIndex(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
 Iterates over all elements of an object
 
 Breaks if returning false
@@ -26,14 +26,14 @@ Breaks if returning false
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.each((key, value, index) => {
+{ a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {
          if(condition) return false;
          console.log(key, value);
      })
 ```
-<a name="Object+map"></a>
+<a name="Object+mapObject"></a>
 
-### object.map(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
+### object.mapObject(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
 Maps over all elements of an object
 
 **Returns**: <code>Array.&lt;any&gt;</code> - returns itself  
@@ -45,7 +45,7 @@ Maps over all elements of an object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.map((key, value, index) => {
+{ a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
          return value;
      })
      => ['one','two','three']
@@ -77,3 +77,81 @@ Returns a random element of the array
 ```js
 { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
 ```
+<a name="value"></a>
+
+## value(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
+Iterates over all elements of an object
+
+Breaks if returning false
+
+**Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
+
+| Param | Type |
+| --- | --- |
+| loop_function | [<code>eachObjectLoopCallback</code>](#eachObjectLoopCallback) \| <code>eachArrayLoopCallback</code> | 
+
+
+**Example**
+```js
+{ a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {
+         if(condition) return false;
+         console.log(key, value);
+     })
+```
+<a name="value"></a>
+
+## value(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
+Maps over all elements of an object
+
+**Returns**: <code>Array.&lt;any&gt;</code> - returns itself  
+
+| Param | Type |
+| --- | --- |
+| loop_function | [<code>eachObjectLoopCallback</code>](#eachObjectLoopCallback) | 
+
+
+**Example**
+```js
+{ a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
+         return value;
+     })
+     => ['one','two','three']
+```
+<a name="value"></a>
+
+## value() &rarr; [<code>Object</code>](#Object)
+Returns the first element of the array
+
+**Example**
+```js
+{ a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+```
+<a name="value"></a>
+
+## value() &rarr; [<code>Object</code>](#Object)
+Returns the last element of the array
+
+**Example**
+```js
+{ a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+```
+<a name="value"></a>
+
+## value() &rarr; [<code>Object</code>](#Object)
+Returns a random element of the array
+
+**Example**
+```js
+{ a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+```
+<a name="eachObjectLoopCallback"></a>
+
+## eachObjectLoopCallback : <code>function</code>
+**Kind**: global typedef  
+
+| Param | Type |
+| --- | --- |
+| key | <code>any</code> | 
+| value | <code>any</code> | 
+| index | <code>number</code> | 
+

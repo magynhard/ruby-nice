@@ -25,7 +25,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Breaks if returning false
          *
          * @example
-         *      ['one','two','three'].each((elem, index) => {
+         *      ['one','two','three'].eachWithIndex((elem, index) => {
          *          if(condition) return false;
          *          console.log(elem);
          *      })

@@ -4,7 +4,7 @@
 RubyNice version to add methods directly to the class by monkey patching
 
 * [Array](#Array)
-    * [.each(loop_function)](#Array+each) &rarr; <code>Array.&lt;any&gt;</code>
+    * [.eachWithIndex(loop_function)](#Array+eachWithIndex) &rarr; <code>Array.&lt;any&gt;</code>
     * [.flatten()](#Array+flatten)
     * [.getFirst()](#Array+getFirst) &rarr; <code>any</code>
     * [.getLast()](#Array+getLast) &rarr; <code>any</code>
@@ -12,9 +12,9 @@ RubyNice version to add methods directly to the class by monkey patching
     * [.getMin()](#Array+getMin) &rarr; <code>number</code> \| <code>null</code>
     * [.getSample()](#Array+getSample) &rarr; <code>any</code>
 
-<a name="Array+each"></a>
+<a name="Array+eachWithIndex"></a>
 
-### array.each(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
+### array.eachWithIndex(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
 Iterates over all elements of an array
 
 Breaks if returning false
@@ -28,7 +28,7 @@ Breaks if returning false
 
 **Example**
 ```js
-['one','two','three'].each((elem, index) => {
+['one','two','three'].eachWithIndex((elem, index) => {
          if(condition) return false;
          console.log(elem);
      })
