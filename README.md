@@ -7,11 +7,12 @@
 
 > The nice javascript library to rubynize your javascript to be a happy programmer again.
 
-This library is mainly intended for those who are used to programming with Ruby and miss some comfort functionalities in
-Javascript. It's time to be happy again!
+This library is mainly intended for those who are familiar with programming 
+with Ruby and miss some convenience features in Javascript. It's time to be happy again!
 
-On the one hand it includes extensions and patches for core classes (e.g. String), on the other hand it provides (
-extended) wrappers in Ruby style, e.g. `File` with `File.write()`.
+On the one hand it contains extensions and patches for core classes (e.g. String), 
+on the other hand it provides (extended) wrapper classes in Ruby style, 
+e.g. `File` with `File.write()`.
 
 It is available for the browser as well as for NodeJS.
 
