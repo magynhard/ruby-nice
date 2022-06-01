@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.0.38
- * @date 2022-06-01T08:28:01.766Z
+ * @version 0.0.39
+ * @date 2022-06-01T08:33:09.117Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -434,7 +434,7 @@ Object.assign(Object.prototype, {
      * @param {eachObjectLoopCallback|eachArrayLoopCallback} loop_function
      * @returns {Object<any>} returns itself
      */
-    each(loop_function) {
+    eachWithIndex(loop_function) {
         if (typeof loop_function === 'function') {
             if (Typifier.isArray(this)) {
                 for (let i = 0; i < this.length; ++i) {
@@ -664,7 +664,7 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.0.38";
+RubyNice._version = "0.0.39";
 
 
 
