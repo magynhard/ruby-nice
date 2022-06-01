@@ -5,7 +5,7 @@ RubyNice version to add methods directly to the class by monkey patching
 
 * [Array](#Array)
     * [.eachWithIndex(loop_function)](#Array+eachWithIndex) &rarr; <code>Array.&lt;any&gt;</code>
-    * [.flatten()](#Array+flatten)
+    * [.flatten()](#Array+flatten) &rarr; [<code>Array</code>](#Array)
     * [.getFirst()](#Array+getFirst) &rarr; <code>any</code>
     * [.getLast()](#Array+getLast) &rarr; <code>any</code>
     * [.getMax()](#Array+getMax) &rarr; <code>number</code> \| <code>null</code>
@@ -35,9 +35,8 @@ Breaks if returning false
 ```
 <a name="Array+flatten"></a>
 
-### array.flatten()
+### array.flatten() &rarr; [<code>Array</code>](#Array)
 Returns a new array that is a one dimensional flattening of itself.
-**Returns{array}**:   
 <a name="Array+getFirst"></a>
 
 ### array.getFirst() &rarr; <code>any</code>
@@ -89,11 +88,10 @@ Returns a random element of the array
 ```
 <a name="flatten"></a>
 
-## flatten()
+## flatten() &rarr; [<code>Array</code>](#Array)
 Returns a new array that is a one dimensional flattening of itself.
 
 Different to Javascript flat(), which only removes one dimension.
-**Returns{array}**:   
 <a name="getMax"></a>
 
 ## getMax() &rarr; <code>number</code> \| <code>null</code>

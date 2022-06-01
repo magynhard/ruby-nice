@@ -38,7 +38,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 
         /**
          * Returns a new array that is a one dimensional flattening of itself.
-         * @returns{Array}
+         * @returns {Array}
          */
         flatten() {
         }
@@ -118,7 +118,7 @@ Object.assign(Array.prototype, {
      *
      * Different to Javascript flat(), which only removes one dimension.
      *
-     * @returns{Array}
+     * @returns {Array}
      */
     flatten() {
         const recursiveFlat = (array) => {

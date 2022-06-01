@@ -125,9 +125,14 @@ Optionally you may the source file to your build pipeline, if you are using webp
 * Tools
 * Loops
 * Classes
-    * [Array](#)
+    * [Array](doc/array.jsdoc.md)
+    * [Dir](doc/dir.jsdoc.md)
+    * [Env](doc/env.jsdoc.md)
     * [File](doc/file.jsdoc.md)
+    * [FileUtils](doc/file-utils.jsdoc.md)
+    * [Object](doc/object.jsdoc.md)
     * [String](doc/string.jsdoc.md)
+    * [System](doc/System.jsdoc.md)
 
 <a name="contributing"></a>
 
