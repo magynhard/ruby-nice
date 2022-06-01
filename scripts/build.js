@@ -70,6 +70,7 @@ function updateJsRubyNiceVersion() {
     let ruby_nice_js = fs.readFileSync('./src/ruby-nice/ruby-nice.js','utf8');
     ruby_nice_js = ruby_nice_js.replace(/RubyNice\._version\s*=\s*"[^"]+";/gm, `RubyNice._version = "${new_version}";`)
     fs.writeFileSync('./src/ruby-nice/ruby-nice.js', ruby_nice_js, 'utf8');
+    return new_version;
 }
 
 console.log(chalk.yellow('##############################'));
