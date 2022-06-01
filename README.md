@@ -40,12 +40,12 @@ ruby for javascript, ruby methods for javascript, ruby functions for javascript
 The javascript method names are ported to a javascript equivalent by the following rules and always written
 in `camelCase`:
 
-| Description                                                                        | Ruby code                                     | JavaScript code  |
-|------------------------------------------------------------------------------------|-----------------------------------------------|------------------|
-| Question mark methods are ported to `isMethod`                                     | `File.exist?`<br>`File.directory?`            | `File.isExisting()`<br>`File.isDirectory()` | 
-| Getters are ported to getMethod `getMethod`                                        | `File.basename`                               | `File.getBaseName()` | 
-| Verbs and transformation methods starting with 'to' are only ported to `camelCase` | `MyClass.destroy_object`<br>`MyClass.to_hash` | `MyClass.destroyObject()`<br>`MyClass.toHash()` | 
-| Loops should start with `for`, but they would collide with java script methods, e.g. forEach()<br>In cases of collissions, the orignal ruby name remains  | `[].each` | `[1,2,3].each()` | 
+| Description                                                                                                                                                                                            | Ruby code                                     | JavaScript code                                 |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|
+| Question mark methods are ported to `isMethod`                                                                                                                                                         | `File.exist?`<br>`File.directory?`            | `File.isExisting()`<br>`File.isDirectory()`     | 
+| Getters are ported to getMethod `getMethod`                                                                                                                                                            | `File.basename`                               | `File.getBaseName()`                            | 
+| Verbs and transformation methods starting with 'to' are only ported to `camelCase`                                                                                                                     | `MyClass.destroy_object`<br>`MyClass.to_hash` | `MyClass.destroyObject()`<br>`MyClass.toHash()` | 
+| Loops should start with `for`, but they would collide with java script methods, e.g. forEach()<br>In cases of collissions, the orignal ruby name remains if possible. Some other cases have new names. | `[].each` / `[].each_with_index`              | `[1,2,3].eachWithIndex()`                       | 
 
 ### Usage example
 
@@ -73,7 +73,7 @@ File.write("/home/user/document.txt", "some content");
 
 
 // use map() on Object
-{ a: 1, b: 2}.map((key, value, index) => { 
+{ a: 1, b: 2}.mapObject((key, value, index) => { 
     return value;
 })
 // => [1,2]
