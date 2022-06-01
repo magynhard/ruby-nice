@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.1.1
- * @date 2022-06-01T09:37:55.261Z
+ * @version 0.1.2
+ * @date 2022-06-01T13:48:40.844Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -34,7 +34,7 @@ Object.assign(Array.prototype, {
      *
      * Different to Javascript flat(), which only removes one dimension.
      *
-     * @returns{Array}
+     * @returns {Array}
      */
     flatten() {
         const recursiveFlat = (array) => {
@@ -669,7 +669,7 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.1.1";
+RubyNice._version = "0.1.2";
 
 
 
