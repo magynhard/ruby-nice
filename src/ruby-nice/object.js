@@ -31,7 +31,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * @param {eachObjectLoopCallback|eachArrayLoopCallback} loop_function
          * @returns {Object<any>} returns itself
          */
-        each(loop_function) {
+        eachWithIndex(loop_function) {
         }
 
         /**
@@ -104,7 +104,7 @@ Object.assign(Object.prototype, {
      * @param {eachObjectLoopCallback|eachArrayLoopCallback} loop_function
      * @returns {Object<any>} returns itself
      */
-    each(loop_function) {
+    eachWithIndex(loop_function) {
         if (typeof loop_function === 'function') {
             if (Typifier.isArray(this)) {
                 for (let i = 0; i < this.length; ++i) {

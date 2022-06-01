@@ -33,7 +33,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * @param {eachArrayLoopCallback} loop_function
          * @returns {Array<any>} returns itself
          */
-        each(loop_function) {
+        eachWithIndex(loop_function) {
         }
 
         /**
