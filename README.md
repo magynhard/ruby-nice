@@ -133,7 +133,7 @@ Optionally you may the source file to your build pipeline, if you are using webp
     * [FileUtils](doc/file-utils.jsdoc.md)
     * [Object](doc/object.jsdoc.md)
     * [String](doc/string.jsdoc.md)
-    * [System](doc/System.jsdoc.md)
+    * [System](doc/system.jsdoc.md)
 
 <a name="contributing"></a>
 
