@@ -38,6 +38,9 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 
         /**
          * Returns a new array that is a one dimensional flattening of itself.
+         *
+         * Different to Javascript flat(), which only removes one dimension.
+         *
          * @returns {Array}
          */
         flatten() {

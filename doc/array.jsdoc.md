@@ -37,6 +37,8 @@ Breaks if returning false
 
 ### array.flatten() &rarr; [<code>Array</code>](#Array)
 Returns a new array that is a one dimensional flattening of itself.
+
+Different to Javascript flat(), which only removes one dimension.
 <a name="Array+getFirst"></a>
 
 ### array.getFirst() &rarr; <code>any</code>

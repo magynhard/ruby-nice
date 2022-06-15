@@ -131,6 +131,7 @@ Optionally you may the source file to your build pipeline, if you are using webp
     * [Env](doc/env.jsdoc.md)
     * [File](doc/file.jsdoc.md)
     * [FileUtils](doc/file-utils.jsdoc.md)
+    * [Number](doc/number.jsdoc.md)
     * [Object](doc/object.jsdoc.md)
     * [String](doc/string.jsdoc.md)
     * [System](doc/system.jsdoc.md)
