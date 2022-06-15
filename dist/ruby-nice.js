@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.1.4
- * @date 2022-06-01T13:54:40.490Z
+ * @version 0.1.5
+ * @date 2022-06-15T11:17:02.245Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -419,6 +419,116 @@ class File {
 // CLASS MONKEY PATCH
 //----------------------------------------------------------------------------------------------------
 
+/**
+ * @callback eachIndexLoopCallback
+ * @param {number} index
+ */
+
+Object.defineProperty(Number.prototype, 'timesWithIndex', {
+    /**
+     * Loops n times
+     *
+     * Breaks if returning false
+     *
+     * @example
+     *      (5).timesWithIndex((index) => {
+     *          if(condition) return false;
+     *          console.log(index);
+     *      })
+     *
+     * @param {eachIndexLoopCallback} loop_function
+     * @returns {Number} returns itself
+     */
+    value: function timesWithIndex(loop_function) {
+        if (typeof loop_function === 'function') {
+            if (Typifier.isNumber(this) || Typifier.isNumberClass(this)) {
+                for (let i = 0; i < this; ++i) {
+                    if (loop_function(i) === false) {
+                        break;
+                    }
+                }
+            } else {
+                console.warn(`${Typifier.getType(this)}.timesWithIndex is not a valid function`);
+            }
+        }
+        return this;
+    },
+    enumerable: false
+});
+
+Object.defineProperty(Number.prototype, 'round', {
+    /**
+     * Wrapper for Math.round()
+     *
+     * @example
+     *      (5.6).round()
+     *      => 6
+     *
+     * @returns {Number}
+     */
+    value: function round() {
+            if (Typifier.isNumber(this) || Typifier.isNumberClass(this)) {
+                return Math.round(this);
+            } else {
+                console.warn(`${Typifier.getType(this)}.round is not a valid function`);
+            }
+    },
+    enumerable: false
+});
+
+Object.defineProperty(Number.prototype, 'ceil', {
+    /**
+     * Wrapper for Math.ceil()
+     *
+     * @example
+     *      (5.1).ceil()
+     *      => 6
+     *
+     * @returns {Number}
+     */
+    value: function ceil() {
+            if (Typifier.isNumber(this) || Typifier.isNumberClass(this)) {
+                return Math.ceil(this);
+            } else {
+                console.warn(`${Typifier.getType(this)}.ceil is not a valid function`);
+            }
+    },
+    enumerable: false
+});
+
+Object.defineProperty(Number.prototype, 'floor', {
+    /**
+     * Wrapper for Math.floor()
+     *
+     * @example
+     *      (5.7).floor()
+     *      => 5
+     *
+     * @returns {Number}
+     */
+    value: function floor() {
+            if (Typifier.isNumber(this) || Typifier.isNumberClass(this)) {
+                return Math.floor(this);
+            } else {
+                console.warn(`${Typifier.getType(this)}.floor is not a valid function`);
+            }
+    },
+    enumerable: false
+});
+
+
+
+
+//----------------------------------------------------------------------------------------------------
+// JSDOC definition only
+//----------------------------------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------------------------------
+// CLASS MONKEY PATCH
+//----------------------------------------------------------------------------------------------------
+
 Object.defineProperty(Object.prototype, 'eachWithIndex', {
     /**
      * Iterates over all elements of an object
@@ -669,7 +779,7 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.1.4";
+RubyNice._version = "0.1.5";
 
 
 
