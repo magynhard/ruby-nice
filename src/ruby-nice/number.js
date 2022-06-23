@@ -4,10 +4,6 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 }
 //<!-- /MODULE -->//
 
-//----------------------------------------------------------------------------------------------------
-// JSDOC definition only
-//----------------------------------------------------------------------------------------------------
-
 //<!-- DOC -->//
 /**
  * out of scope function only for jsdoc documentation generation purpose
@@ -72,10 +68,6 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     }
 });
 //<!-- /DOC -->//
-
-//----------------------------------------------------------------------------------------------------
-// CLASS MONKEY PATCH
-//----------------------------------------------------------------------------------------------------
 
 /**
  * @callback eachIndexLoopCallback
