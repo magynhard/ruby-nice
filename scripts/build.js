@@ -30,9 +30,20 @@ const release_header_template = `/**
 `;
 
 const builds = {
-    default_build: {
+    default: {
         destination_file: build_destination_dir + 'ruby-nice.js',
         destination_min_file: build_destination_dir + 'ruby-nice.min.js',
+        source_files: [
+            './src/ruby-nice/array.js',
+            './src/ruby-nice/file.js',
+            './src/ruby-nice/number.js',
+            './src/ruby-nice/object.js',
+            './src/ruby-nice/string.js',
+            './src/ruby-nice/ruby-nice.js',
+    ]},
+    bundle: {
+        destination_file: build_destination_dir + 'ruby-nice.bundle.js',
+        destination_min_file: build_destination_dir + 'ruby-nice.bundle.min.js',
         source_files: [
             './src/ruby-nice/array.js',
             './src/ruby-nice/file.js',

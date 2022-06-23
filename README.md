@@ -106,16 +106,21 @@ npm install ruby-nice
 
 ### Browser
 
-Download the latest build `ruby-nice.min.js` from the folder `dist` or get the latest release
-and put it in an appropriate folder of your project, e.g. `js/lib`
+Download the latest release from Github or the folder `dist` and put it in an appropriate folder of your project, e.g. `js/lib`
 and reference it by a script tag in your project:
 
 ```html
 
-<script type="text/javascript" src="js/lib/ruby-nice.min.js"></script>
+<script type="text/javascript" src="js/lib/ruby-nice.bundle.js"></script>
 ```
 
-Optionally you may the source file to your build pipeline, if you are using webpack, brunch or any other packager.
+Optionally you may add the source file to your build pipeline, if you are using webpack, brunch or any other packager.
+
+#### Bundle releases
+As `Typifier` depends on `LuckyCase`, there is also a bundle release called `ruby-nice.bundle.js` where the latter is included. If you already use `LuckyCase` separately, use the default version `ruby-nice.js` without included dependencies. If you don't know what you should use, use the bundled release!
+
+#### Minified releases
+If you prefer minified builds, use the `*.min.js` version. Be aware that they do not contain any javascript documentation that may be very useful when working with a powerful IDE.
 
 <a name="documentation"></a>
 
