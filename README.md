@@ -56,7 +56,7 @@ require('ruby-nice/string'); // monkey patch strings
 require('ruby-nice'); // load all monkey patches at once
 const File = require('ruby-nice/file'); // load ported ruby class
 // -- browser --
-<script type="text/javascript" src="js/lib/ruby-nice.min.js"></script>
+<script type="text/javascript" src="js/lib/ruby-nice.bundle.js"></script>
 
 
 
@@ -68,11 +68,29 @@ const File = require('ruby-nice/file'); // load ported ruby class
 [1,2,3].getSample() // get random element of an Array
 // => 3
 
+        
+// iterate array       
+['dog','house','mouse'].eachWithIndex((val, i) => {
+   console.log(i + ':' + val); 
+});
+// => 0:dog
+// => 1:house
+// => 2:mouse
 
+
+// iterate object
+{ peter: { role: "admin" }, sam: { role: "dev" } }.eachWithIndex((key, val, i) => {
+   console.log(key + " has the role: " + val.role); 
+});
+// => peter has the role admin
+// => sam has the role dev
+
+
+// write text file
 File.write("/home/user/document.txt", "some content");
 
 
-// use map() on Object
+// use map() on object
 { a: 1, b: 2}.mapObject((key, value, index) => { 
     return value;
 })
@@ -106,7 +124,7 @@ npm install ruby-nice
 
 ### Browser
 
-Download the latest release from Github or the folder `dist` and put it in an appropriate folder of your project, e.g. `js/lib`
+Download the latest [release on Github](https://github.com/magynhard/ruby-nice/releases) or the from the folder `dist` and put it in an appropriate folder of your project, e.g. `js/lib`
 and reference it by a script tag in your project:
 
 ```html
@@ -117,7 +135,7 @@ and reference it by a script tag in your project:
 Optionally you may add the source file to your build pipeline, if you are using webpack, brunch or any other packager.
 
 #### Bundle releases
-As `Typifier` depends on `LuckyCase`, there is also a bundle release called `ruby-nice.bundle.js` where the latter is included. If you already use `LuckyCase` separately, use the default version `ruby-nice.js` without included dependencies. If you don't know what you should use, use the bundled release!
+As `ruby-nice` depends on [LuckyCase](https://github.com/magynhard/lucky-case), there is also a bundle release called `ruby-nice.bundle.js` where the latter is included. If you already use [LuckyCase](https://github.com/magynhard/lucky-case) separately, use the default version `ruby-nice.js` without included dependencies. If you don't know what you should use, use the bundled release!
 
 #### Minified releases
 If you prefer minified builds, use the `*.min.js` version. Be aware that they do not contain any javascript documentation that may be very useful when working with a powerful IDE.
