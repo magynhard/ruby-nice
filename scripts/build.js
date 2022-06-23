@@ -51,7 +51,7 @@ const builds = {
             './src/ruby-nice/object.js',
             './src/ruby-nice/string.js',
             './src/ruby-nice/ruby-nice.js',
-            './node_modules/typifier/src/typifier/typifier.js',
+            './node_modules/typifier/dist/typifier.js',
     ]}
 }
 

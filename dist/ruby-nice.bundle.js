@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.1.8
- * @date 2022-06-23T15:10:56.376Z
+ * @version 0.1.9
+ * @date 2022-06-23T15:32:34.308Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -741,9 +741,20 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.1.8";
+RubyNice._version = "0.1.9";
 
 
+/**
+ * typifier
+ *
+ * The javascript library to get or check the type of a given variable.
+ *
+ * @version 0.0.10
+ * @date 2022-05-20T16:39:57.200Z
+ * @link https://github.com/magynhard/typifier
+ * @author Matthäus J. N. Beyrle
+ * @copyright Matthäus J. N. Beyrle
+ */
 
 
 /**
@@ -753,11 +764,14 @@ RubyNice._version = "0.1.8";
  *
  */
 class Typifier {
+    /**
+     * Get the version of the used library
+     * @returns {string}
+     */
     static getVersion() {
         const self = Typifier;
         return self._version;
     }
-
 
     /**
      * Check if given variable is of type Array
@@ -986,6 +1000,7 @@ class Typifier {
  * @type {string}
  * @private
  */
-Typifier._version = "0.0.8";
+Typifier._version = "0.0.10";
+
 
 
