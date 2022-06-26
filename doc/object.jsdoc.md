@@ -5,7 +5,7 @@ RubyNice version to add methods directly to the class by monkey patching
 
 * [Object](#Object)
     * [.eachWithIndex(loop_function)](#Object+eachWithIndex) &rarr; <code>Object.&lt;any&gt;</code>
-    * [.mapObject(loop_function)](#Object+mapObject) &rarr; <code>Array.&lt;any&gt;</code>
+    * [.mapObject(loop_function)](#Object+mapObject) &rarr; <code>Object.&lt;any&gt;</code>
     * [.getFirst()](#Object+getFirst) &rarr; [<code>Object</code>](#Object)
     * [.getLast()](#Object+getLast) &rarr; [<code>Object</code>](#Object)
     * [.getSample()](#Object+getSample) &rarr; [<code>Object</code>](#Object)
@@ -13,7 +13,7 @@ RubyNice version to add methods directly to the class by monkey patching
 <a name="Object+eachWithIndex"></a>
 
 ### object.eachWithIndex(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
-Iterates over all elements of an object
+Iterates over all elements of the object
 
 Breaks if returning false
 
@@ -33,10 +33,10 @@ Breaks if returning false
 ```
 <a name="Object+mapObject"></a>
 
-### object.mapObject(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
+### object.mapObject(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
 Maps over all elements of an object
 
-**Returns**: <code>Array.&lt;any&gt;</code> - returns itself  
+**Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
 
 | Param | Type |
 | --- | --- |
@@ -53,7 +53,7 @@ Maps over all elements of an object
 <a name="Object+getFirst"></a>
 
 ### object.getFirst() &rarr; [<code>Object</code>](#Object)
-Returns the first element of the array
+Returns the first element of the object
 
 **Example**
 ```js
@@ -62,7 +62,7 @@ Returns the first element of the array
 <a name="Object+getLast"></a>
 
 ### object.getLast() &rarr; [<code>Object</code>](#Object)
-Returns the last element of the array
+Returns the last element of the object
 
 **Example**
 ```js
@@ -71,7 +71,7 @@ Returns the last element of the array
 <a name="Object+getSample"></a>
 
 ### object.getSample() &rarr; [<code>Object</code>](#Object)
-Returns a random element of the array
+Returns a random element of the object
 
 **Example**
 ```js
@@ -80,7 +80,7 @@ Returns a random element of the array
 <a name="value"></a>
 
 ## value(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
-Iterates over all elements of an object
+Iterates over all elements of the object
 
 Breaks if returning false
 
@@ -100,10 +100,10 @@ Breaks if returning false
 ```
 <a name="value"></a>
 
-## value(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
+## value(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
 Maps over all elements of an object
 
-**Returns**: <code>Array.&lt;any&gt;</code> - returns itself  
+**Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
 
 | Param | Type |
 | --- | --- |
@@ -120,7 +120,7 @@ Maps over all elements of an object
 <a name="value"></a>
 
 ## value() &rarr; [<code>Object</code>](#Object)
-Returns the first element of the array
+Returns the first element of the object
 
 **Example**
 ```js
@@ -129,7 +129,7 @@ Returns the first element of the array
 <a name="value"></a>
 
 ## value() &rarr; [<code>Object</code>](#Object)
-Returns the last element of the array
+Returns the last element of the object
 
 **Example**
 ```js
@@ -138,7 +138,7 @@ Returns the last element of the array
 <a name="value"></a>
 
 ## value() &rarr; [<code>Object</code>](#Object)
-Returns a random element of the array
+Returns a random element of the object
 
 **Example**
 ```js

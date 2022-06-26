@@ -14,7 +14,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
      */
     class Object {
         /**
-         * Iterates over all elements of an object
+         * Iterates over all elements of the object
          *
          * Breaks if returning false
          *
@@ -40,13 +40,13 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          *      => ['one','two','three']
          *
          * @param {eachObjectLoopCallback} loop_function
-         * @returns {Array<any>} returns itself
+         * @returns {Object<any>} returns itself
          */
         mapObject(loop_function) {
         }
 
         /**
-         * Returns the first element of the array
+         * Returns the first element of the object
          *
          * @example
          *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
@@ -57,7 +57,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
         }
 
         /**
-         * Returns the last element of the array
+         * Returns the last element of the object
          *
          * @example
          *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
@@ -68,7 +68,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
         }
 
         /**
-         * Returns a random element of the array
+         * Returns a random element of the object
          *
          * @example
          *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
@@ -83,7 +83,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 
 Object.defineProperty(Object.prototype, 'eachWithIndex', {
     /**
-     * Iterates over all elements of an object
+     * Iterates over all elements of the object
      *
      * Breaks if returning false
      *
@@ -133,7 +133,7 @@ Object.defineProperty(Object.prototype, 'mapObject', {
      *      => ['one','two','three']
      *
      * @param {eachObjectLoopCallback} loop_function
-     * @returns {Array<any>} returns itself
+     * @returns {Object<any>} returns itself
      */
     value: function mapObject(loop_function) {
         if (typeof loop_function === 'function') {
@@ -164,7 +164,7 @@ Object.defineProperty(Object.prototype, 'mapObject', {
 
 Object.defineProperty(Object.prototype, 'getFirst', {
     /**
-     * Returns the first element of the array
+     * Returns the first element of the object
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
@@ -189,7 +189,7 @@ Object.defineProperty(Object.prototype, 'getFirst', {
 
 Object.defineProperty(Object.prototype, 'getLast', {
     /**
-     * Returns the last element of the array
+     * Returns the last element of the object
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
@@ -214,7 +214,7 @@ Object.defineProperty(Object.prototype, 'getLast', {
 
 Object.defineProperty(Object.prototype, 'getSample', {
     /**
-     * Returns a random element of the array
+     * Returns a random element of the object
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
