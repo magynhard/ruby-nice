@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.1.10
- * @date 2022-06-26T21:12:10.366Z
+ * @version 0.1.11
+ * @date 2022-06-26T21:14:53.477Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -23,7 +23,7 @@ Object.assign(Array.prototype, {
     /**
      * Returns a new array that is a one dimensional flattening of itself.
      *
-     * Different to Javascript flat(), which only removes one dimension.
+     * Different to Javascript flat(), which only flattens one dimension.
      *
      * @returns {Array}
      */
@@ -741,6 +741,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.1.10";
+RubyNice._version = "0.1.11";
 
 
