@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.1.9
- * @date 2022-06-23T15:32:34.301Z
+ * @version 0.1.10
+ * @date 2022-06-26T21:12:10.366Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -502,7 +502,7 @@ Object.defineProperty(Number.prototype, 'floor', {
 
 Object.defineProperty(Object.prototype, 'eachWithIndex', {
     /**
-     * Iterates over all elements of an object
+     * Iterates over all elements of the object
      *
      * Breaks if returning false
      *
@@ -552,7 +552,7 @@ Object.defineProperty(Object.prototype, 'mapObject', {
      *      => ['one','two','three']
      *
      * @param {eachObjectLoopCallback} loop_function
-     * @returns {Array<any>} returns itself
+     * @returns {Object<any>} returns itself
      */
     value: function mapObject(loop_function) {
         if (typeof loop_function === 'function') {
@@ -583,7 +583,7 @@ Object.defineProperty(Object.prototype, 'mapObject', {
 
 Object.defineProperty(Object.prototype, 'getFirst', {
     /**
-     * Returns the first element of the array
+     * Returns the first element of the object
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
@@ -608,7 +608,7 @@ Object.defineProperty(Object.prototype, 'getFirst', {
 
 Object.defineProperty(Object.prototype, 'getLast', {
     /**
-     * Returns the last element of the array
+     * Returns the last element of the object
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
@@ -633,7 +633,7 @@ Object.defineProperty(Object.prototype, 'getLast', {
 
 Object.defineProperty(Object.prototype, 'getSample', {
     /**
-     * Returns a random element of the array
+     * Returns a random element of the object
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
@@ -741,6 +741,6 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.1.9";
+RubyNice._version = "0.1.10";
 
 
