@@ -46,7 +46,7 @@ Returns the first element of the array
 
 **Example**
 ```js
-['one','two','three'].first => 'one'
+['one','two','three'].getFirst() // => 'one'
 ```
 <a name="Array+getLast"></a>
 
@@ -55,7 +55,7 @@ Returns the last element of the array
 
 **Example**
 ```js
-['one','two','three'].last => 'three'
+['one','two','three'].getLast() // => 'three'
 ```
 <a name="Array+getMax"></a>
 
@@ -66,7 +66,7 @@ Returns the max element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2].getMax() => 7
+[3,7,2].getMax() // => 7
 ```
 <a name="Array+getMin"></a>
 
@@ -77,7 +77,7 @@ Returns the min element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2,9].getMax() => 2
+[3,7,2,9].getMin() // => 2
 ```
 <a name="Array+getSample"></a>
 
@@ -86,7 +86,7 @@ Returns a random element of the array
 
 **Example**
 ```js
-['one','two','three'].sample => 'two'
+['one','two','three'].getSample() // => 'two'
 ```
 <a name="flatten"></a>
 
@@ -103,7 +103,7 @@ Returns the max element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2].getMax() => 7
+[3,7,2].getMax() // => 7
 ```
 <a name="getMin"></a>
 
@@ -114,7 +114,7 @@ Returns the min element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2,9].getMax() => 2
+[3,7,2,9].getMin() // => 2
 ```
 <a name="eachArrayLoopCallback"></a>
 

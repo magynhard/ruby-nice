@@ -46,7 +46,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the first element of the array
          *
          * @example
-         *      ['one','two','three'].first => 'one'
+         *      ['one','two','three'].getFirst() // => 'one'
          *
          * @returns {any}
          */
@@ -57,7 +57,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the last element of the array
          *
          * @example
-         *      ['one','two','three'].last => 'three'
+         *      ['one','two','three'].getLast() // => 'three'
          *
          * @returns {any}
          */
@@ -68,7 +68,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the max element of the array. All values must be of type number.
          *
          * @example
-         *      [3,7,2].getMax() => 7
+         *      [3,7,2].getMax() // => 7
          *
          * @returns {number|null} returns null if array is empty
          */
@@ -79,7 +79,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the min element of the array. All values must be of type number.
          *
          * @example
-         *      [3,7,2,9].getMax() => 2
+         *      [3,7,2,9].getMin() // => 2
          *
          * @returns {number|null} returns null if array is empty
          */
@@ -90,7 +90,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns a random element of the array
          *
          * @example
-         *      ['one','two','three'].sample => 'two'
+         *      ['one','two','three'].getSample() // => 'two'
          *
          * @returns {any}
          */
@@ -132,7 +132,7 @@ Object.assign(Array.prototype, {
      * Returns the max element of the array. All values must be of type number.
      *
      * @example
-     *      [3,7,2].getMax() => 7
+     *      [3,7,2].getMax() // => 7
      *
      * @returns {number|null} returns null if array is empty
      */
@@ -147,7 +147,7 @@ Object.assign(Array.prototype, {
      * Returns the min element of the array. All values must be of type number.
      *
      * @example
-     *      [3,7,2,9].getMax() => 2
+     *      [3,7,2,9].getMin() // => 2
      *
      * @returns {number|null} returns null if array is empty
      */

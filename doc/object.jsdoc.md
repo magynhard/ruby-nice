@@ -48,7 +48,7 @@ Maps over all elements of an object
 { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
          return value;
      })
-     => ['one','two','three']
+     // => ['one','two','three']
 ```
 <a name="Object+getFirst"></a>
 
@@ -57,7 +57,7 @@ Returns the first element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+{ a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
 ```
 <a name="Object+getLast"></a>
 
@@ -66,7 +66,7 @@ Returns the last element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+{ a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
 ```
 <a name="Object+getSample"></a>
 
@@ -75,7 +75,7 @@ Returns a random element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+{ a: 'one', b: 'two', c: 'three'}.getSample() // => { b: 'two' }
 ```
 <a name="value"></a>
 
@@ -115,7 +115,7 @@ Maps over all elements of an object
 { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
          return value;
      })
-     => ['one','two','three']
+     // => ['one','two','three']
 ```
 <a name="value"></a>
 
@@ -124,7 +124,7 @@ Returns the first element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+{ a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
 ```
 <a name="value"></a>
 
@@ -133,7 +133,7 @@ Returns the last element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+{ a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
 ```
 <a name="value"></a>
 
@@ -142,7 +142,7 @@ Returns a random element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+{ a: 'one', b: 'two', c: 'three'}.getSample() // => { b: 'two' }
 ```
 <a name="eachObjectLoopCallback"></a>
 

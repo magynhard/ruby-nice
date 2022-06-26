@@ -37,7 +37,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
          *          return value;
          *      })
-         *      => ['one','two','three']
+         *      // => ['one','two','three']
          *
          * @param {eachObjectLoopCallback} loop_function
          * @returns {Object<any>} returns itself
@@ -49,7 +49,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the first element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+         *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
          *
          * @returns {Object}
          */
@@ -60,7 +60,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the last element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+         *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
          *
          * @returns {Object}
          */
@@ -71,7 +71,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns a random element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+         *      { a: 'one', b: 'two', c: 'three'}.getSample() // => { b: 'two' }
          *
          * @returns {Object}
          */
@@ -130,7 +130,7 @@ Object.defineProperty(Object.prototype, 'mapObject', {
      *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
      *          return value;
      *      })
-     *      => ['one','two','three']
+     *      // => ['one','two','three']
      *
      * @param {eachObjectLoopCallback} loop_function
      * @returns {Object<any>} returns itself
@@ -167,7 +167,7 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      * Returns the first element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+     *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
      *
      * @returns {Object}
      */
@@ -192,7 +192,7 @@ Object.defineProperty(Object.prototype, 'getLast', {
      * Returns the last element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+     *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
      *
      * @returns {Object}
      */
@@ -217,7 +217,7 @@ Object.defineProperty(Object.prototype, 'getSample', {
      * Returns a random element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+     *      { a: 'one', b: 'two', c: 'three'}.getSample() // => { b: 'two' }
      *
      * @returns {Object}
      */

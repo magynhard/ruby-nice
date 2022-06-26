@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.1.11
- * @date 2022-06-26T21:14:53.484Z
+ * @version 0.1.12
+ * @date 2022-06-26T21:19:46.574Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -45,7 +45,7 @@ Object.assign(Array.prototype, {
      * Returns the max element of the array. All values must be of type number.
      *
      * @example
-     *      [3,7,2].getMax() => 7
+     *      [3,7,2].getMax() // => 7
      *
      * @returns {number|null} returns null if array is empty
      */
@@ -60,7 +60,7 @@ Object.assign(Array.prototype, {
      * Returns the min element of the array. All values must be of type number.
      *
      * @example
-     *      [3,7,2,9].getMax() => 2
+     *      [3,7,2,9].getMin() // => 2
      *
      * @returns {number|null} returns null if array is empty
      */
@@ -549,7 +549,7 @@ Object.defineProperty(Object.prototype, 'mapObject', {
      *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
      *          return value;
      *      })
-     *      => ['one','two','three']
+     *      // => ['one','two','three']
      *
      * @param {eachObjectLoopCallback} loop_function
      * @returns {Object<any>} returns itself
@@ -586,7 +586,7 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      * Returns the first element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+     *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
      *
      * @returns {Object}
      */
@@ -611,7 +611,7 @@ Object.defineProperty(Object.prototype, 'getLast', {
      * Returns the last element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+     *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
      *
      * @returns {Object}
      */
@@ -636,7 +636,7 @@ Object.defineProperty(Object.prototype, 'getSample', {
      * Returns a random element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+     *      { a: 'one', b: 'two', c: 'three'}.getSample() // => { b: 'two' }
      *
      * @returns {Object}
      */
@@ -741,7 +741,7 @@ class RubyNice {
  * @type {string}
  * @private
  */
-RubyNice._version = "0.1.11";
+RubyNice._version = "0.1.12";
 
 
 /**
