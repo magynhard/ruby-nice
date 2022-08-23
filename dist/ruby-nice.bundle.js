@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.1.12
- * @date 2022-06-26T21:19:46.574Z
+ * @version 0.2.1
+ * @date 2022-08-23T12:42:27.404Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -692,56 +692,6 @@ Object.assign(String.prototype, {
     }
 });
 
-
-
-
-/**
- * RubyNice
- *
- * Rubynize Javascript - add ruby methods and functions to Javascript!
- *
- */
-class RubyNice {
-    /**
-     * Prevent using a method inside the browser
-     */
-    static ensureRunningInNodeJs() {
-        const self = RubyNice;
-        if (!self.isRunningInNodeJs()) {
-            throw new Error(`The used method can only be used when running with node js.`);
-        }
-    }
-
-    static getVersion() {
-        const self = RubyNice;
-        return self._version;
-    }
-
-    /**
-     * Check if this javascript is running in node js
-     *
-     * @returns {boolean} true if running inside node js (not browser)
-     */
-    static isRunningInNodeJs() {
-        return (typeof module !== 'undefined' && module.exports);
-    }
-
-    /**
-     * Check if this javascript is running in a browser
-     *
-     * @returns {boolean} true if running inside browser
-     */
-    static isRunningInBrowser() {
-        const self = RubyNice;
-        return !self.isRunningInNodeJs();
-    }
-}
-
-/**
- * @type {string}
- * @private
- */
-RubyNice._version = "0.1.12";
 
 
 /**
