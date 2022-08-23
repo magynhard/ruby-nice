@@ -3,7 +3,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     var Path = require('path');
     var Fs = require('fs');
     var Mime = require('mime');
-    var RubyNice = require('./ruby-nice');
+    var RubyNice = require('./ruby-nice-class.js');
 }
 //<!-- /MODULE -->//
 

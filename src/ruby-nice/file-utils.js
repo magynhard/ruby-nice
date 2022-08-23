@@ -3,9 +3,9 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     var Path = require('path');
     var Fs = require('fs');
     var Mime = require('mime');
-    var RubyNice = require('./ruby-nice');
-    var Typifier = require('typifier');
     var File = require('./file');
+    var RubyNice = require('./ruby-nice-class.js');
+    var Typifier = require('typifier');
     require('./array');
 }
 //<!-- /MODULE -->//

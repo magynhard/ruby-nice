@@ -1,4 +1,4 @@
-const RubyNice = require('../src/ruby-nice/ruby-nice.js');
+const RubyNice = require('../src/ruby-nice/ruby-nice-class.js');
 
 //----------------------------------------------------------------------------------------------------
 
