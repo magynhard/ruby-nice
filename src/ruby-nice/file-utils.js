@@ -3,16 +3,12 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     var Path = require('path');
     var Fs = require('fs');
     var Mime = require('mime');
-    var RubyNice = require('./ruby-nice');
-    var Typifier = require('typifier');
     var File = require('./file');
+    var RubyNice = require('./ruby-nice-class.js');
+    var Typifier = require('typifier');
     require('./array');
 }
 //<!-- /MODULE -->//
-
-//----------------------------------------------------------------------------------------------------
-// CLASS
-//----------------------------------------------------------------------------------------------------
 
 /**
  * FileUtils class port of ruby
@@ -34,7 +30,7 @@ class FileUtils {
         RubyNice.ensureRunningInNodeJs();
         if(Typifier.isArray(src)) {
             if(File.isDirectory(dest)) {
-                src.each((file, index) => {
+                src.eachWithIndex((file, index) => {
                    Fs.copyFileSync(file, dest, mode);
                 });
             } else {
@@ -56,7 +52,7 @@ class FileUtils {
         if(!Typifier.isArray(file_name)) {
             file_name = [file_name];
         }
-        file_name.each((path, index) => {
+        file_name.eachWithIndex((path, index) => {
             Fs.mkdirSync(path, { recursive: true });
         });
     }
@@ -73,7 +69,7 @@ class FileUtils {
         if(!Typifier.isArray(file_name)) {
             file_name = [file_name];
         }
-        file_name.each((path, index) => {
+        file_name.eachWithIndex((path, index) => {
             Fs.rmSync(path, { recursive: true, force: opt ? opt.force : false });
         });
     }

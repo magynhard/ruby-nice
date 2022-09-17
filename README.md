@@ -7,11 +7,12 @@
 
 > The nice javascript library to rubynize your javascript to be a happy programmer again.
 
-This library is mainly intended for those who are used to programming with Ruby and miss some comfort functionalities in
-Javascript. It's time to be happy again!
+This library is mainly intended for those who are familiar with programming 
+with Ruby and miss some convenience features in Javascript. It's time to be happy again!
 
-On the one hand it includes extensions and patches for core classes (e.g. String), on the other hand it provides (
-extended) wrappers in Ruby style, e.g. `File` with `File.write()`.
+On the one hand it contains extensions and patches for core classes (e.g. String), 
+on the other hand it provides (extended) wrapper classes in Ruby style, 
+e.g. `File` with `File.write()`.
 
 It is available for the browser as well as for NodeJS.
 
@@ -39,23 +40,31 @@ ruby for javascript, ruby methods for javascript, ruby functions for javascript
 The javascript method names are ported to a javascript equivalent by the following rules and always written
 in `camelCase`:
 
-| Description                                                                        | Ruby code                                     | JavaScript code  |
-|------------------------------------------------------------------------------------|-----------------------------------------------|------------------|
-| Question mark methods are ported to `isMethod`                                     | `File.exist?`<br>`File.directory?`            | `File.isExisting()`<br>`File.isDirectory()` | 
-| Getters are ported to getMethod `getMethod`                                        | `File.basename`                               | `File.getBaseName()` | 
-| Verbs and transformation methods starting with 'to' are only ported to `camelCase` | `MyClass.destroy_object`<br>`MyClass.to_hash` | `MyClass.destroyObject()`<br>`MyClass.toHash()` | 
-| Loops should start with `for`, but they would collide with java script methods, e.g. forEach()<br>In cases of collissions, the orignal ruby name remains  | `[].each` | `[1,2,3].each()` | 
+| Description                                                                                                                                                                                            | Ruby code                                     | JavaScript code                                 |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|
+| Question mark methods are ported to `isMethod`                                                                                                                                                         | `File.exist?`<br>`File.directory?`            | `File.isExisting()`<br>`File.isDirectory()`     | 
+| Getters are ported to getMethod `getMethod`                                                                                                                                                            | `File.basename`                               | `File.getBaseName()`                            | 
+| Verbs and transformation methods starting with 'to' are only ported to `camelCase`                                                                                                                     | `MyClass.destroy_object`<br>`MyClass.to_hash` | `MyClass.destroyObject()`<br>`MyClass.toHash()` | 
+| Loops should start with `for`, but they would collide with java script methods, e.g. forEach()<br>In cases of collissions, the orignal ruby name remains if possible. Some other cases have new names. | `[].each` / `[].each_with_index`              | `[1,2,3].eachWithIndex()`                       | 
 
 ### Usage example
 
 ```js
-// -- node js --
+// -- node js CommonJS --
 require('ruby-nice/array'); // monkey patch arrays
 require('ruby-nice/string'); // monkey patch strings
-require('ruby-nice'); // load all monkey patches at once
+require('ruby-nice'); // requiring from 'ruby-nice' will implicitely load all monkey patches at once
 const File = require('ruby-nice/file'); // load ported ruby class
+    // or named import (will also implicitely load all monkey patches)
+const { File } = require('ruby-nice'); // load ported ruby class
+
+// -- node js ESM modules --
+import { RubyNice } from  'ruby-nice'; // requiring from 'ruby-nice' will implicitely load all monkey patches at once
+import { File } from 'ruby-nice'; // load ported ruby class (will also implicitely load all monkey patches)
+
+
 // -- browser --
-<script type="text/javascript" src="js/lib/ruby-nice.min.js"></script>
+<script type="text/javascript" src="js/lib/ruby-nice.bundle.js"></script>
 
 
 
@@ -67,12 +76,30 @@ const File = require('ruby-nice/file'); // load ported ruby class
 [1,2,3].getSample() // get random element of an Array
 // => 3
 
+        
+// iterate array       
+['dog','house','mouse'].eachWithIndex((val, i) => {
+   console.log(i + ':' + val); 
+});
+// => 0:dog
+// => 1:house
+// => 2:mouse
 
+
+// iterate object
+{ peter: { role: "admin" }, sam: { role: "dev" } }.eachWithIndex((key, val, i) => {
+   console.log(key + " has the role: " + val.role); 
+});
+// => peter has the role admin
+// => sam has the role dev
+
+
+// write text file
 File.write("/home/user/document.txt", "some content");
 
 
-// use map() on Object
-{ a: 1, b: 2}.map((key, value, index) => { 
+// use map() on object
+{ a: 1, b: 2}.mapObject((key, value, index) => { 
     return value;
 })
 // => [1,2]
@@ -105,16 +132,21 @@ npm install ruby-nice
 
 ### Browser
 
-Download the latest build `ruby-nice.min.js` from the folder `dist` or get the latest release
-and put it in an appropriate folder of your project, e.g. `js/lib`
+Download the latest [release on Github](https://github.com/magynhard/ruby-nice/releases) or the from the folder `dist` and put it in an appropriate folder of your project, e.g. `js/lib`
 and reference it by a script tag in your project:
 
 ```html
 
-<script type="text/javascript" src="js/lib/ruby-nice.min.js"></script>
+<script type="text/javascript" src="js/lib/ruby-nice.bundle.js"></script>
 ```
 
-Optionally you may the source file to your build pipeline, if you are using webpack, brunch or any other packager.
+Optionally you may add the source file to your build pipeline, if you are using webpack, brunch or any other packager.
+
+#### Bundle releases
+As `ruby-nice` depends on [Typifier](https://github.com/magynhard/typifier), there is also a bundle release called `ruby-nice.bundle.js` where the latter is included. If you already use [Typifier](https://github.com/magynhard/typifier) separately, use the default version `ruby-nice.js` without included dependencies. If you don't know what you should use, use the bundled release!
+
+#### Minified releases
+If you prefer minified builds, use the `*.min.js` version. Be aware that they do not contain any javascript documentation that may be very useful when working with a powerful IDE.
 
 <a name="documentation"></a>
 
@@ -125,9 +157,15 @@ Optionally you may the source file to your build pipeline, if you are using webp
 * Tools
 * Loops
 * Classes
-    * [Array](#)
+    * [Array](doc/array.jsdoc.md)
+    * [Dir](doc/dir.jsdoc.md)
+    * [Env](doc/env.jsdoc.md)
     * [File](doc/file.jsdoc.md)
+    * [FileUtils](doc/file-utils.jsdoc.md)
+    * [Number](doc/number.jsdoc.md)
+    * [Object](doc/object.jsdoc.md)
     * [String](doc/string.jsdoc.md)
+    * [System](doc/system.jsdoc.md)
 
 <a name="contributing"></a>
 

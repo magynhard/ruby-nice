@@ -4,18 +4,18 @@
 RubyNice version to add methods directly to the class by monkey patching
 
 * [Array](#Array)
-    * [.each(loop_function)](#Array+each) &rarr; <code>Array.&lt;any&gt;</code>
-    * [.flatten()](#Array+flatten)
+    * [.eachWithIndex(loop_function)](#Array+eachWithIndex) &rarr; <code>Array.&lt;any&gt;</code>
+    * [.flatten()](#Array+flatten) &rarr; [<code>Array</code>](#Array)
     * [.getFirst()](#Array+getFirst) &rarr; <code>any</code>
     * [.getLast()](#Array+getLast) &rarr; <code>any</code>
     * [.getMax()](#Array+getMax) &rarr; <code>number</code> \| <code>null</code>
     * [.getMin()](#Array+getMin) &rarr; <code>number</code> \| <code>null</code>
     * [.getSample()](#Array+getSample) &rarr; <code>any</code>
 
-<a name="Array+each"></a>
+<a name="Array+eachWithIndex"></a>
 
-### array.each(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
-Iterates over all elements of an array
+### array.eachWithIndex(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
+Iterates over all elements of the array
 
 Breaks if returning false
 
@@ -28,16 +28,17 @@ Breaks if returning false
 
 **Example**
 ```js
-['one','two','three'].each((elem, index) => {
+['one','two','three'].eachWithIndex((elem, index) => {
          if(condition) return false;
          console.log(elem);
      })
 ```
 <a name="Array+flatten"></a>
 
-### array.flatten()
+### array.flatten() &rarr; [<code>Array</code>](#Array)
 Returns a new array that is a one dimensional flattening of itself.
-**Returns{array}**:   
+
+Different to Javascript flat(), which only flattens one dimension.
 <a name="Array+getFirst"></a>
 
 ### array.getFirst() &rarr; <code>any</code>
@@ -45,7 +46,7 @@ Returns the first element of the array
 
 **Example**
 ```js
-['one','two','three'].first => 'one'
+['one','two','three'].getFirst() // => 'one'
 ```
 <a name="Array+getLast"></a>
 
@@ -54,7 +55,7 @@ Returns the last element of the array
 
 **Example**
 ```js
-['one','two','three'].last => 'three'
+['one','two','three'].getLast() // => 'three'
 ```
 <a name="Array+getMax"></a>
 
@@ -65,7 +66,7 @@ Returns the max element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2].getMax() => 7
+[3,7,2].getMax() // => 7
 ```
 <a name="Array+getMin"></a>
 
@@ -76,7 +77,7 @@ Returns the min element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2,9].getMax() => 2
+[3,7,2,9].getMin() // => 2
 ```
 <a name="Array+getSample"></a>
 
@@ -85,15 +86,14 @@ Returns a random element of the array
 
 **Example**
 ```js
-['one','two','three'].sample => 'two'
+['one','two','three'].getSample() // => 'two'
 ```
 <a name="flatten"></a>
 
-## flatten()
+## flatten() &rarr; [<code>Array</code>](#Array)
 Returns a new array that is a one dimensional flattening of itself.
 
-Different to Javascript flat(), which only removes one dimension.
-**Returns{array}**:   
+Different to Javascript flat(), which only flattens one dimension.
 <a name="getMax"></a>
 
 ## getMax() &rarr; <code>number</code> \| <code>null</code>
@@ -103,7 +103,7 @@ Returns the max element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2].getMax() => 7
+[3,7,2].getMax() // => 7
 ```
 <a name="getMin"></a>
 
@@ -114,7 +114,7 @@ Returns the min element of the array. All values must be of type number.
 
 **Example**
 ```js
-[3,7,2,9].getMax() => 2
+[3,7,2,9].getMin() // => 2
 ```
 <a name="eachArrayLoopCallback"></a>
 

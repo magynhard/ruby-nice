@@ -1,6 +1,6 @@
 {
   "name": "ruby-nice",
-  "version": "0.0.37",
+  "version": "0.2.1",
   "description": "The nice javascript library to rubynize your javascript to be a happy programmer again.",
   "exports": {
     ".": "./src/ruby-nice/ruby-nice.js",
@@ -8,7 +8,8 @@
   },
   "main": "src/ruby-nice/ruby-nice.js",
   "scripts": {
-    "test": "jasmine",
+    "test": "yarn jasmine && yarn test_node_imports",
+    "test_node_imports": "yarn jasmine spec/imports/ruby-nice-spec.cjs && yarn jasmine spec/imports/ruby-nice-spec.mjs",
     "build": "node scripts/build.js",
     "doc": "node scripts/doc.js"
   },
@@ -52,7 +53,7 @@
   "dependencies": {
     "fs-extra": "^10.1.0",
     "glob": "^8.0.1",
-    "typifier": "^0.0.8",
-    "mime": "^3.0.0"
+    "mime": "^3.0.0",
+    "typifier": "^0.0.10"
   }
 }

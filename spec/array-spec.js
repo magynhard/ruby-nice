@@ -4,14 +4,14 @@ describe('Array', function () {
         // require inside, to make not available in other tests but only here in this file
         require('../src/ruby-nice/array.js');
     });
-    describe('each()', function () {
+    describe('eachWithIndex()', function () {
         it('function is defined', function () {
-            expect(typeof ['one','two','three'].each).toEqual('function');
+            expect(typeof ['one','two','three'].eachWithIndex).toEqual('function');
         });
         it('breaks inside the loop', function () {
             const sample = ['one','two','three','four','five'];
             let collection = [];
-            sample.each((elem, index) => {
+            sample.eachWithIndex((elem, index) => {
                collection.push(elem);
                if(index === 2) return false;
             });
@@ -20,7 +20,7 @@ describe('Array', function () {
         it('loops over all elements', function () {
             const sample = ['one','two','three','four','five'];
             let collection = [];
-            sample.each((elem, index) => {
+            sample.eachWithIndex((elem, index) => {
                collection.push(elem);
             });
             expect(collection).toEqual(sample);

@@ -5,10 +5,6 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 }
 //<!-- /MODULE -->//
 
-//----------------------------------------------------------------------------------------------------
-// JSDOC definition only
-//----------------------------------------------------------------------------------------------------
-
 //<!-- DOC -->//
 /**
  * out of scope function only for jsdoc documentation generation purpose
@@ -20,12 +16,12 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     class Array {
 
         /**
-         * Iterates over all elements of an array
+         * Iterates over all elements of the array
          *
          * Breaks if returning false
          *
          * @example
-         *      ['one','two','three'].each((elem, index) => {
+         *      ['one','two','three'].eachWithIndex((elem, index) => {
          *          if(condition) return false;
          *          console.log(elem);
          *      })
@@ -33,12 +29,15 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * @param {eachArrayLoopCallback} loop_function
          * @returns {Array<any>} returns itself
          */
-        each(loop_function) {
+        eachWithIndex(loop_function) {
         }
 
         /**
          * Returns a new array that is a one dimensional flattening of itself.
-         * @returns{Array}
+         *
+         * Different to Javascript flat(), which only flattens one dimension.
+         *
+         * @returns {Array}
          */
         flatten() {
         }
@@ -47,7 +46,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the first element of the array
          *
          * @example
-         *      ['one','two','three'].first => 'one'
+         *      ['one','two','three'].getFirst() // => 'one'
          *
          * @returns {any}
          */
@@ -58,7 +57,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the last element of the array
          *
          * @example
-         *      ['one','two','three'].last => 'three'
+         *      ['one','two','three'].getLast() // => 'three'
          *
          * @returns {any}
          */
@@ -69,7 +68,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the max element of the array. All values must be of type number.
          *
          * @example
-         *      [3,7,2].getMax() => 7
+         *      [3,7,2].getMax() // => 7
          *
          * @returns {number|null} returns null if array is empty
          */
@@ -80,7 +79,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the min element of the array. All values must be of type number.
          *
          * @example
-         *      [3,7,2,9].getMax() => 2
+         *      [3,7,2,9].getMin() // => 2
          *
          * @returns {number|null} returns null if array is empty
          */
@@ -91,7 +90,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns a random element of the array
          *
          * @example
-         *      ['one','two','three'].sample => 'two'
+         *      ['one','two','three'].getSample() // => 'two'
          *
          * @returns {any}
          */
@@ -101,24 +100,19 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 });
 //<!-- /DOC -->//
 
-//----------------------------------------------------------------------------------------------------
-// CLASS MONKEY PATCH
-//----------------------------------------------------------------------------------------------------
-
 /**
  * @callback eachArrayLoopCallback
  * @param {any} value
  * @param {number} index
  */
 
-
 Object.assign(Array.prototype, {
     /**
      * Returns a new array that is a one dimensional flattening of itself.
      *
-     * Different to Javascript flat(), which only removes one dimension.
+     * Different to Javascript flat(), which only flattens one dimension.
      *
-     * @returns{Array}
+     * @returns {Array}
      */
     flatten() {
         const recursiveFlat = (array) => {
@@ -138,7 +132,7 @@ Object.assign(Array.prototype, {
      * Returns the max element of the array. All values must be of type number.
      *
      * @example
-     *      [3,7,2].getMax() => 7
+     *      [3,7,2].getMax() // => 7
      *
      * @returns {number|null} returns null if array is empty
      */
@@ -153,7 +147,7 @@ Object.assign(Array.prototype, {
      * Returns the min element of the array. All values must be of type number.
      *
      * @example
-     *      [3,7,2,9].getMax() => 2
+     *      [3,7,2,9].getMin() // => 2
      *
      * @returns {number|null} returns null if array is empty
      */

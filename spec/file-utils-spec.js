@@ -1,5 +1,5 @@
 var FileUtils = require('./../src/ruby-nice/file-utils.js');
-var File = require('./../src/ruby-nice/file');
+var File = require('./../src/ruby-nice/file.js');
 var FsExtra = require('fs-extra');
 
 describe('FileUtils', function () {

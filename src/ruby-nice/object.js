@@ -4,10 +4,6 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 }
 //<!-- /MODULE -->//
 
-//----------------------------------------------------------------------------------------------------
-// JSDOC definition only
-//----------------------------------------------------------------------------------------------------
-
 //<!-- DOC -->//
 /**
  * out of scope function only for jsdoc documentation generation purpose
@@ -18,12 +14,12 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
      */
     class Object {
         /**
-         * Iterates over all elements of an object
+         * Iterates over all elements of the object
          *
          * Breaks if returning false
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.each((key, value, index) => {
+         *      { a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {
          *          if(condition) return false;
          *          console.log(key, value);
          *      })
@@ -31,29 +27,29 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * @param {eachObjectLoopCallback|eachArrayLoopCallback} loop_function
          * @returns {Object<any>} returns itself
          */
-        each(loop_function) {
+        eachWithIndex(loop_function) {
         }
 
         /**
          * Maps over all elements of an object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.map((key, value, index) => {
+         *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
          *          return value;
          *      })
-         *      => ['one','two','three']
+         *      // => ['one','two','three']
          *
          * @param {eachObjectLoopCallback} loop_function
-         * @returns {Array<any>} returns itself
+         * @returns {Object<any>} returns itself
          */
-        map(loop_function) {
+        mapObject(loop_function) {
         }
 
         /**
-         * Returns the first element of the array
+         * Returns the first element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+         *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
          *
          * @returns {Object}
          */
@@ -61,10 +57,10 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
         }
 
         /**
-         * Returns the last element of the array
+         * Returns the last element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+         *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
          *
          * @returns {Object}
          */
@@ -72,10 +68,10 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
         }
 
         /**
-         * Returns a random element of the array
+         * Returns a random element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+         *      { a: 'one', b: 'two', c: 'three'}.getSample() // => { b: 'two' }
          *
          * @returns {Object}
          */
@@ -85,18 +81,14 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 });
 //<!-- /DOC -->//
 
-//----------------------------------------------------------------------------------------------------
-// CLASS MONKEY PATCH
-//----------------------------------------------------------------------------------------------------
-
-Object.assign(Object.prototype, {
+Object.defineProperty(Object.prototype, 'eachWithIndex', {
     /**
-     * Iterates over all elements of an object
+     * Iterates over all elements of the object
      *
      * Breaks if returning false
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.each((key, value, index) => {
+     *      { a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {
      *          if(condition) return false;
      *          console.log(key, value);
      *      })
@@ -104,7 +96,7 @@ Object.assign(Object.prototype, {
      * @param {eachObjectLoopCallback|eachArrayLoopCallback} loop_function
      * @returns {Object<any>} returns itself
      */
-    each(loop_function) {
+    value: function eachWithIndex(loop_function) {
         if (typeof loop_function === 'function') {
             if (Typifier.isArray(this)) {
                 for (let i = 0; i < this.length; ++i) {
@@ -122,27 +114,28 @@ Object.assign(Object.prototype, {
                     ++index;
                 }
             } else {
-                console.warn(`${Typifier.getType(this)}.each is not a valid function`);
+                console.warn(`${Typifier.getType(this)}.eachWithIndex is not a valid function`);
             }
         }
         return this;
-    }
+    },
+    enumerable: false
 });
 
-Object.assign(Object.prototype, {
+Object.defineProperty(Object.prototype, 'mapObject', {
     /**
      * Maps over all elements of an object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.map((key, value, index) => {
+     *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
      *          return value;
      *      })
-     *      => ['one','two','three']
+     *      // => ['one','two','three']
      *
      * @param {eachObjectLoopCallback} loop_function
-     * @returns {Array<any>} returns itself
+     * @returns {Object<any>} returns itself
      */
-    map(loop_function) {
+    value: function mapObject(loop_function) {
         if (typeof loop_function === 'function') {
             if (Typifier.isObject(this)) {
                 const object_array = Object.entries(this).map((value, index) => { a = {}; a[value[0]] = value[1]; return a })
@@ -155,10 +148,11 @@ Object.assign(Object.prototype, {
                 }
                 return result_array;
             } else {
-                console.warn(`${Typifier.getType(this)}.map is not a valid function`);
+                console.warn(`${Typifier.getType(this)}.mapObject is not a valid function`);
             }
         }
-    }
+    },
+    enumerable: false
 });
 
 /**
@@ -168,16 +162,16 @@ Object.assign(Object.prototype, {
  * @param {number} index
  */
 
-Object.assign(Object.prototype, {
+Object.defineProperty(Object.prototype, 'getFirst', {
     /**
-     * Returns the first element of the array
+     * Returns the first element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getFirst() => { a: 'one' }
+     *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
      *
      * @returns {Object}
      */
-    getFirst() {
+    value: function getFirst() {
         if(Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             return this[0];
@@ -189,19 +183,20 @@ Object.assign(Object.prototype, {
         } else {
             console.warn(`${Typifier.getType(this)}.getFirst is not a valid function`);
         }
-    }
+    },
+    enumerable: false
 });
 
-Object.assign(Object.prototype, {
+Object.defineProperty(Object.prototype, 'getLast', {
     /**
-     * Returns the last element of the array
+     * Returns the last element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getLast() => { c: 'three' }
+     *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
      *
      * @returns {Object}
      */
-    getLast() {
+    value: function getLast() {
         if(Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             return this[this.length - 1];
@@ -213,19 +208,20 @@ Object.assign(Object.prototype, {
         } else {
             console.warn(`${Typifier.getType(this)}.getLast is not a valid function`);
         }
-    }
+    },
+    enumerable: false
 });
 
-Object.assign(Object.prototype, {
+Object.defineProperty(Object.prototype, 'getSample', {
     /**
-     * Returns a random element of the array
+     * Returns a random element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getSample() => { b: 'two' }
+     *      { a: 'one', b: 'two', c: 'three'}.getSample() // => { b: 'two' }
      *
      * @returns {Object}
      */
-    getSample() {
+    value: function getSample() {
         if(Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             const random_index = Math.floor(Math.random() * this.length);
@@ -239,7 +235,8 @@ Object.assign(Object.prototype, {
         } else {
             console.warn(`${Typifier.getType(this)}.getSample is not a valid function`);
         }
-    }
+    },
+    enumerable: false
 });
 
 //<!-- MODULE -->//

@@ -30,15 +30,28 @@ const release_header_template = `/**
 `;
 
 const builds = {
-    default_build: {
+    default: {
         destination_file: build_destination_dir + 'ruby-nice.js',
         destination_min_file: build_destination_dir + 'ruby-nice.min.js',
         source_files: [
             './src/ruby-nice/array.js',
             './src/ruby-nice/file.js',
+            './src/ruby-nice/number.js',
             './src/ruby-nice/object.js',
             './src/ruby-nice/string.js',
-            './src/ruby-nice/ruby-nice.js'
+            './src/ruby-nice/ruby-nice.js',
+    ]},
+    bundle: {
+        destination_file: build_destination_dir + 'ruby-nice.bundle.js',
+        destination_min_file: build_destination_dir + 'ruby-nice.bundle.min.js',
+        source_files: [
+            './src/ruby-nice/array.js',
+            './src/ruby-nice/file.js',
+            './src/ruby-nice/number.js',
+            './src/ruby-nice/object.js',
+            './src/ruby-nice/string.js',
+            './src/ruby-nice/ruby-nice.js',
+            './node_modules/typifier/dist/typifier.js',
     ]}
 }
 
@@ -69,6 +82,7 @@ function updateJsRubyNiceVersion() {
     let ruby_nice_js = fs.readFileSync('./src/ruby-nice/ruby-nice.js','utf8');
     ruby_nice_js = ruby_nice_js.replace(/RubyNice\._version\s*=\s*"[^"]+";/gm, `RubyNice._version = "${new_version}";`)
     fs.writeFileSync('./src/ruby-nice/ruby-nice.js', ruby_nice_js, 'utf8');
+    return new_version;
 }
 
 console.log(chalk.yellow('##############################'));
