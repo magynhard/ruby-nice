@@ -15,7 +15,7 @@ const files_to_doc = Glob.sync('./src/ruby-nice/**/*.js');
 function generateDoc() {
     for(let source_file of files_to_doc) {
         const doc_file = './doc/' + source_file.split('/').getLast().replace(/\.js$/gm,'.jsdoc.md');
-        execSync(`./node_modules/jsdoc-to-markdown/bin/cli.js --files ${source_file} > ${doc_file}`);
+        execSync(`node ./node_modules/jsdoc-to-markdown/bin/cli.js --files ${source_file} > ${doc_file}`);
         beautifyDoc(doc_file);
     }
 }
