@@ -1,9 +1,7 @@
 <a name="File"></a>
 
 ## File
-File class port of ruby
-
-For node js only, does not work inside a browser.
+File class port of rubyFor node js only, does not work inside a browser.
 
 * [File](#File)
     * [.delete(file_name)](#File.delete) &rarr; <code>string</code>
@@ -23,6 +21,7 @@ For node js only, does not work inside a browser.
     * [.rename(file_name, new_path)](#File.rename)
     * [.readAsDataUri(file_name)](#File.readAsDataUri) &rarr; <code>string</code>
     * [.write(name, data, opt)](#File.write) &rarr; <code>string</code>
+    * [.getHomePath()](#File.getHomePath) &rarr; <code>string</code>
 
 <a name="File.delete"></a>
 
@@ -36,9 +35,7 @@ Delete file synchronously
 <a name="File.getAbsolutePath"></a>
 
 ### File.getAbsolutePath(file_name, dir_string) &rarr; <code>string</code>
-Converts a pathname to an absolute pathname
-
-'~' are not resolved.
+Converts a pathname to an absolute pathname'~' are not resolved.
 
 **Returns**: <code>string</code> - absolute pathname  
 
@@ -69,20 +66,17 @@ Get the last component of the given file name
 
 **Example**
 ```js
-File.getBasename('/home/user/documents/letter.txt')
- // => 'letter.txt'
+File.getBasename('/home/user/documents/letter.txt') // => 'letter.txt'
 ```
 
 **Example**
 ```js
-File.getBasename('/home/user/documents/letter.txt','.txt')
- // => 'letter'
+File.getBasename('/home/user/documents/letter.txt','.txt') // => 'letter'
 ```
 
 **Example**
 ```js
-File.getBasename('/home/user/documents/image.jpg','.*')
- // => 'image'
+File.getBasename('/home/user/documents/image.jpg','.*') // => 'image'
 ```
 <a name="File.getBirthTime"></a>
 
@@ -105,20 +99,17 @@ Get all components of the given file name except of the last one
 
 **Example**
 ```js
-File.getDirname('/home/user/documents/letter.txt')
- // => '/home/user/documents'
+File.getDirname('/home/user/documents/letter.txt') // => '/home/user/documents'
 ```
 
 **Example**
 ```js
-File.getDirname('/home/user/documents/some_file_without_extension')
- // => '/home/user/documents'
+File.getDirname('/home/user/documents/some_file_without_extension') // => '/home/user/documents'
 ```
 
 **Example**
 ```js
-File.getDirname('/home/user/documents/')
- // => '/home/user'
+File.getDirname('/home/user/documents/') // => '/home/user'
 ```
 <a name="File.getSize"></a>
 
@@ -134,15 +125,12 @@ Get the size of the given file in bytes
 
 **Example**
 ```js
-File.getSize('myFile.txt');
- // => 12345
+File.getSize('myFile.txt'); // => 12345
 ```
 <a name="File.expandPath"></a>
 
 ### File.expandPath(file_name, dir_string, options, expand_user_dir) &rarr; <code>string</code>
-Converts a pathname to an absolute pathname
-
-'~' is resolved to the home directory, '~user' to the given users home directory.
+Converts a pathname to an absolute pathname'~' is resolved to the home directory, '~user' to the given users home directory.
 
 **Returns**: <code>string</code> - absolute pathname  
 
@@ -200,8 +188,7 @@ Check if given file name exists and is a file
 <a name="File.normalizePath"></a>
 
 ### File.normalizePath(path) &rarr; <code>string</code>
-Normalize path and replace all back slashes to slashes
-and remove trailing slashes
+Normalize path and replace all back slashes to slashesand remove trailing slashes
 
 **Returns**: <code>string</code> - normalized path  
 
@@ -256,3 +243,7 @@ Write into file synchronously.
 | opt.encoding | <code>&#x27;utf8&#x27;</code> \| <code>&#x27;binary&#x27;</code> \| <code>&#x27;buffer&#x27;</code> | <code>&#x27;utf8&#x27;</code> |  |
 | opt.flag | <code>&#x27;rs+&#x27;</code> \| <code>&#x27;ws&#x27;</code> \| <code>&#x27;as&#x27;</code> | <code>&#x27;ws&#x27;</code> |  |
 
+<a name="File.getHomePath"></a>
+
+### File.getHomePath() &rarr; <code>string</code>
+Get the absolute path of the current users home directory.

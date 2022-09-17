@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.2.1
- * @date 2022-08-23T12:42:27.398Z
+ * @version 0.2.2
+ * @date 2022-09-17T17:38:12.167Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -358,6 +358,26 @@ class File {
     }
 
     /**
+     * Get the absolute path of the current users home directory.
+     *
+     * @returns {string}
+     */
+    static getHomePath() {
+        const self = File;
+        let home_path = null;
+        if(process.env.HOME) {
+            home_path = process.env.HOME;
+        } else if(process.env.HOMEDIR && process.env.HOMEPATH) {
+            home_path = process.env.HOMEDIR + process.env.HOMEPATH;
+        } else if (process.env.USERPROFILE) {
+            home_path = process.env.USERPROFILE;
+        } else {
+            throw new Error(`Could not determine path of your home directory. Your OS may be not supported yet.`);
+        }
+        return self.normalizePath(home_path);
+    }
+
+    /**
      * Cut a trailing slash at the end of the path
      *
      * @param {string} path
@@ -384,9 +404,9 @@ class File {
         const user_dir_match = path.match(user_home_regex);
         if(user_dir_match) {
             if(user_dir_match[1]) {
-                path = self.getDirname(process.env.HOME) + '/' + user_dir_match[1] + '/' + path.replace(user_home_regex, '');
+                path = self.getDirname(self.getHomePath()) + '/' + user_dir_match[1] + '/' + path.replace(user_home_regex, '');
             } else {
-                path = path.replace(user_home_regex, process.env.HOME + '/');
+                path = path.replace(user_home_regex, self.getHomePath() + '/');
             }
         }
         return path;
@@ -526,8 +546,11 @@ Object.defineProperty(Object.prototype, 'eachWithIndex', {
                 }
             } else if (Typifier.isObject(this)) {
                 let index = 0;
-                for (const [key, value] of Object.entries(this)) {
-                    if (loop_function(key, value, index) === false) {
+                const keys = Object.keys(this);
+                const length = keys.length;
+                for (let i = 0; i < length; ++i) {
+                    const key = keys[i];
+                    if (loop_function(key, this[key], index) === false) {
                         break;
                     }
                     ++index;
@@ -557,7 +580,11 @@ Object.defineProperty(Object.prototype, 'mapObject', {
     value: function mapObject(loop_function) {
         if (typeof loop_function === 'function') {
             if (Typifier.isObject(this)) {
-                const object_array = Object.entries(this).map((value, index) => { a = {}; a[value[0]] = value[1]; return a })
+                const object_array = Object.entries(this).map((value, index) => {
+                    a = {};
+                    a[value[0]] = value[1];
+                    return a
+                })
                 let result_array = [];
                 let index = 0;
                 for (const [key, value] of Object.entries(this)) {
@@ -591,7 +618,7 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      * @returns {Object}
      */
     value: function getFirst() {
-        if(Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
+        if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             return this[0];
         } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
@@ -616,7 +643,7 @@ Object.defineProperty(Object.prototype, 'getLast', {
      * @returns {Object}
      */
     value: function getLast() {
-        if(Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
+        if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             return this[this.length - 1];
         } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
@@ -641,7 +668,7 @@ Object.defineProperty(Object.prototype, 'getSample', {
      * @returns {Object}
      */
     value: function getSample() {
-        if(Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
+        if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
         if (Typifier.isArray(this) && this.length > 0) {
             const random_index = Math.floor(Math.random() * this.length);
             return this[random_index];
