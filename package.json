@@ -3,13 +3,16 @@
   "version": "0.2.2",
   "description": "The nice javascript library to rubynize your javascript to be a happy programmer again.",
   "exports": {
-    ".": "./src/ruby-nice/ruby-nice.js",
+    ".": {
+      "require": "./src/ruby-nice/ruby-nice.js",
+      "import": "./src/esm/ruby-nice.js"
+    },
     "./*": "./src/ruby-nice/*.js"
   },
   "main": "src/ruby-nice/ruby-nice.js",
   "scripts": {
     "test": "yarn jasmine && yarn test_node_imports",
-    "test_node_imports": "yarn jasmine spec/imports/ruby-nice-spec.cjs && yarn jasmine spec/imports/ruby-nice-spec.mjs",
+    "test_node_imports": "yarn jasmine spec/imports/ruby-nice-spec.cjs && yarn jasmine spec/imports/ruby-nice-spec.mjs && yarn jasmine spec/imports/ruby-nice-spec2.mjs",
     "build": "node scripts/build.js",
     "doc": "node scripts/doc.js"
   },

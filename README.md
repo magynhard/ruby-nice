@@ -51,16 +51,17 @@ in `camelCase`:
 
 ```js
 // -- node js CommonJS --
-require('ruby-nice/array'); // monkey patch arrays
-require('ruby-nice/string'); // monkey patch strings
+require('ruby-nice/array'); // only monkey patch arrays
+require('ruby-nice/string'); // only monkey patch strings
 require('ruby-nice'); // requiring from 'ruby-nice' will implicitely load all monkey patches at once
-const File = require('ruby-nice/file'); // load ported ruby class
+const File = require('ruby-nice/file'); // load this ported ruby class only
     // or named import (will also implicitely load all monkey patches)
 const { File } = require('ruby-nice'); // load ported ruby class
 
 // -- node js ESM modules --
 import { RubyNice } from  'ruby-nice'; // requiring from 'ruby-nice' will implicitely load all monkey patches at once
 import { File } from 'ruby-nice'; // load ported ruby class (will also implicitely load all monkey patches)
+import File from 'ruby-nice/file'; // load this ported ruby class only
 
 
 // -- browser --
