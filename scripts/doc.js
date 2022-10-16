@@ -10,12 +10,15 @@ const Glob = require("glob");
 
 require('./../src/ruby-nice/array');
 
-const files_to_doc = Glob.sync('./src/ruby-nice/**/*.js');
+const files_to_doc = Glob.sync('./src/ruby-nice/**/*.js').filter(file => !file.endsWith('ruby-nice.js'));
 
 function generateDoc() {
     for(let source_file of files_to_doc) {
-        const doc_file = './doc/' + source_file.split('/').getLast().replace(/\.js$/gm,'.jsdoc.md');
-        execSync(`./node_modules/jsdoc-to-markdown/bin/cli.js --files ${source_file} > ${doc_file}`);
+        let doc_file = './doc/' + source_file.split('/').getLast().replace(/\.js$/gm,'.jsdoc.md');
+        if(doc_file.endsWith('ruby-nice-class.jsdoc.md')) {
+            doc_file = doc_file.replace("ruby-nice-class.jsdoc.md","ruby-nice.jsdoc.md");
+        }
+        execSync(`node ./node_modules/jsdoc-to-markdown/bin/cli.js --files ${source_file} > ${doc_file}`);
         beautifyDoc(doc_file);
     }
 }
@@ -33,6 +36,9 @@ function beautifyDoc(file) {
     data = data.replace(/^\*\*Returns\*\*/gm,"\n**Returns**");
     data = data.replace(arrow_right_char_regex,'&rarr;');
     data = data.replace(function_description_regex,'<a name="String"></a>');
+    if(file.endsWith("ruby-nice.jsdoc.md")) {
+        data = data.replace(/RubyNiceClass/g,'RubyNice');
+    }
     if(first_method_name) {
         const functions_regex = new RegExp(`<a name="${first_method_name}"><\/a>.*`,'gms');
         data = data.replace(functions_regex,'');

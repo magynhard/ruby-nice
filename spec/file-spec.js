@@ -117,29 +117,45 @@ describe('File', function () {
     beforeEach(function () {
     });
     describe('expandPath()', function () {
+
+        function getAbsoluteHomeDir() {
+            if(process.env.HOME) {
+                return "0" + process.env.HOME;
+            } else if(process.env.HOMEPATH && process.env.HOMEDRIVE) {
+                return process.env.HOMEDRIVE + process.env.HOMEPATH;
+            } else if(process.env.USERPROFILE) {
+                return "b" + process.env.USERPROFILE;
+            } else {
+                throw new Error(`Cannot detect home dir. Your operating system may be not supported.`);
+            }
+        }
+
+        it('gets the users home path', function () {
+            expect(File.getHomePath()).toEqual(getAbsoluteHomeDir().replace(/\\/g,'/'));
+        });
         it('expands a path', function () {
-            expect(File.expandPath('test/suppe')).toEqual(process.cwd() + '/test/suppe');
+            expect(File.expandPath('test/suppe').replace(/\\/g,'/')).toEqual(process.cwd().replace(/\\/g,'/') + '/test/suppe');
         });
         it('expands a path with double dots', function () {
-            expect(File.expandPath('test/suppe/..')).toEqual(process.cwd() + '/test');
+            expect(File.expandPath('test/suppe/..').replace(/\\/g,'/')).toEqual(process.cwd().replace(/\\/g,'/') + '/test');
         });
         it('expands a path beginning at root', function () {
-            expect(File.expandPath('/test/super')).toEqual('/test/super');
+            expect(File.expandPath('/test/super').replace(/\\/g,'/')).toEqual(`${process.env.HOMEDRIVE}/test/super`);
         });
         it('expands a path ending with slash at root', function () {
-            expect(File.expandPath('test/super/')).toEqual(process.cwd() + '/test/super');
+            expect(File.expandPath('test/super/').replace(/\\/g,'/')).toEqual(process.cwd().replace(/\\/g,'/') + '/test/super');
         });
         it('expands a path with home tilde', function () {
-            expect(File.expandPath('~/super/')).toEqual(process.env.HOME + '/super');
+            expect(File.expandPath('~/super/').replace(/\\/g,'/')).toEqual(getAbsoluteHomeDir().replace(/\\/g,'/') + '/super');
         });
         it('expands a path with home tilde of specific user', function () {
-            expect(File.expandPath('~other/super/')).toEqual('/home/other/super');
+            expect(File.expandPath('~other/super/').replace(/\\/g,'/')).toEqual(File.getDirname(File.getHomePath()) + '/other/super');
         });
         it('expands a path with home tilde in start dir', function () {
-            expect(File.expandPath('super/','~/bad')).toEqual(process.env.HOME + '/bad/super');
+            expect(File.expandPath('super/','~/bad').replace(/\\/g,'/')).toEqual(File.getHomePath() + '/bad/super');
         });
         it('expands a path with home tilde in path and start dir', function () {
-            expect(File.expandPath('~/super/','~/bad')).toEqual(process.env.HOME + '/super');
+            expect(File.expandPath('~/super/','~/bad').replace(/\\/g,'/')).toEqual(File.getHomePath() + '/super');
         });
     });
 });

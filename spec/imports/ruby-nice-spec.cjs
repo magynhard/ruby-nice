@@ -1,5 +1,7 @@
 /**
  * Test isolated common js import dependencies (cjs)
+ *
+ * Runs on linux only
  */
 
 const RubyNiceDefault = require('ruby-nice');

@@ -292,6 +292,26 @@ class File {
     }
 
     /**
+     * Get the absolute path of the current users home directory.
+     *
+     * @returns {string}
+     */
+    static getHomePath() {
+        const self = File;
+        let home_path = null;
+        if(process.env.HOME) {
+            home_path = process.env.HOME;
+        } else if(process.env.HOMEDIR && process.env.HOMEPATH) {
+            home_path = process.env.HOMEDIR + process.env.HOMEPATH;
+        } else if (process.env.USERPROFILE) {
+            home_path = process.env.USERPROFILE;
+        } else {
+            throw new Error(`Could not determine path of your home directory. Your OS may be not supported yet.`);
+        }
+        return self.normalizePath(home_path);
+    }
+
+    /**
      * Cut a trailing slash at the end of the path
      *
      * @param {string} path
@@ -318,9 +338,9 @@ class File {
         const user_dir_match = path.match(user_home_regex);
         if(user_dir_match) {
             if(user_dir_match[1]) {
-                path = self.getDirname(process.env.HOME) + '/' + user_dir_match[1] + '/' + path.replace(user_home_regex, '');
+                path = self.getDirname(self.getHomePath()) + '/' + user_dir_match[1] + '/' + path.replace(user_home_regex, '');
             } else {
-                path = path.replace(user_home_regex, process.env.HOME + '/');
+                path = path.replace(user_home_regex, self.getHomePath() + '/');
             }
         }
         return path;

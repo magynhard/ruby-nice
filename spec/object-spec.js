@@ -24,6 +24,22 @@ describe('Object', function () {
             });
             expect(collection).toEqual([['a', 'one', 0], ['b', 'two', 1], ['c', 'three', 2], ['d', 'four', 3], ['e', 'five', 4]]);
         });
+        it('has good performance', function () {
+            const sample = {};
+            for(let i = 0; i < 1_000_000; ++i) {
+                sample["key" + i] = Math.floor(Math.random() * 10001);
+            }
+            let collection = [];
+            process.stdout.write(`\nBenchmark of eachWithIndex (Object): `);
+            const start_benchmark = new Date();
+            sample.eachWithIndex((key, value, index) => {
+                sample[key] = value*234;
+            });
+            const end_benchmark = new Date();
+            const duration_ms = end_benchmark - start_benchmark;
+            console.log(duration_ms + "ms");
+            expect(duration_ms).toBeLessThan(1000, `Test should run in less than 1000ms, but took ${duration_ms}ms`);
+        });
     });
 });
 

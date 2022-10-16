@@ -1,5 +1,7 @@
 /**
  * Test isolated module import dependencies (mjs)
+ *
+ * Runs on linux only
  */
 
 import RubyNice from "ruby-nice";
