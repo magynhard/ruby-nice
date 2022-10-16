@@ -120,11 +120,11 @@ describe('File', function () {
 
         function getAbsoluteHomeDir() {
             if(process.env.HOME) {
-                return "0" + process.env.HOME;
+                return process.env.HOME;
             } else if(process.env.HOMEPATH && process.env.HOMEDRIVE) {
                 return process.env.HOMEDRIVE + process.env.HOMEPATH;
             } else if(process.env.USERPROFILE) {
-                return "b" + process.env.USERPROFILE;
+                return process.env.USERPROFILE;
             } else {
                 throw new Error(`Cannot detect home dir. Your operating system may be not supported.`);
             }
@@ -140,7 +140,7 @@ describe('File', function () {
             expect(File.expandPath('test/suppe/..').replace(/\\/g,'/')).toEqual(process.cwd().replace(/\\/g,'/') + '/test');
         });
         it('expands a path beginning at root', function () {
-            expect(File.expandPath('/test/super').replace(/\\/g,'/')).toEqual(`${process.env.HOMEDRIVE}/test/super`);
+            expect(File.expandPath('/test/super').replace(/\\/g,'/')).toEqual(`${process.env.HOMEDRIVE ? process.env.HOMEDRIVE : ''}/test/super`);
         });
         it('expands a path ending with slash at root', function () {
             expect(File.expandPath('test/super/').replace(/\\/g,'/')).toEqual(process.cwd().replace(/\\/g,'/') + '/test/super');
