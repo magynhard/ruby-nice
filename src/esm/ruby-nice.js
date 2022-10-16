@@ -17,11 +17,6 @@ import cSystem from '../ruby-nice/system.js';
 export default cRubyNice;
 export const RubyNice = cRubyNice;
 
-export const ArrayPatch = cArrayPatch;
-export const ObjectPatch = cObjectPatch;
-export const StringPatch = cStringPatch;
-export const NumberPatch = cNumberPatch;
-
 export const Dir = cDir;
 export const Env = cEnv;
 export const File = cFile;
