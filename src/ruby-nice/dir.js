@@ -3,6 +3,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     var RubyNice = require('./ruby-nice');
     var Glob = require('glob');
     require('./array');
+    var File = require('./file');
 }
 //<!-- /MODULE -->//
 
@@ -33,7 +34,7 @@ class Dir {
         if(!options) options = {};
         if(base_path) options.cwd = base_path;
         pattern.eachWithIndex((elem) => {
-            results.push(Glob.sync(elem, options));
+            results.push(Glob.sync(File.normalizePath(elem), options));
         });
         return results.flatten();
     }
