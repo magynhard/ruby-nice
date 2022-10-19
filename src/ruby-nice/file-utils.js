@@ -58,12 +58,22 @@ class FileUtils {
     }
 
     /**
+     * Deletes directory recursively including its contents, force=true
+     *
+     * @param {string|Array<string>} file_name path(s) to delete recursively
+     */
+    static rmRf(file_name) {
+        const self = FileUtils;
+        return self.rmRf(file_name, { force: true });
+    }
+
+    /**
      * Deletes directory recursively including its contents
      *
      * @param {string|Array<string>} file_name path(s) to delete recursively
      * @param {{force: boolean}} opt options
      */
-    static rmRf(file_name, opt) {
+    static rmR(file_name, opt) {
         const self = FileUtils;
         RubyNice.ensureRunningInNodeJs();
         if(!Typifier.isArray(file_name)) {
