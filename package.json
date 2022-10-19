@@ -1,6 +1,6 @@
 {
   "name": "ruby-nice",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "The nice javascript library to rubynize your javascript to be a happy programmer again.",
   "exports": {
     ".": {
