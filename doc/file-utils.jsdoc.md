@@ -8,7 +8,8 @@ For node js only, does not work inside a browser.
 * [FileUtils](#FileUtils)
     * [.copy(src, dest, mode)](#FileUtils.copy)
     * [.mkdirP(file_name)](#FileUtils.mkdirP)
-    * [.rmRf(file_name, opt)](#FileUtils.rmRf)
+    * [.rmRf(file_name)](#FileUtils.rmRf)
+    * [.rmR(file_name, opt)](#FileUtils.rmR)
 
 <a name="FileUtils.copy"></a>
 
@@ -32,7 +33,16 @@ Create directory recursively
 
 <a name="FileUtils.rmRf"></a>
 
-### FileUtils.rmRf(file_name, opt)
+### FileUtils.rmRf(file_name)
+Deletes directory recursively including its contents, force=true
+
+| Param | Type | Description |
+| --- | --- | --- |
+| file_name | <code>string</code> \| <code>Array.&lt;string&gt;</code> | path(s) to delete recursively |
+
+<a name="FileUtils.rmR"></a>
+
+### FileUtils.rmR(file_name, opt)
 Deletes directory recursively including its contents
 
 | Param | Type | Description |
