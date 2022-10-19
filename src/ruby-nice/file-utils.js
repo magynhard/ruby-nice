@@ -64,7 +64,7 @@ class FileUtils {
      */
     static rmRf(file_name) {
         const self = FileUtils;
-        return self.rmRf(file_name, { force: true });
+        return self.rmR(file_name, { force: true });
     }
 
     /**
