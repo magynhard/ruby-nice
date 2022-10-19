@@ -19,7 +19,10 @@
   },
   "files": [
     "dist/ruby-nice.js",
-    "src/**/*",
+    "src/ruby-nice/*.js",
+    "src/ruby-nice/*.json",
+    "src/esm/*.js",
+    "src/esm/*.json",
     "doc/**/*"
   ],
   "repository": {
