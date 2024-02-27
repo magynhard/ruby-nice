@@ -180,9 +180,9 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      */
     value: function getFirst() {
         if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
-        if (Typifier.isArray(this) && this.length > 0) {
+        if (Typifier.isArray(this)) {
             return this[0];
-        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+        } else if (Typifier.isObject(this)) {
             const first = Object.entries(this)[0];
             let a = {};
             a[first[0]] = first[1];
@@ -205,9 +205,9 @@ Object.defineProperty(Object.prototype, 'getLast', {
      */
     value: function getLast() {
         if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
-        if (Typifier.isArray(this) && this.length > 0) {
+        if (Typifier.isArray(this)) {
             return this[this.length - 1];
-        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+        } else if (Typifier.isObject(this)) {
             const last = Object.entries(this)[Object.entries(this).length - 1];
             let a = {};
             a[last[0]] = last[1];
@@ -230,10 +230,10 @@ Object.defineProperty(Object.prototype, 'getSample', {
      */
     value: function getSample() {
         if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
-        if (Typifier.isArray(this) && this.length > 0) {
+        if (Typifier.isArray(this)) {
             const random_index = Math.floor(Math.random() * this.length);
             return this[random_index];
-        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+        } else if (Typifier.isObject(this)) {
             const random_index = Math.floor(Math.random() * Object.entries(this).length);
             const random_el = Object.entries(this)[random_index];
             let a = {};
