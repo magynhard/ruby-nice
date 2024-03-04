@@ -8,6 +8,8 @@ For node js only, does not work inside a browser.
 * [FileUtils](#FileUtils)
     * [.copy(src, dest, mode)](#FileUtils.copy)
     * [.mkdirP(file_name)](#FileUtils.mkdirP)
+    * [.move(source, dest, options)](#FileUtils.move)
+    * [.mv(source, dest, options)](#FileUtils.mv)
     * [.rmRf(file_name)](#FileUtils.rmRf)
     * [.rmR(file_name, opt)](#FileUtils.rmR)
 
@@ -30,6 +32,30 @@ Create directory recursively
 | Param | Type | Description |
 | --- | --- | --- |
 | file_name | <code>string</code> \| <code>Array.&lt;string&gt;</code> | path(s) to create |
+
+<a name="FileUtils.move"></a>
+
+### FileUtils.move(source, dest, options)
+Move files from source to dest
+
+| Param | Type | Default |
+| --- | --- | --- |
+| source | <code>string</code> |  | 
+| dest | <code>string</code> |  | 
+| options | <code>Object</code> |  | 
+| options.noop | <code>boolean</code> | <code>false</code> | 
+
+<a name="FileUtils.mv"></a>
+
+### FileUtils.mv(source, dest, options)
+Move files from source to dest
+
+| Param | Type | Default |
+| --- | --- | --- |
+| source | <code>string</code> |  | 
+| dest | <code>string</code> |  | 
+| options | <code>Object</code> |  | 
+| options.noop | <code>boolean</code> | <code>false</code> | 
 
 <a name="FileUtils.rmRf"></a>
 

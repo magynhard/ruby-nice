@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.2.6
- * @date 2023-07-14T13:22:35.505Z
+ * @version 0.2.7
+ * @date 2024-03-04T17:58:49.004Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -619,9 +619,9 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      */
     value: function getFirst() {
         if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
-        if (Typifier.isArray(this) && this.length > 0) {
+        if (Typifier.isArray(this)) {
             return this[0];
-        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+        } else if (Typifier.isObject(this)) {
             const first = Object.entries(this)[0];
             let a = {};
             a[first[0]] = first[1];
@@ -644,9 +644,9 @@ Object.defineProperty(Object.prototype, 'getLast', {
      */
     value: function getLast() {
         if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
-        if (Typifier.isArray(this) && this.length > 0) {
+        if (Typifier.isArray(this)) {
             return this[this.length - 1];
-        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+        } else if (Typifier.isObject(this)) {
             const last = Object.entries(this)[Object.entries(this).length - 1];
             let a = {};
             a[last[0]] = last[1];
@@ -669,10 +669,10 @@ Object.defineProperty(Object.prototype, 'getSample', {
      */
     value: function getSample() {
         if (Typifier.is('Column', this)) return; // compatibility workaround for 'table-layout' package
-        if (Typifier.isArray(this) && this.length > 0) {
+        if (Typifier.isArray(this)) {
             const random_index = Math.floor(Math.random() * this.length);
             return this[random_index];
-        } else if (Typifier.isObject(this) && Object.entries(this).length > 0) {
+        } else if (Typifier.isObject(this)) {
             const random_index = Math.floor(Math.random() * Object.entries(this).length);
             const random_el = Object.entries(this)[random_index];
             let a = {};
@@ -716,6 +716,52 @@ Object.assign(String.prototype, {
      */
     toUpCase() {
         return this.toLocaleUpperCase();
+    }
+});
+
+Object.defineProperty(String.prototype, 'getFirst', {
+    /**
+     * Get first character of the current string
+     *
+     * @example
+     *  'Happy'.getFirst()
+     *  // => 'H'
+     *
+     * @returns {string}
+     */
+    value: function getFirst() {
+        return this[0];
+    }
+});
+
+Object.defineProperty(String.prototype, 'getLast', {
+    /**
+     * Get last character of the current string
+     *
+     * @example
+     *  'Happy'.getLast()
+     *  // => 'y'
+     *
+     * @returns {string}
+     */
+    value: function getLast() {
+        return this[this.length - 1];
+    }
+});
+
+Object.defineProperty(String.prototype, 'getSample', {
+    /**
+     * Returns a random element of the string
+     *
+     * @example
+     *      'Happy'.getSample()
+     *      // => 'H' | 'a' | 'p' | 'y'
+     *
+     * @returns {Object}
+     */
+    value: function getSample() {
+        const random_index = Math.floor(Math.random() * this.length);
+        return this[random_index];
     }
 });
 
