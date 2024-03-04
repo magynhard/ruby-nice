@@ -58,6 +58,33 @@ class FileUtils {
     }
 
     /**
+     * Move files from source to dest
+     *
+     * @param {string} source
+     * @param {string}  dest
+     * @param {Object} options
+     * @param {boolean} options.noop=false
+     */
+    static move(source, dest, options = {}) {
+        const self = File;
+        if(options && options.noop) return;
+        File.rename(source, dest);
+    }
+
+    /**
+     * Move files from source to dest
+     *
+     * @param {string} source
+     * @param {string}  dest
+     * @param {Object} options
+     * @param {boolean} options.noop=false
+     */
+    static mv(source, dest, options = {}) {
+        const self = FileUtils;
+        self.move(source, dest, options)
+    }
+
+    /**
      * Deletes directory recursively including its contents, force=true
      *
      * @param {string|Array<string>} file_name path(s) to delete recursively

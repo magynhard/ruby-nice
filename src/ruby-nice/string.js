@@ -32,6 +32,42 @@
          */
         toUpCase() {
         }
+
+        /**
+         * Get first character of the current string
+         *
+         * @example
+         *  'Happy'.getFirst()
+         *  // => 'H'
+         *
+         * @returns {string}
+         */
+        getFirst() {
+        }
+
+        /**
+         * Get last character of the current string
+         *
+         * @example
+         *  'Happy'.getLast()
+         *  // => 'y'
+         *
+         * @returns {string}
+         */
+        getLast() {
+        }
+
+        /**
+         * Returns a random element of the string
+         *
+         * @example
+         *      'Happy'.getSample()
+         *      // => 'H' | 'a' | 'p' | 'y'
+         *
+         * @returns {Object}
+         */
+        getSample() {
+        }
     }
 });
 //<!-- /DOC -->//
@@ -67,8 +103,54 @@ Object.assign(String.prototype, {
     }
 });
 
+Object.defineProperty(String.prototype, 'getFirst', {
+    /**
+     * Get first character of the current string
+     *
+     * @example
+     *  'Happy'.getFirst()
+     *  // => 'H'
+     *
+     * @returns {string}
+     */
+    value: function getFirst() {
+        return this[0];
+    }
+});
+
+Object.defineProperty(String.prototype, 'getLast', {
+    /**
+     * Get last character of the current string
+     *
+     * @example
+     *  'Happy'.getLast()
+     *  // => 'y'
+     *
+     * @returns {string}
+     */
+    value: function getLast() {
+        return this[this.length - 1];
+    }
+});
+
+Object.defineProperty(String.prototype, 'getSample', {
+    /**
+     * Returns a random element of the string
+     *
+     * @example
+     *      'Happy'.getSample()
+     *      // => 'H' | 'a' | 'p' | 'y'
+     *
+     * @returns {Object}
+     */
+    value: function getSample() {
+        const random_index = Math.floor(Math.random() * this.length);
+        return this[random_index];
+    }
+});
+
 //<!-- MODULE -->//
-if(typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
     module.exports = 'String';
 }
 //<!-- /MODULE -->//
