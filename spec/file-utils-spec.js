@@ -71,3 +71,29 @@ describe('FileUtils', function () {
         });
     });
 });
+
+describe('FileUtils', function () {
+    beforeEach(function () {
+    });
+    describe('move()', function () {
+        it('move a path', function () {
+            const tmp_dir = File.expandPath(__dirname + '/../tmp');
+            const new_folder = tmp_dir + '/some/folder';
+            const rename_folder = tmp_dir + '/pute';
+            FileUtils.mkdirP(new_folder);
+            FileUtils.move(new_folder, rename_folder);
+            expect(FsExtra.existsSync(rename_folder)).toEqual(true);
+        });
+        it('move a file', function () {
+            const tmp_dir = File.expandPath(__dirname + '/../tmp');
+            const new_file = tmp_dir + '/some/folder2/test.txt';
+            const rename_folder = tmp_dir + '/pute2/salami.txt';
+            FileUtils.mkdirP(File.getDirname(new_file));
+            File.write(new_file, "some content");
+            expect(FsExtra.existsSync(new_file)).toEqual(true);
+            FileUtils.mkdirP(File.getDirname(rename_folder));
+            FileUtils.move(new_file, rename_folder);
+            expect(FsExtra.existsSync(rename_folder)).toEqual(true);
+        });
+    });
+});
