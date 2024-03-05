@@ -12,6 +12,7 @@ For node js only, does not work inside a browser.
     * [.system(command)](#System.system) &rarr; <code>number</code>
     * [.exec(command)](#System.exec) &rarr; <code>Object</code>
     * [.execDetached(command)](#System.execDetached) &rarr; <code>Object</code>
+    * [.getUserName()](#System.getUserName) &rarr; <code>string</code>
 
 <a name="System.run"></a>
 
@@ -53,3 +54,9 @@ Start a system command asynchronously and detach the process from the main proce
 | --- | --- |
 | command | <code>string</code> | 
 
+<a name="System.getUserName"></a>
+
+### System.getUserName() &rarr; <code>string</code>
+Get the current user name.
+
+Fist checks for USER or USERNAME environment variable, after using operating system API.
