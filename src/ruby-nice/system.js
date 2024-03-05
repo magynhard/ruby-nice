@@ -2,8 +2,10 @@
 if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
     var RubyNice = require('./ruby-nice');
     var execSync = require('child_process').execSync;
+    var File = require('./file');
     var spawnSync = require('child_process').spawnSync;
     var spawn = require('child_process').spawn;
+    var Os = require('os');
 }
 //<!-- /MODULE -->//
 
@@ -69,6 +71,29 @@ class System {
           stdio: 'ignore'
         };
         return spawn(command, null, options);
+    }
+
+    /**
+     * Get the current user name.
+     *
+     * Fist checks for USER or USERNAME environment variable, after using operating system API.
+     *
+     * @returns {string}
+     */
+    static getUserName() {
+        const self = System;
+        RubyNice.ensureRunningInNodeJs();
+        let user_name = null;
+        if(process.env.USER) {
+            user_name = process.env.USER;
+        } else if(process.env.USERNAME) {
+            user_name = process.env.USERNAME;
+        } else if(Os.userInfo().username) {
+            user_name = Os.userInfo().username;
+        } else {
+            throw new Error(`Could not determine user name. Your OS may be not supported yet.`);
+        }
+        return user_name;
     }
 }
 

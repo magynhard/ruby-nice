@@ -4,6 +4,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
     var Fs = require('fs');
     var Mime = require('mime');
     var RubyNice = require('./ruby-nice-class.js');
+    var Os = require('os');
 }
 //<!-- /MODULE -->//
 
@@ -298,6 +299,7 @@ class File {
      */
     static getHomePath() {
         const self = File;
+        RubyNice.ensureRunningInNodeJs();
         let home_path = null;
         if(process.env.HOME) {
             home_path = process.env.HOME;
@@ -305,6 +307,8 @@ class File {
             home_path = process.env.HOMEDIR + process.env.HOMEPATH;
         } else if (process.env.USERPROFILE) {
             home_path = process.env.USERPROFILE;
+        } else if(Os.homedir()) {
+            home_path = Os.homedir();
         } else {
             throw new Error(`Could not determine path of your home directory. Your OS may be not supported yet.`);
         }
