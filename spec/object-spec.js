@@ -67,6 +67,54 @@ describe('Object', function () {
             });
             expect(mapped_result).toEqual(['0:a:one','1:b:two','2:c:three','3:d:four','4:e:five']);
         });
+        it('does not have object references on map result', function () {
+            const sample = {a: 'one', object: { b: 1 }, c: 'three', d: 'four', e: 'five'};
+            const mapped_result = sample.mapObject((key, value, index) => {
+                const a = {};
+                return a[key] = value;
+            });
+            mapped_result[1].b = 2;
+            expect(sample.object.b).toEqual(1);
+        });
+    });
+});
+
+describe('Object', function () {
+    beforeEach(function () {
+        // require inside, to make not available in other tests but only here in this file
+        require('../src/ruby-nice/object.js');
+    });
+    describe('filterObject()', function () {
+        it('function is defined', function () {
+            expect(typeof {a: 'one', b: 'two', c: 'three'}.filterObject).toEqual('function');
+        });
+        it('function is not a enumerable key', function () {
+            const obi = {a: 'one', b: 'two', c: 'three'};
+            let enumerables = [];
+            for(let o in obi) {
+                enumerables.push(o);
+            }
+            expect(enumerables).not.toContain('filterObject');
+        });
+        it('filter over all elements', function () {
+            const sample = {a: 'one', b: 'two', c: 'three', d: 'four', e: 'five'};
+            const filtered_result = sample.filterObject((key, value, index) => {
+                return value.length === 3;
+            });
+            expect(filtered_result).toEqual({a: 'one', b: 'two'});
+            const filtered_result_2 = sample.filterObject((key, value, index) => {
+                return value.includes("o");
+            });
+            expect(filtered_result_2).toEqual({a: 'one', b: 'two', d: 'four'});
+        });
+        it('does not have object references on filter result', function () {
+            const sample = {a: 'one', object: { b: 1 }, c: 'three', d: 'four', e: 'five'};
+            const filtered_result = sample.filterObject((key, value, index) => {
+                return key === 'object';
+            });
+            filtered_result.object.b = 2;
+            expect(sample.object.b).toEqual(1);
+        });
     });
 });
 
