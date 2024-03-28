@@ -1,4 +1,3 @@
-
 describe('String', function () {
     beforeEach(function () {
         // require inside, to make not available in other tests but only here in this file
@@ -24,6 +23,35 @@ describe('String', function () {
         it('has a ruby #last', function () {
             expect(typeof "TestCase".getLast).toEqual('function');
             expect("TestCase".getLast()).toEqual("e");
+        });
+    });
+    describe('scan()', function () {
+        it('scan method exists', function () {
+            expect(typeof "TestCase".scan).toEqual('function');
+        });
+        it('scans a regex', function () {
+            expect("TestCaseNaseCase".scan(/ase/)).toEqual(["ase", "ase", "ase"]);
+        });
+        it('scans a string', function () {
+            expect("TestCaseNaseCase".scan("ase")).toEqual(["ase", "ase", "ase"]);
+        });
+        it('scans without parameter', function () {
+            expect(() => "TestCaseNaseCase".scan()).toThrow(new Error(`ArgumentError (wrong number of arguments (given 0, expected 1))`));
+        });
+        it('scans a regex with groups 1', function () {
+            expect("TestCaseNaseMase".scan(/(a[a-z])([a-z])/)).toEqual([["as", "e"], ["as", "e"], ["as", "e"]]);
+        });
+        it('scans a regex with groups 2', function () {
+            expect("cruel world".scan(/\w+/)).toEqual(["cruel", "world"]);
+        });
+        it('scans a regex with groups 3', function () {
+            expect("cruel world".scan(/.../)).toEqual(["cru", "el ", "wor"]);
+        });
+        it('scans a regex with groups 4', function () {
+            expect("cruel world".scan(/(...)/)).toEqual([["cru"], ["el "], ["wor"]]);
+        });
+        it('scans a regex with groups 5', function () {
+            expect("cruel world".scan(/(..)(..)/)).toEqual([["cr", "ue"], ["l ", "wo"]]);
         });
     });
 });
