@@ -2,6 +2,10 @@
  * Test isolated module import dependencies (mjs)
  */
 
+//
+// This import test can not be run on windows or windows subsystem for linux (wsl), but on linux`);
+//
+
 import RubyNice from "ruby-nice";
 
 describe('Array', function () {
