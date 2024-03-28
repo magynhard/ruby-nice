@@ -47,12 +47,13 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 
         /**
          * Filter over all first level elements of an object
+         * The object gets deep cloned, to ensure references of sub objects are not preserved.
          *
          * @example
          *      { a: 'one', b: 'two', c: 'three'}.filterObject((key, value, index) => {
          *          return value.length === 3;
          *      })
-         *      // => ['one','two']
+         *      // => {a: 'one', b: 'two'}
          *
          * @param {eachObjectLoopCallback} loop_function
          * @returns {Object<any>} returns itself
@@ -64,7 +65,8 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the first element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
+         *      { a: 'one', b: 'two', c: 'three'}.getFirst()
+         *      // => { a: 'one' }
          *
          * @returns {Object}
          */
@@ -75,7 +77,8 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the last element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
+         *      { a: 'one', b: 'two', c: 'three'}.getLast()
+         *      // => { c: 'three' }
          *
          * @returns {Object}
          */
@@ -183,7 +186,7 @@ Object.defineProperty(Object.prototype, 'filterObject', {
      *      { a: 'one', b: 'two', c: 'three'}.filterObject((key, value, index) => {
      *          return value.length === 3;
      *      })
-     *      // => ['one','two']
+     *      // => {a: 'one', b: 'two'}
      *
      * @param {eachObjectLoopCallback} loop_function
      * @returns {Object<any>} returns itself
@@ -222,7 +225,8 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      * Returns the first element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
+     *      { a: 'one', b: 'two', c: 'three'}.getFirst()
+     *      // => { a: 'one' }
      *
      * @returns {Object}
      */
@@ -247,7 +251,8 @@ Object.defineProperty(Object.prototype, 'getLast', {
      * Returns the last element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
+     *      { a: 'one', b: 'two', c: 'three'}.getLast()
+     *      // => { c: 'three' }
      *
      * @returns {Object}
      */
