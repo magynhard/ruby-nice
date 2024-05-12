@@ -62,6 +62,14 @@ class FileUtils {
     }
 
     /**
+     * Alias for FileUtils.copy(...)
+     */
+    static cp(src, dest, mode) {
+        const self = FileUtils;
+        self.copy(src, dest, mode);
+    }
+
+    /**
      * Create directory recursively
      *
      * @param {string|Array<string>} file_name path(s) to create
