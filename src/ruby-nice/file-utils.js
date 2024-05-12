@@ -70,6 +70,55 @@ class FileUtils {
     }
 
     /**
+     * Copies src to dest. If src is a directory, this method copies all its contents recursively. If dest is a directory, copies src to dest/src.
+     *
+     * src can be a list of files.
+     *
+     * @param {string|Array<string>} src path(s) to source file(s)
+     * @param {string} dest path to destination
+     * @param {number|fs.constants.COPYFILE_EXCL|fs.constants.COPYFILE_FICLONE|fs.constants.COPYFILE_FICLONE_FORCE} mode specify behaviour of copy operation
+     */
+    static cp_r(src, dest, mode) {
+        const self = FileUtils;
+        RubyNice.ensureRunningInNodeJs();
+        if(!mode) {
+            mode = {};
+        }
+        mode.recursive = true;
+        if(Typifier.isArray(src)) {
+            if(File.isDirectory(dest)) {
+                src.eachWithIndex((path) => {
+                    if(!File.isExisting(path)) {
+                        throw new Error(`Given 'src' in array of files is no valid path. Path not found: '${file}'`);
+                    }
+                });
+                src.eachWithIndex((file) => {
+                    let final_dest = dest;
+                    if(!final_dest.endsWith("/") && !final_dest.endsWith("\\")) {
+                        final_dest += "/";
+                    }
+                    final_dest = final_dest + File.getBasename(file);
+                    Fs.cpSync(file, final_dest, mode);
+                });
+            } else {
+                throw new Error(`Parameter 'src' is a array of paths. Then the parameter 'dest' must be a valid directory! Directory not found: '${dest}'`);
+            }
+        } else {
+            if(!File.isExisting(src)) {
+                throw new Error(`Given 'src' path not found: '${src}'`);
+            }
+            // Add file name explicitly
+            if(File.isDirectory(dest)) {
+                if(!dest.endsWith("/") && !dest.endsWith("\\")) {
+                    dest += "/";
+                }
+                dest = dest + File.getBasename(src);
+            }
+            Fs.cpSync(src, dest, mode);
+        }
+    }
+
+    /**
      * Create directory recursively
      *
      * @param {string|Array<string>} file_name path(s) to create
