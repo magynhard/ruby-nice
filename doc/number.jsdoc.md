@@ -12,9 +12,7 @@ RubyNice version to add methods directly to the class by monkey patching
 <a name="Number+timesWithIndex"></a>
 
 ### number.timesWithIndex(loop_function) &rarr; [<code>Number</code>](#Number)
-Loops n times
-
-Breaks if returning false
+Loops n timesBreaks if returning false
 
 **Returns**: [<code>Number</code>](#Number) - returns itself  
 
@@ -25,10 +23,7 @@ Breaks if returning false
 
 **Example**
 ```js
-(5).timesWithIndex((index) => {
-         if(condition) return false;
-         console.log(index);
-     })
+(5).timesWithIndex((index) => {         if(condition) return false;         console.log(index);     })
 ```
 <a name="Number+round"></a>
 
@@ -37,8 +32,7 @@ Wrapper for Math.round()
 
 **Example**
 ```js
-(5.6).round()
-     => 6
+(5.6).round()     => 6
 ```
 <a name="Number+floor"></a>
 
@@ -47,8 +41,7 @@ Wrapper for Math.floor()
 
 **Example**
 ```js
-(5.7).floor()
-     => 5
+(5.7).floor()     => 5
 ```
 <a name="Number+ceil"></a>
 
@@ -57,15 +50,12 @@ Wrapper for Math.ceil()
 
 **Example**
 ```js
-(5.1).ceil()
-     => 6
+(5.1).ceil()     => 6
 ```
 <a name="value"></a>
 
 ## value(loop_function) &rarr; [<code>Number</code>](#Number)
-Loops n times
-
-Breaks if returning false
+Loops n timesBreaks if returning false
 
 **Returns**: [<code>Number</code>](#Number) - returns itself  
 
@@ -76,10 +66,7 @@ Breaks if returning false
 
 **Example**
 ```js
-(5).timesWithIndex((index) => {
-         if(condition) return false;
-         console.log(index);
-     })
+(5).timesWithIndex((index) => {         if(condition) return false;         console.log(index);     })
 ```
 <a name="value"></a>
 
@@ -88,8 +75,7 @@ Wrapper for Math.round()
 
 **Example**
 ```js
-(5.6).round()
-     => 6
+(5.6).round()     => 6
 ```
 <a name="value"></a>
 
@@ -98,8 +84,7 @@ Wrapper for Math.ceil()
 
 **Example**
 ```js
-(5.1).ceil()
-     => 6
+(5.1).ceil()     => 6
 ```
 <a name="value"></a>
 
@@ -108,8 +93,7 @@ Wrapper for Math.floor()
 
 **Example**
 ```js
-(5.7).floor()
-     => 5
+(5.7).floor()     => 5
 ```
 <a name="eachIndexLoopCallback"></a>
 

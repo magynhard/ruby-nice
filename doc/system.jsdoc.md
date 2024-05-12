@@ -1,11 +1,7 @@
 <a name="System"></a>
 
 ## System
-'system' and `execute` port of ruby.
-
-As JavaScript does not support back tick run, we have a method for that.
-
-For node js only, does not work inside a browser.
+'system' and `execute` port of ruby.As JavaScript does not support back tick run, we have a method for that.For node js only, does not work inside a browser.
 
 * [System](#System)
     * [.run(command)](#System.run) &rarr; <code>string</code>
@@ -57,6 +53,4 @@ Start a system command asynchronously and detach the process from the main proce
 <a name="System.getUserName"></a>
 
 ### System.getUserName() &rarr; <code>string</code>
-Get the current user name.
-
-Fist checks for USER or USERNAME environment variable, after using operating system API.
+Get the current user name.Fist checks for USER or USERNAME environment variable, after using operating system API.

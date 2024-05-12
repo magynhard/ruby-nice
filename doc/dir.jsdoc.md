@@ -1,11 +1,7 @@
 <a name="Dir"></a>
 
 ## Dir
-Dir class port of ruby.
-
-As JavaScript does not support bracket methods, we have a getter and setter instead.
-
-For node js only, does not work inside a browser.
+Dir class port of ruby.As JavaScript does not support bracket methods, we have a getter and setter instead.For node js only, does not work inside a browser.
 
 * [Dir](#Dir)
     * [.glob(pattern, options, base_path)](#Dir.glob) &rarr; <code>Array.&lt;string&gt;</code> \| <code>null</code>
@@ -17,8 +13,7 @@ For node js only, does not work inside a browser.
 <a name="Dir.glob"></a>
 
 ### Dir.glob(pattern, options, base_path) &rarr; <code>Array.&lt;string&gt;</code> \| <code>null</code>
-Expands pattern, which is a pattern string or an Array of pattern
-strings, and returns an array containing the matching filenames.
+Expands pattern, which is a pattern string or an Array of patternstrings, and returns an array containing the matching filenames.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -33,10 +28,7 @@ Returns the path to the current working directory of this process as a string.
 <a name="Dir.chdir"></a>
 
 ### Dir.chdir(dir)
-Changes the current working directory of the process to the given string.
-
-When called without an argument, changes the directory to the value of the
-environment variable HOME, or LOGDIR or the operating systems home directory by API.
+Changes the current working directory of the process to the given string.When called without an argument, changes the directory to the value of theenvironment variable HOME, or LOGDIR or the operating systems home directory by API.
 **Throws**:
 
 - <code>Error</code> if directory can not be changed

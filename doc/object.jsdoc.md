@@ -13,9 +13,7 @@ RubyNice version to add methods directly to the class by monkey patching
 <a name="Object+eachWithIndex"></a>
 
 ### object.eachWithIndex(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
-Iterates over all elements of the object
-
-Breaks if returning false
+Iterates over all elements of the objectBreaks if returning false
 
 **Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
 
@@ -26,10 +24,7 @@ Breaks if returning false
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {
-         if(condition) return false;
-         console.log(key, value);
-     })
+{ a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {         if(condition) return false;         console.log(key, value);     })
 ```
 <a name="Object+mapObject"></a>
 
@@ -45,10 +40,7 @@ Maps over all elements of an object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
-         return value;
-     })
-     // => ['one','two','three']
+{ a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {         return value;     })     // => ['one','two','three']
 ```
 <a name="Object+getFirst"></a>
 
@@ -80,9 +72,7 @@ Returns a random element of the object
 <a name="value"></a>
 
 ## value(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
-Iterates over all elements of the object
-
-Breaks if returning false
+Iterates over all elements of the objectBreaks if returning false
 
 **Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
 
@@ -93,10 +83,7 @@ Breaks if returning false
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {
-         if(condition) return false;
-         console.log(key, value);
-     })
+{ a: 'one', b: 'two', c: 'three'}.eachWithIndex((key, value, index) => {         if(condition) return false;         console.log(key, value);     })
 ```
 <a name="value"></a>
 
@@ -112,10 +99,7 @@ Maps over all elements of an object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
-         return value;
-     })
-     // => ['one','two','three']
+{ a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {         return value;     })     // => ['one','two','three']
 ```
 <a name="value"></a>
 

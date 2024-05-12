@@ -15,9 +15,7 @@ RubyNice version to add methods directly to the class by monkey patching
 <a name="Array+eachWithIndex"></a>
 
 ### array.eachWithIndex(loop_function) &rarr; <code>Array.&lt;any&gt;</code>
-Iterates over all elements of the array
-
-Breaks if returning false
+Iterates over all elements of the arrayBreaks if returning false
 
 **Returns**: <code>Array.&lt;any&gt;</code> - returns itself  
 
@@ -28,17 +26,12 @@ Breaks if returning false
 
 **Example**
 ```js
-['one','two','three'].eachWithIndex((elem, index) => {
-         if(condition) return false;
-         console.log(elem);
-     })
+['one','two','three'].eachWithIndex((elem, index) => {         if(condition) return false;         console.log(elem);     })
 ```
 <a name="Array+flatten"></a>
 
 ### array.flatten() &rarr; [<code>Array</code>](#Array)
-Returns a new array that is a one dimensional flattening of itself.
-
-Different to Javascript flat(), which only flattens one dimension.
+Returns a new array that is a one dimensional flattening of itself.Different to Javascript flat(), which only flattens one dimension.
 <a name="Array+getFirst"></a>
 
 ### array.getFirst() &rarr; <code>any</code>
@@ -91,9 +84,7 @@ Returns a random element of the array
 <a name="flatten"></a>
 
 ## flatten() &rarr; [<code>Array</code>](#Array)
-Returns a new array that is a one dimensional flattening of itself.
-
-Different to Javascript flat(), which only flattens one dimension.
+Returns a new array that is a one dimensional flattening of itself.Different to Javascript flat(), which only flattens one dimension.
 <a name="getMax"></a>
 
 ## getMax() &rarr; <code>number</code> \| <code>null</code>
