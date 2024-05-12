@@ -30,13 +30,33 @@ class FileUtils {
         RubyNice.ensureRunningInNodeJs();
         if(Typifier.isArray(src)) {
             if(File.isDirectory(dest)) {
-                src.eachWithIndex((file, index) => {
-                   Fs.copyFileSync(file, dest, mode);
+                src.eachWithIndex((file) => {
+                   if(!File.isFile(file)) {
+                       throw new Error(`Given 'src' in array of files is no valid file. File not found: '${file}'`);
+                   }
+                });
+                src.eachWithIndex((file) => {
+                    let final_dest = dest;
+                    if(!final_dest.endsWith("/") && !final_dest.endsWith("\\")) {
+                        final_dest += "/";
+                    }
+                    final_dest = final_dest + File.getBasename(file);
+                    Fs.copyFileSync(file, final_dest, mode);
                 });
             } else {
                 throw new Error(`Parameter 'src' is a array of files. Then the parameter 'dest' must be a valid directory! Directory not found: '${dest}'`);
             }
         } else {
+            if(!File.isFile(src)) {
+                throw new Error(`Given 'src' file not found: '${src}'`);
+            }
+            // Add file name explicitly
+            if(File.isDirectory(dest)) {
+                if(!dest.endsWith("/") && !dest.endsWith("\\")) {
+                    dest += "/";
+                }
+                dest = dest + File.getBasename(src);
+            }
             Fs.copyFileSync(src, dest, mode);
         }
     }
