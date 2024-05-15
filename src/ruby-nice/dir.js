@@ -34,9 +34,21 @@ class Dir {
         }
         let results = [];
         if (!options) options = {};
-        if (base_path) options.cwd = base_path;
+        if (base_path) {
+            options.cwd = base_path;
+        }
         pattern.eachWithIndex((elem) => {
-            results.push(Glob.sync(File.normalizePath(elem), options));
+            let final_path = File.normalizePath(elem);
+            // WORKAROUND for windows platform:
+            // if pattern is absolute with drive letter, set cwd and remove drive letter to work on first level, like C:/*
+            // because node Glob.sync does not work on first level :-(
+            const is_absolute_path = final_path[1] === ":";
+            if(is_absolute_path) {
+                final_path = final_path.substring(2);
+                const drive_letter = File.normalizePath(elem).substring(0,2);
+                options.cwd = drive_letter;
+            }
+            results.push(Glob.sync(final_path, options));
         });
         return results.flatten();
     }
