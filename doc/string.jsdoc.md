@@ -13,20 +13,24 @@ RubyNice version to add methods directly to the class by monkey patching
 <a name="String+toDownCase"></a>
 
 ### string.toDownCase() &rarr; <code>string</code>
-Convert all characters inside the stringinto lower case
+Convert all characters inside the string
+into lower case
 
 **Example**
 ```js
-'this-isAnExample_string'.downcase()     // => 'this-isanexample_string'
+'this-isAnExample_string'.downcase()
+     // => 'this-isanexample_string'
 ```
 <a name="String+toUpCase"></a>
 
 ### string.toUpCase() &rarr; <code>string</code>
-Convert all characters inside the stringinto upper case
+Convert all characters inside the string
+into upper case
 
 **Example**
 ```js
-'this-isAnExample_string'.upcase() // => 'THIS-ISANEXAMPLE_STRING'
+'this-isAnExample_string'.upcase()
+ // => 'THIS-ISANEXAMPLE_STRING'
 ```
 <a name="String+getFirst"></a>
 
@@ -35,7 +39,8 @@ Get first character of the current string
 
 **Example**
 ```js
-'Happy'.getFirst() // => 'H'
+'Happy'.getFirst()
+ // => 'H'
 ```
 <a name="String+getLast"></a>
 
@@ -44,7 +49,8 @@ Get last character of the current string
 
 **Example**
 ```js
-'Happy'.getLast() // => 'y'
+'Happy'.getLast()
+ // => 'y'
 ```
 <a name="String+getSample"></a>
 
@@ -53,5 +59,6 @@ Returns a random element of the string
 
 **Example**
 ```js
-'Happy'.getSample()     // => 'H' | 'a' | 'p' | 'y'
+'Happy'.getSample()
+     // => 'H' | 'a' | 'p' | 'y'
 ```

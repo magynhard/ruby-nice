@@ -16,6 +16,8 @@ e.g. `File` with `File.write()`.
 
 It is available for the browser as well as for NodeJS.
 
+Browser version might be behind npm version, if there were only node related updates, e.g. file system access.
+
 Search terms:
 
 ```

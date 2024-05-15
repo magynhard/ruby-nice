@@ -1,7 +1,9 @@
 <a name="FileUtils"></a>
 
 ## FileUtils
-FileUtils class port of rubyFor node js only, does not work inside a browser.
+FileUtils class port of ruby
+
+For node js only, does not work inside a browser.
 
 * [FileUtils](#FileUtils)
     * [.copy(src, dest, mode)](#FileUtils.copy)
@@ -31,7 +33,9 @@ Alias for FileUtils.copy(...)
 <a name="FileUtils.cp_r"></a>
 
 ### FileUtils.cp\_r(src, dest, mode)
-Copies src to dest. If src is a directory, this method copies all its contents recursively. If dest is a directory, copies src to dest/src.src can be a list of files.
+Copies src to dest. If src is a directory, this method copies all its contents recursively. If dest is a directory, copies src to dest/src.
+
+src can be a list of files.
 
 | Param | Type | Description |
 | --- | --- | --- |

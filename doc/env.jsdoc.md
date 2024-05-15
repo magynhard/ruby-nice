@@ -1,7 +1,11 @@
 <a name="Env"></a>
 
 ## Env
-ENV class port of ruby.As JavaScript does not support bracket methods, we have a getter and setter instead.For node js only, does not work inside a browser.
+ENV class port of ruby.
+
+As JavaScript does not support bracket methods, we have a getter and setter instead.
+
+For node js only, does not work inside a browser.
 
 * [Env](#Env)
     * [.get(name)](#Env.get) &rarr; <code>string</code>
