@@ -2,3 +2,4 @@
 node_modules
 /tmp
 /spec/imports/package-lock.json
+/.npmrc
