@@ -7,6 +7,8 @@ For node js only, does not work inside a browser.
 
 * [FileUtils](#FileUtils)
     * [.copy(src, dest, mode)](#FileUtils.copy)
+    * [.cp()](#FileUtils.cp)
+    * [.cp_r(src, dest, mode)](#FileUtils.cp_r)
     * [.mkdirP(file_name)](#FileUtils.mkdirP)
     * [.move(source, dest, options)](#FileUtils.move)
     * [.mv(source, dest, options)](#FileUtils.mv)
@@ -17,6 +19,23 @@ For node js only, does not work inside a browser.
 
 ### FileUtils.copy(src, dest, mode)
 Copy file
+
+| Param | Type | Description |
+| --- | --- | --- |
+| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> | path(s) to source file(s) |
+| dest | <code>string</code> | path to destination |
+| mode | <code>number</code> \| <code>fs.constants.COPYFILE\_EXCL</code> \| <code>fs.constants.COPYFILE\_FICLONE</code> \| <code>fs.constants.COPYFILE\_FICLONE\_FORCE</code> | specify behaviour of copy operation |
+
+<a name="FileUtils.cp"></a>
+
+### FileUtils.cp()
+Alias for FileUtils.copy(...)
+<a name="FileUtils.cp_r"></a>
+
+### FileUtils.cp\_r(src, dest, mode)
+Copies src to dest. If src is a directory, this method copies all its contents recursively. If dest is a directory, copies src to dest/src.
+
+src can be a list of files.
 
 | Param | Type | Description |
 | --- | --- | --- |

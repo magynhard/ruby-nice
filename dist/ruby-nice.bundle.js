@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.2.8
- * @date 2024-03-05T22:29:22.610Z
+ * @version 0.3.2
+ * @date 2024-05-15T09:09:13.081Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
