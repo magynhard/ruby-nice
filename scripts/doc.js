@@ -8,7 +8,14 @@ const {execSync} = require("child_process");
 const LuckyCase = require("lucky-case/string");
 const Glob = require("glob");
 
+const Os = require("os");
+
 require('./../src/ruby-nice/array');
+
+if(Os.type().toLowerCase().includes("windows") || Os.release().toLowerCase().includes("microsoft") || Os.release().toLowerCase().includes("wsl")) {
+    const message = `This doc generator can not be run on windows or windows subsystem for linux (wsl), but on linux. Skipping ...`;
+    throw new Error(message);
+}
 
 const files_to_doc = Glob.sync('./src/ruby-nice/**/*.js').filter(file => !file.endsWith('ruby-nice.js'));
 
