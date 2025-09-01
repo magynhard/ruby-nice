@@ -3,8 +3,8 @@
  *
  * The nice javascript library to rubynize your javascript to be a happy programmer again.
  *
- * @version 0.3.2
- * @date 2024-05-15T09:09:13.077Z
+ * @version 0.3.3
+ * @date 2025-09-01T16:38:45.041Z
  * @link https://github.com/magynhard/ruby-nice
  * @author Matthäus J. N. Beyrle
  * @copyright Matthäus J. N. Beyrle
@@ -569,7 +569,8 @@ Object.defineProperty(Object.prototype, 'eachWithIndex', {
 
 Object.defineProperty(Object.prototype, 'mapObject', {
     /**
-     * Maps over all elements of an object
+     * Maps over all first level elements of an object.
+     * The object gets deep cloned, to ensure references of sub objects are not preserved.
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
@@ -583,14 +584,10 @@ Object.defineProperty(Object.prototype, 'mapObject', {
     value: function mapObject(loop_function) {
         if (typeof loop_function === 'function') {
             if (Typifier.isObject(this)) {
-                const object_array = Object.entries(this).map((value, index) => {
-                    a = {};
-                    a[value[0]] = value[1];
-                    return a
-                })
                 let result_array = [];
                 let index = 0;
-                for (const [key, value] of Object.entries(this)) {
+                const this_clone = structuredClone(this);
+                for (const [key, value] of Object.entries(this_clone)) {
                     const result = loop_function(key, value, index);
                     result_array.push(result);
                     ++index;
@@ -598,6 +595,42 @@ Object.defineProperty(Object.prototype, 'mapObject', {
                 return result_array;
             } else {
                 console.warn(`${Typifier.getType(this)}.mapObject is not a valid function`);
+            }
+        }
+    },
+    enumerable: false
+});
+
+Object.defineProperty(Object.prototype, 'filterObject', {
+    /**
+     * Filter over all first level elements of an object
+     * The object gets deep cloned, to ensure references of sub objects are not preserved.
+     *
+     * @example
+     *      { a: 'one', b: 'two', c: 'three'}.filterObject((key, value, index) => {
+     *          return value.length === 3;
+     *      })
+     *      // => {a: 'one', b: 'two'}
+     *
+     * @param {eachObjectLoopCallback} loop_function
+     * @returns {Object<any>} returns itself
+     */
+    value: function filterObject(loop_function) {
+        if (typeof loop_function === 'function') {
+            if (Typifier.isObject(this)) {
+                let result_object = {};
+                let index = 0;
+                const this_clone = structuredClone(this);
+                for (const [key, value] of Object.entries(this_clone)) {
+                    const result = loop_function(key, value, index);
+                    if(result) {
+                        result_object[key] = value;
+                    }
+                    ++index;
+                }
+                return result_object;
+            } else {
+                console.warn(`${Typifier.getType(this)}.filterObject is not a valid function`);
             }
         }
     },
@@ -616,7 +649,8 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      * Returns the first element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
+     *      { a: 'one', b: 'two', c: 'three'}.getFirst()
+     *      // => { a: 'one' }
      *
      * @returns {Object}
      */
@@ -641,7 +675,8 @@ Object.defineProperty(Object.prototype, 'getLast', {
      * Returns the last element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
+     *      { a: 'one', b: 'two', c: 'three'}.getLast()
+     *      // => { c: 'three' }
      *
      * @returns {Object}
      */
@@ -687,6 +722,8 @@ Object.defineProperty(Object.prototype, 'getSample', {
     },
     enumerable: false
 });
+
+
 
 
 
@@ -765,6 +802,65 @@ Object.defineProperty(String.prototype, 'getSample', {
     value: function getSample() {
         const random_index = Math.floor(Math.random() * this.length);
         return this[random_index];
+    }
+});
+
+Object.defineProperty(String.prototype, 'scan', {
+    /**
+     * Matching the pattern (which may be a Regexp or a String).
+     *
+     * For each match, a result is generated and either added to the result array. If the pattern contains no groups, each individual result consists of the matched string.
+     * If the pattern contains groups, each individual result is itself an array containing one entry per group.
+     *
+     * @example
+     *      let a = "cruel world";
+     *
+     *      a.scan(/\w+/)
+     *      // => ["cruel", "world"]
+     *
+     *      a.scan(/.../)
+     *      // => ["cru", "el ", "wor"]
+     *
+     *      a.scan(/(...)/)
+     *      // => [["cru"], ["el "], ["wor"]]
+     *
+     *      a.scan(/(..)(..)/)
+     *      // => [["cr", "ue"], ["l ", "wo"]]
+     *
+     * @param {string|RegExp} pattern
+     *
+     */
+    value: function scan(pattern) {
+        if(typeof pattern === "undefined") {
+            throw new Error(`ArgumentError (wrong number of arguments (given 0, expected 1))`);
+        }
+        const escapeRegExp = (string) => {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+        };
+        if(Typifier.isString(pattern)) {
+            pattern = new RegExp(escapeRegExp(pattern),'gm');
+        } else {
+            // add mandatory global option
+            let new_flags = pattern.flags;
+            if(!new_flags.includes("g")) new_flags += "g";
+            pattern = new RegExp(pattern.source, new_flags);
+        }
+        const contains_groups = !!(pattern.source.match(/(^\(|[^\\]\()/));
+        if(!contains_groups) {
+            return [...this.matchAll(pattern)].map(e => e[0]);
+        }
+        const original_index = pattern.lastIndex;
+        pattern.lastIndex = 0;
+        let results = [];
+        let res = null;
+        while(res = pattern.exec(this)) {
+            results.push(res.slice(1));
+            if(pattern.lastIndex === 0) {
+                break;
+            }
+        }
+        pattern.lastIndex = original_index;
+        return results;
     }
 });
 
