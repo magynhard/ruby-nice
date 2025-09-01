@@ -9,6 +9,7 @@ RubyNice version to add methods directly to the class by monkey patching
     * [.getFirst()](#String+getFirst) &rarr; <code>string</code>
     * [.getLast()](#String+getLast) &rarr; <code>string</code>
     * [.getSample()](#String+getSample) &rarr; <code>Object</code>
+    * [.scan(pattern)](#String+scan)
 
 <a name="String+toDownCase"></a>
 
@@ -62,3 +63,15 @@ Returns a random element of the string
 'Happy'.getSample()
      // => 'H' | 'a' | 'p' | 'y'
 ```
+<a name="String+scan"></a>
+
+### string.scan(pattern)
+Matching the pattern (which may be a Regexp or a String).
+
+For each match, a result is generated and either added to the result array. If the pattern contains no groups, each individual result consists of the matched string.
+If the pattern contains groups, each individual result is itself an array containing one entry per group.
+
+| Param | Type |
+| --- | --- |
+| pattern | <code>string</code> \| <code>RegExp</code> | 
+

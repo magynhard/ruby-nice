@@ -6,6 +6,7 @@ RubyNice version to add methods directly to the class by monkey patching
 * [Object](#Object)
     * [.eachWithIndex(loop_function)](#Object+eachWithIndex) &rarr; <code>Object.&lt;any&gt;</code>
     * [.mapObject(loop_function)](#Object+mapObject) &rarr; <code>Object.&lt;any&gt;</code>
+    * [.filterObject(loop_function)](#Object+filterObject) &rarr; <code>Object.&lt;any&gt;</code>
     * [.getFirst()](#Object+getFirst) &rarr; [<code>Object</code>](#Object)
     * [.getLast()](#Object+getLast) &rarr; [<code>Object</code>](#Object)
     * [.getSample()](#Object+getSample) &rarr; [<code>Object</code>](#Object)
@@ -34,7 +35,7 @@ Breaks if returning false
 <a name="Object+mapObject"></a>
 
 ### object.mapObject(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
-Maps over all elements of an object
+Maps over all first level elements of an object
 
 **Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
 
@@ -50,6 +51,26 @@ Maps over all elements of an object
      })
      // => ['one','two','three']
 ```
+<a name="Object+filterObject"></a>
+
+### object.filterObject(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
+Filter over all first level elements of an object
+The object gets deep cloned, to ensure references of sub objects are not preserved.
+
+**Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
+
+| Param | Type |
+| --- | --- |
+| loop_function | [<code>eachObjectLoopCallback</code>](#eachObjectLoopCallback) | 
+
+
+**Example**
+```js
+{ a: 'one', b: 'two', c: 'three'}.filterObject((key, value, index) => {
+         return value.length === 3;
+     })
+     // => {a: 'one', b: 'two'}
+```
 <a name="Object+getFirst"></a>
 
 ### object.getFirst() &rarr; [<code>Object</code>](#Object)
@@ -57,7 +78,8 @@ Returns the first element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
+{ a: 'one', b: 'two', c: 'three'}.getFirst()
+     // => { a: 'one' }
 ```
 <a name="Object+getLast"></a>
 
@@ -66,7 +88,8 @@ Returns the last element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
+{ a: 'one', b: 'two', c: 'three'}.getLast()
+     // => { c: 'three' }
 ```
 <a name="Object+getSample"></a>
 
@@ -101,7 +124,8 @@ Breaks if returning false
 <a name="value"></a>
 
 ## value(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
-Maps over all elements of an object
+Maps over all first level elements of an object.
+The object gets deep cloned, to ensure references of sub objects are not preserved.
 
 **Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
 
@@ -119,12 +143,33 @@ Maps over all elements of an object
 ```
 <a name="value"></a>
 
+## value(loop_function) &rarr; <code>Object.&lt;any&gt;</code>
+Filter over all first level elements of an object
+The object gets deep cloned, to ensure references of sub objects are not preserved.
+
+**Returns**: <code>Object.&lt;any&gt;</code> - returns itself  
+
+| Param | Type |
+| --- | --- |
+| loop_function | [<code>eachObjectLoopCallback</code>](#eachObjectLoopCallback) | 
+
+
+**Example**
+```js
+{ a: 'one', b: 'two', c: 'three'}.filterObject((key, value, index) => {
+         return value.length === 3;
+     })
+     // => {a: 'one', b: 'two'}
+```
+<a name="value"></a>
+
 ## value() &rarr; [<code>Object</code>](#Object)
 Returns the first element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
+{ a: 'one', b: 'two', c: 'three'}.getFirst()
+     // => { a: 'one' }
 ```
 <a name="value"></a>
 
@@ -133,7 +178,8 @@ Returns the last element of the object
 
 **Example**
 ```js
-{ a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
+{ a: 'one', b: 'two', c: 'three'}.getLast()
+     // => { c: 'three' }
 ```
 <a name="value"></a>
 
