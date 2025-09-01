@@ -18,7 +18,8 @@
     "test_node_imports": "yarn jasmine spec/imports/ruby-nice-spec.cjs && yarn jasmine spec/imports/ruby-nice-spec.mjs && yarn jasmine spec/imports/ruby-nice-spec2.mjs",
     "build": "node scripts/build.js",
     "doc": "node scripts/doc.js",
-    "setup": "yarn && cd spec/imports && npm install"
+    "setup": "yarn && cd spec/imports && npm install",
+    "publish_package": "npm publish --access public"
   },
   "files": [
     "dist/ruby-nice.js",
