@@ -31,7 +31,7 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
         }
 
         /**
-         * Maps over all elements of an object
+         * Maps over all first level elements of an object
          *
          * @example
          *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
@@ -46,10 +46,27 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
         }
 
         /**
+         * Filter over all first level elements of an object
+         * The object gets deep cloned, to ensure references of sub objects are not preserved.
+         *
+         * @example
+         *      { a: 'one', b: 'two', c: 'three'}.filterObject((key, value, index) => {
+         *          return value.length === 3;
+         *      })
+         *      // => {a: 'one', b: 'two'}
+         *
+         * @param {eachObjectLoopCallback} loop_function
+         * @returns {Object<any>} returns itself
+         */
+        filterObject(loop_function) {
+        }
+
+        /**
          * Returns the first element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
+         *      { a: 'one', b: 'two', c: 'three'}.getFirst()
+         *      // => { a: 'one' }
          *
          * @returns {Object}
          */
@@ -60,7 +77,8 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * Returns the last element of the object
          *
          * @example
-         *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
+         *      { a: 'one', b: 'two', c: 'three'}.getLast()
+         *      // => { c: 'three' }
          *
          * @returns {Object}
          */
@@ -127,7 +145,8 @@ Object.defineProperty(Object.prototype, 'eachWithIndex', {
 
 Object.defineProperty(Object.prototype, 'mapObject', {
     /**
-     * Maps over all elements of an object
+     * Maps over all first level elements of an object.
+     * The object gets deep cloned, to ensure references of sub objects are not preserved.
      *
      * @example
      *      { a: 'one', b: 'two', c: 'three'}.mapObject((key, value, index) => {
@@ -141,14 +160,10 @@ Object.defineProperty(Object.prototype, 'mapObject', {
     value: function mapObject(loop_function) {
         if (typeof loop_function === 'function') {
             if (Typifier.isObject(this)) {
-                const object_array = Object.entries(this).map((value, index) => {
-                    a = {};
-                    a[value[0]] = value[1];
-                    return a
-                })
                 let result_array = [];
                 let index = 0;
-                for (const [key, value] of Object.entries(this)) {
+                const this_clone = structuredClone(this);
+                for (const [key, value] of Object.entries(this_clone)) {
                     const result = loop_function(key, value, index);
                     result_array.push(result);
                     ++index;
@@ -156,6 +171,42 @@ Object.defineProperty(Object.prototype, 'mapObject', {
                 return result_array;
             } else {
                 console.warn(`${Typifier.getType(this)}.mapObject is not a valid function`);
+            }
+        }
+    },
+    enumerable: false
+});
+
+Object.defineProperty(Object.prototype, 'filterObject', {
+    /**
+     * Filter over all first level elements of an object
+     * The object gets deep cloned, to ensure references of sub objects are not preserved.
+     *
+     * @example
+     *      { a: 'one', b: 'two', c: 'three'}.filterObject((key, value, index) => {
+     *          return value.length === 3;
+     *      })
+     *      // => {a: 'one', b: 'two'}
+     *
+     * @param {eachObjectLoopCallback} loop_function
+     * @returns {Object<any>} returns itself
+     */
+    value: function filterObject(loop_function) {
+        if (typeof loop_function === 'function') {
+            if (Typifier.isObject(this)) {
+                let result_object = {};
+                let index = 0;
+                const this_clone = structuredClone(this);
+                for (const [key, value] of Object.entries(this_clone)) {
+                    const result = loop_function(key, value, index);
+                    if(result) {
+                        result_object[key] = value;
+                    }
+                    ++index;
+                }
+                return result_object;
+            } else {
+                console.warn(`${Typifier.getType(this)}.filterObject is not a valid function`);
             }
         }
     },
@@ -174,7 +225,8 @@ Object.defineProperty(Object.prototype, 'getFirst', {
      * Returns the first element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getFirst() // => { a: 'one' }
+     *      { a: 'one', b: 'two', c: 'three'}.getFirst()
+     *      // => { a: 'one' }
      *
      * @returns {Object}
      */
@@ -199,7 +251,8 @@ Object.defineProperty(Object.prototype, 'getLast', {
      * Returns the last element of the object
      *
      * @example
-     *      { a: 'one', b: 'two', c: 'three'}.getLast() // => { c: 'three' }
+     *      { a: 'one', b: 'two', c: 'three'}.getLast()
+     *      // => { c: 'three' }
      *
      * @returns {Object}
      */

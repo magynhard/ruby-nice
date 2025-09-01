@@ -3,7 +3,7 @@
  */
 
 //
-// This import test can not be run on windows or windows subsystem for linux (wsl), but on linux`);
+// This import test can not be run on windows or windows subsystem for linux (wsl), but on linux
 //
 
 import RubyNiceDefault from "ruby-nice";

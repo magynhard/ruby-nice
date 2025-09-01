@@ -1,3 +1,9 @@
+//<!-- MODULE -->//
+if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
+    var Typifier = require('typifier');
+}
+//<!-- /MODULE -->//
+
 //<!-- DOC -->//
 /**
  * out of scope function only for jsdoc documentation generation purpose
@@ -67,6 +73,18 @@
          * @returns {Object}
          */
         getSample() {
+        }
+
+        /**
+         * Matching the pattern (which may be a Regexp or a String).
+         *
+         * For each match, a result is generated and either added to the result array. If the pattern contains no groups, each individual result consists of the matched string.
+         * If the pattern contains groups, each individual result is itself an array containing one entry per group.
+         *
+         * @param {string|RegExp} pattern
+         *
+         */
+        scan(pattern) {
         }
     }
 });
@@ -146,6 +164,65 @@ Object.defineProperty(String.prototype, 'getSample', {
     value: function getSample() {
         const random_index = Math.floor(Math.random() * this.length);
         return this[random_index];
+    }
+});
+
+Object.defineProperty(String.prototype, 'scan', {
+    /**
+     * Matching the pattern (which may be a Regexp or a String).
+     *
+     * For each match, a result is generated and either added to the result array. If the pattern contains no groups, each individual result consists of the matched string.
+     * If the pattern contains groups, each individual result is itself an array containing one entry per group.
+     *
+     * @example
+     *      let a = "cruel world";
+     *
+     *      a.scan(/\w+/)
+     *      // => ["cruel", "world"]
+     *
+     *      a.scan(/.../)
+     *      // => ["cru", "el ", "wor"]
+     *
+     *      a.scan(/(...)/)
+     *      // => [["cru"], ["el "], ["wor"]]
+     *
+     *      a.scan(/(..)(..)/)
+     *      // => [["cr", "ue"], ["l ", "wo"]]
+     *
+     * @param {string|RegExp} pattern
+     *
+     */
+    value: function scan(pattern) {
+        if(typeof pattern === "undefined") {
+            throw new Error(`ArgumentError (wrong number of arguments (given 0, expected 1))`);
+        }
+        const escapeRegExp = (string) => {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+        };
+        if(Typifier.isString(pattern)) {
+            pattern = new RegExp(escapeRegExp(pattern),'gm');
+        } else {
+            // add mandatory global option
+            let new_flags = pattern.flags;
+            if(!new_flags.includes("g")) new_flags += "g";
+            pattern = new RegExp(pattern.source, new_flags);
+        }
+        const contains_groups = !!(pattern.source.match(/(^\(|[^\\]\()/));
+        if(!contains_groups) {
+            return [...this.matchAll(pattern)].map(e => e[0]);
+        }
+        const original_index = pattern.lastIndex;
+        pattern.lastIndex = 0;
+        let results = [];
+        let res = null;
+        while(res = pattern.exec(this)) {
+            results.push(res.slice(1));
+            if(pattern.lastIndex === 0) {
+                break;
+            }
+        }
+        pattern.lastIndex = original_index;
+        return results;
     }
 });
 
