@@ -209,6 +209,17 @@ class File {
     }
 
     /**
+     * Join all given path segments together.
+     *
+     * @param {...string} paths
+     * @returns {string}
+     */
+    static join(...paths) {
+        const self = File;
+        return self.normalizePath(Path.join(...paths));
+    }
+
+    /**
      * Normalize path and replace all back slashes to slashes
      * and remove trailing slashes
      *

@@ -171,3 +171,21 @@ describe('File', function () {
         });
     });
 });
+
+
+
+describe('File', function () {
+    beforeEach(function () {
+    });
+    describe('join()', function () {
+        it('joins path segments together', function () {
+            expect(File.join('/some', 'path', 'to', 'a', 'file.txt')).toEqual('/some/path/to/a/file.txt');
+            expect(File.join('/some/', '/path/', '/to/', '/a/', '/file.txt')).toEqual('/some/path/to/a/file.txt');
+            expect(File.join('some/', '/path/', '/to/', '/a/', '/file.txt')).toEqual('some/path/to/a/file.txt');
+            expect(File.join('some', 'path', 'to', 'a', 'file.txt')).toEqual('some/path/to/a/file.txt');
+            expect(File.join('some\\', '\\path\\', '\\to\\', '\\a\\', '\\file.txt')).toEqual('some/path/to/a/file.txt');
+            expect(File.join('some\\', '/path/', '\\to\\', '/a/', '\\file.txt')).toEqual('some/path/to/a/file.txt');
+            expect(File.join('some', '', 'path', '', 'to', '', 'a', '', 'file.txt')).toEqual('some/path/to/a/file.txt');
+        });
+    });
+});
