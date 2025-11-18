@@ -1,5 +1,22 @@
 
 var File = require('./../src/ruby-nice/file.js');
+const Os = require("os");
+
+describe('File', function () {
+    beforeEach(function () {
+    });
+    describe('getAbsolutePath()', function () {
+        it('get absolute path without dir_string', function () {
+            const tmp_dir = Os.tmpdir();
+            process.chdir(tmp_dir);
+            expect(File.getAbsolutePath(File.expandPath('/user/document1.txt'))).toEqual(File.expandPath(tmp_dir) + File.expandPath('/user/document1.txt'));
+        });
+        it('get absolute path with dir_string', function () {
+            expect(File.getAbsolutePath(File.expandPath('/user/document2.txt'), File.expandPath('/home'))).toEqual(File.expandPath('/home/user/document2.txt'));
+        });
+    });
+});
+
 
 describe('File', function () {
     beforeEach(function () {

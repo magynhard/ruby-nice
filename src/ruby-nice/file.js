@@ -1,31 +1,44 @@
 //<!-- MODULE -->//
-if (typeof require === 'function' && typeof module !== 'undefined' && module.exports) {
-    var Path = require('path');
-    var Fs = require('fs');
-    var Mime = require('mime');
-    var RubyNice = require('./ruby-nice-class.js');
-    var Os = require('os');
+if (typeof require === "function" && typeof module !== "undefined" && module.exports) {
+    var Path = require("path");
+    var Fs = require("fs");
+    var Mime = require("mime");
+    var RubyNice = require("./ruby-nice-class.js");
+    var Os = require("os");
 }
 //<!-- /MODULE -->//
 
 /**
  * File class port of ruby
  *
- * For node js only, does not work inside a browser.
+ * For Node.js only, does not work inside a browser.
  *
  */
 class File {
 
     /**
-     * Delete file synchronously
+     * Delete file(s) synchronously
      *
-     * @param {string} file_name path to file
-     * @returns {string}
+     * @example
+     *
+     * File.delete('temp.txt');
+     * // => 1
+     *
+     * File.delete('temp1.txt', 'temp2.txt');
+     * // => 2
+     *
+     * @param {...string} file_name
+     * @returns {number} number of deleted files
      */
-    static delete(file_name, opt) {
+    static delete(...file_name) {
         const self = File;
+        let deleted_files = 0;
         RubyNice.ensureRunningInNodeJs();
-        Fs.unlinkSync(file_name);
+        for(const file of file_name) {
+            Fs.unlinkSync(file);
+            deleted_files += 1;
+        }
+        return deleted_files;
     }
 
     /**
@@ -33,14 +46,27 @@ class File {
      *
      * '~' are not resolved.
      *
+     * @example
+     *
+     * File.getAbsolutePath('documents/letter.txt', '/home/user');
+     * // => '/home/user/documents/letter.txt'
+     *
+     * // current dir is '/tmp'
+     * File.getAbsolutePath('/documents/letter.txt')
+     * // => '/tmp/documents/letter.txt'
+     *
      * @param {string} file_name path of the file to expand
-     * @param {string} dir_string optional starting point of the given path
+     * @param {string} [dir_string] optional starting point of the given path
      * @returns {string} absolute pathname
      *
      */
-    static getAbsolutePath(file_name, dir_string) {
+    static getAbsolutePath(file_name, dir_string="") {
         const self = File;
-        return self.expandPath(file_name, dir_string, { expand_user_dir: false });
+        let path = file_name;
+        if(!dir_string) {
+            path = process.cwd() + '/' + file_name;
+        }
+        return self.expandPath(path, dir_string, { expand_user_dir: false });
     }
 
     /**
@@ -69,7 +95,7 @@ class File {
      *  // => 'image'
      *
      * @param {string} file_name
-     * @param {string} suffix If suffix is given and present at the end of file_name, it is removed. If suffix is '.*', any extension will be removed.
+     * @param {string} [suffix] If suffix is given and present at the end of file_name, it is removed. If suffix is '.*', any extension will be removed.
      */
     static getBasename(file_name, suffix) {
         const self = File;
@@ -140,17 +166,28 @@ class File {
      *
      * '~' is resolved to the home directory, '~user' to the given users home directory.
      *
+     * @example
+     *
+     * File.expandPath('documents/letter.txt', '/home/user');
+     * // => '/home/user/documents/letter.txt'
+     *
+     * // current dir is '/tmp'
+     * File.expandPath('/documents/letter.txt')
+     * // => '/tmp/documents/letter.txt'
+     *
+     * File.expandPath('~/documents/letter.txt')
+     * // => '/home/current_user/documents/letter.txt'
+     *
+     * File.expandPath('~otheruser/documents/letter.txt')
+     * // => '/home/otheruser/documents/letter.txt'
+     *
      * @param {string} file_name path of the file to expand
-     * @param {string} dir_string optional starting point of the given path
-     * @param {Object} options
-     * @param {boolean} expand_user_dir=true
+     * @param {string} [dir_string] optional starting point of the given path
      * @returns {string} absolute pathname
      *
      */
-    static expandPath(file_name, dir_string = "", options = {}) {
+    static expandPath(file_name, dir_string = "") {
         const self = File;
-        if(!options) options = {};
-        if(typeof options.expand_user_dir === 'undefined') options.expand_user_dir = true;
         file_name = self.normalizePath(file_name);
         dir_string = self.normalizePath(dir_string);
         if(file_name.startsWith('~') && dir_string && dir_string.startsWith('~')) {
@@ -220,7 +257,7 @@ class File {
     }
 
     /**
-     * Normalize path and replace all back slashes to slashes
+     * Normalize path and replace all backslashes to slashes
      * and remove trailing slashes
      *
      * @param {string} path
@@ -228,17 +265,17 @@ class File {
      */
     static normalizePath(path) {
         const self = File;
-        return self._cutTrailingSlash(path.replace(/\\/g, '/'));
+        return self._cutTrailingSlash(path.replace(/\\/g, '/').replace(/[/]+/g, '/'));
     }
 
     /**
      * Read file and return its content synchronously
      *
      * @param {string} file_name path to file
-     * @param {Object} opt
-     * @param {'utf8' | 'binary' | 'buffer' | 'base64'} opt.encoding='utf8'
-     * @param {Number} opt.length
-     * @param {Number} opt.offset
+     * @param {Object} [opt]
+     * @param {'utf8' | 'binary' | 'buffer' | 'base64'} [opt.encoding='utf8']
+     * @param {Number} [opt.length]
+     * @param {Number} [opt.offset]
      * @returns {string}
      */
     static read(file_name, opt) {
@@ -287,9 +324,9 @@ class File {
      *
      * @param {string} name path to file
      * @param data {String|Buffer|TypedArray|DataView|Object} - data
-     * @param {Object} opt
-     * @param {'utf8' | 'binary' | 'buffer'} opt.encoding='utf8'
-     * @param {'rs+' | 'ws' | 'as'} opt.flag='ws'
+     * @param {Object} [opt]
+     * @param {'utf8' | 'binary' | 'buffer'} [opt.encoding='utf8']
+     * @param {'rs+' | 'ws' | 'as'} [opt.flag='ws']
      * @returns {string}
      */
     static write(name, data, opt) {
