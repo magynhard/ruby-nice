@@ -72,6 +72,11 @@ class File {
     /**
      * Returns the last access time for the file as a Date object.
      *
+     * @example
+     *
+     * File.getAccessTime('myFile.txt');
+     * // => Date
+     *
      * @param {string} file_name
      * @returns {Date}
      */
@@ -113,6 +118,11 @@ class File {
 
     /**
      * Returns the birth time for the file as a Date object.
+     *
+     * @example
+     *
+     * File.getBirthTime('myFile.txt');
+     * // => Date
      *
      * @param {string} file_name
      * @returns {Date}
@@ -201,6 +211,11 @@ class File {
     /**
      * Check if given file name exists and is a directory
      *
+     * @example
+     *
+     * File.isDirectory('/home/user/documents')
+     * // => true
+     *
      * @param {string} file_name path of the file to check
      * @returns {boolean} true if file exists and is a directory, otherwise false
      *
@@ -212,6 +227,11 @@ class File {
 
     /**
      * Check if given file exists but has no content
+     *
+     * @example
+     *
+     * File.isEmpty('empty_file.txt')
+     * // => true
      *
      * @param {string} file_name path of the file to check
      * @returns {boolean} true if file exists and has zero content, otherwise false
@@ -225,6 +245,11 @@ class File {
     /**
      * Check if given file name exists
      *
+     * @example
+     *
+     * File.isExisting('some_file.txt')
+     * // => true
+     *
      * @param {string} file_name path of the file to check
      * @returns {boolean} true if file exists, otherwise false
      *
@@ -235,6 +260,14 @@ class File {
 
     /**
      * Check if given file name exists and is a file
+     *
+     * @example
+     *
+     * File.isFile('/home/user/documents/letter.txt')
+     * // => true
+     *
+     * File.isFile('/home/user/documents')
+     * // => false
      *
      * @param {string} file_name path of the file to check
      * @returns {boolean} true if file exists and is a file, otherwise false
@@ -248,6 +281,14 @@ class File {
     /**
      * Join all given path segments together.
      *
+     * @example
+     *
+     * File.join('/home/user', 'documents', 'letter.txt')
+     * // => '/home/user/documents/letter.txt'
+     *
+     * File.join('C:\\', 'Users\\user', 'documents', 'letter.txt')
+     * // => 'C:/Users/user/documents/letter.txt'
+     *
      * @param {...string} paths
      * @returns {string}
      */
@@ -260,6 +301,14 @@ class File {
      * Normalize path and replace all backslashes to slashes
      * and remove trailing slashes
      *
+     * @example
+     *
+     * File.normalizePath('C:\\Users\\\\user\\documents\\/letter.txt')
+     * // => 'C:/Users/user/documents/letter.txt'
+     *
+     * File.normalizePath('/home/user/documents/')
+     * // => '/home/user/documents'
+     *
      * @param {string} path
      * @returns {string} normalized path
      */
@@ -270,6 +319,10 @@ class File {
 
     /**
      * Read file and return its content synchronously
+     *
+     * @example
+     *
+     * const content = File.read('myFile.txt', { encoding: 'utf8', length: 100, offset: 10 });
      *
      * @param {string} file_name path to file
      * @param {Object} [opt]
@@ -294,6 +347,10 @@ class File {
     /**
      * Rename the given file
      *
+     * @example
+     *
+     * File.rename('old_name.txt', 'new_name.txt');
+     *
      * @param {string} file_name path to original file
      * @param {string} new_path path to new file
      */
@@ -305,6 +362,11 @@ class File {
 
     /**
      * Read a file and return as data URI that can be embedded on HTML for example
+     *
+     * @example
+     *
+     * const data_uri = File.readAsDataUri('image.png');
+     * // => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...'
      *
      * @param {string} file_name path to file
      * @returns {string} base64 encoded data URI
@@ -321,6 +383,10 @@ class File {
 
     /**
      * Write into file synchronously.
+     *
+     * @example
+     *
+     * File.write('myFile.txt', 'Hello World!', { encoding: 'utf8', flag: 'ws' });
      *
      * @param {string} name path to file
      * @param data {String|Buffer|TypedArray|DataView|Object} - data
@@ -342,6 +408,11 @@ class File {
 
     /**
      * Get the absolute path of the current users home directory.
+     *
+     * @example
+     *
+     * const home_path = File.getHomePath();
+     * // => '/home/username'
      *
      * @returns {string}
      */
@@ -366,6 +437,11 @@ class File {
     /**
      * Cut a trailing slash at the end of the path
      *
+     * @example
+     *
+     * File._cutTrailingSlash('/home/user/documents/')
+     * // => '/home/user/documents'
+     *
      * @param {string} path
      * @private
      */
@@ -379,6 +455,14 @@ class File {
 
     /**
      * Resolves '~' and '~username' to user dirs inside given path
+     *
+     * @example
+     *
+     * File._resolveUserDirInPath('~/documents/letter.txt')
+     * // => '/home/current_user/documents/letter.txt'
+     *
+     * File._resolveUserDirInPath('~otheruser/documents/letter.txt')
+     * // => '/home/otheruser/documents/letter.txt'
      *
      * @param {string} path
      * @returns {string}
