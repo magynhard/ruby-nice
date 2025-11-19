@@ -9,12 +9,17 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
  *
  * As JavaScript does not support bracket methods, we have a getter and setter instead.
  *
- * For node js only, does not work inside a browser.
+ * For Node.js only, does not work inside a browser.
  *
  */
 class Env {
     /**
-     * Get value of given environment variable name
+     * Get value of given environment variable name in current process
+     *
+     * @example
+     *
+     *  // get environment variable PATH
+     *  const path_value = Env.get('PATH');
      *
      * @param {string} name
      * @returns {string}
@@ -24,7 +29,12 @@ class Env {
     }
 
     /**
-     * Set value of given environment variable name
+     * Set value of given environment variable name in current process
+     *
+     * @example
+     *
+     * // set environment variable MY_VAR to 'my_value'
+     * Env.set('MY_VAR', 'my_value');
      *
      * @param {string} name
      * @param {string} value

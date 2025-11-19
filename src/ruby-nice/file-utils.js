@@ -13,13 +13,21 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
 /**
  * FileUtils class port of ruby
  *
- * For node js only, does not work inside a browser.
+ * For Node.js only, does not work inside a browser.
  *
  */
 class FileUtils {
 
     /**
      * Copy file
+     *
+     * @example
+     *
+     * // copy single file
+     * FileUtils.copy('source.txt', 'destination.txt');
+     *
+     * // copy multiple files to a directory
+     * FileUtils.copy(['file1.txt', 'file2.txt'], 'destination_directory');
      *
      * @param {string|Array<string>} src path(s) to source file(s)
      * @param {string} dest path to destination
@@ -62,7 +70,19 @@ class FileUtils {
     }
 
     /**
-     * Alias for FileUtils.copy(...)
+     * Copy file (alias for FileUtils.copy)
+     *
+     * @example
+     *
+     * // copy single file
+     * FileUtils.copy('source.txt', 'destination.txt');
+     *
+     * // copy multiple files to a directory
+     * FileUtils.copy(['file1.txt', 'file2.txt'], 'destination_directory');
+     *
+     * @param {string|Array<string>} src path(s) to source file(s)
+     * @param {string} dest path to destination
+     * @param {number|fs.constants.COPYFILE_EXCL|fs.constants.COPYFILE_FICLONE|fs.constants.COPYFILE_FICLONE_FORCE} mode specify behaviour of copy operation
      */
     static cp(src, dest, mode) {
         const self = FileUtils;
@@ -73,6 +93,14 @@ class FileUtils {
      * Copies src to dest. If src is a directory, this method copies all its contents recursively. If dest is a directory, copies src to dest/src.
      *
      * src can be a list of files.
+     *
+     * @example
+     *
+     * // copy single file or directory recursively
+     * FileUtils.cp_r('source_directory', 'destination_directory');
+     *
+     * // copy multiple files to a directory recursively
+     * FileUtils.cp_r(['file1.txt', 'file2.txt'], 'destination_directory');
      *
      * @param {string|Array<string>} src path(s) to source file(s)
      * @param {string} dest path to destination
@@ -121,6 +149,10 @@ class FileUtils {
     /**
      * Create directory recursively
      *
+     * @example
+     *
+     * FileUtils.mkdirP('/path/to/create/directory');
+     *
      * @param {string|Array<string>} file_name path(s) to create
      */
     static mkdirP(file_name) {
@@ -137,6 +169,12 @@ class FileUtils {
     /**
      * Move files from source to dest
      *
+     * @example
+     *
+     * FileUtils.move('source.txt', 'destination.txt');
+     *
+     * FileUtils.move('/home/user/file.txt', '/home/user/documents/file.txt');
+     *
      * @param {string} source
      * @param {string}  dest
      * @param {Object} options
@@ -149,7 +187,13 @@ class FileUtils {
     }
 
     /**
-     * Move files from source to dest
+     * Move files from source to dest (alias for FileUtils.move)
+     *
+     * @example
+     *
+     * FileUtils.move('source.txt', 'destination.txt');
+     *
+     * FileUtils.move('/home/user/file.txt', '/home/user/documents/file.txt');
      *
      * @param {string} source
      * @param {string}  dest
@@ -164,6 +208,10 @@ class FileUtils {
     /**
      * Deletes directory recursively including its contents, force=true
      *
+     * @example
+     *
+     * FileUtils.rmRf('/path/to/delete/directory');
+     *
      * @param {string|Array<string>} file_name path(s) to delete recursively
      */
     static rmRf(file_name) {
@@ -172,7 +220,13 @@ class FileUtils {
     }
 
     /**
-     * Deletes directory recursively including its contents
+     * Deletes directory recursively including its contents, optionally force
+     *
+     * @example
+     *
+     * FileUtils.rmR('/path/to/delete/directory', { force: true });
+     *
+     * FileUtils.rmR(['/path/to/delete/directory1', '/path/to/delete/directory2'], { force: false });
      *
      * @param {string|Array<string>} file_name path(s) to delete recursively
      * @param {{force: boolean}} opt options

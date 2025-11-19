@@ -14,12 +14,16 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
  *
  * As JavaScript does not support back tick run, we have a method for that.
  *
- * For node js only, does not work inside a browser.
+ * For Node.js only, does not work inside a browser.
  *
  */
 class System {
     /**
      * Run a system command synchronously and return the output (stdout/stderr).
+     *
+     * @example
+     *
+     * let output = System.run('ls -la');
      *
      * @param {string} command
      * @returns {string}
@@ -38,6 +42,10 @@ class System {
     /**
      * Run a system command synchronously and return the return code.
      *
+     * @example
+     *
+     * let return_code = System.system('ls -la');
+     *
      * @param {string} command
      * @returns {number}
      */
@@ -47,6 +55,11 @@ class System {
 
     /**
      * Run a system command synchronously and return the child process Object.
+     *
+     * @example
+     *
+     * let child_process = System.exec('ls -la');
+     * console.log(child_process.pid);
      *
      * @param {string} command
      * @returns {{pid: number, output: Array, stdout: Buffer|string, stderr: Buffer|string, status: number|null, signal: string|null, error: Error}} child process object
@@ -61,6 +74,10 @@ class System {
     /**
      * Start a system command asynchronously and detach the process from the main process and return the child process Object.
      *
+     * @example
+     *
+     * let child_process = System.execDetached('node long_running_script.js');
+     *
      * @param {string} command
      * @returns {{pid: number, output: Array, stdout: Buffer|string, stderr: Buffer|string, status: number|null, signal: string|null, error: Error}} child process object
      */
@@ -74,9 +91,14 @@ class System {
     }
 
     /**
-     * Get the current user name.
+     * Get the current username.
      *
      * Fist checks for USER or USERNAME environment variable, after using operating system API.
+     *
+     * @example
+     *
+     * let user_name = System.getUserName();
+     * console.log(`Current user: ${user_name}`);
      *
      * @returns {string}
      */

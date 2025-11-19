@@ -81,6 +81,21 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          * For each match, a result is generated and either added to the result array. If the pattern contains no groups, each individual result consists of the matched string.
          * If the pattern contains groups, each individual result is itself an array containing one entry per group.
          *
+         * @example
+         *      let a = "cruel world";
+         *
+         *      a.scan(/\w+/)
+         *      // => ["cruel", "world"]
+         *
+         *      a.scan(/.../)
+         *      // => ["cru", "el ", "wor"]
+         *
+         *      a.scan(/(...)/)
+         *      // => [["cru"], ["el "], ["wor"]]
+         *
+         *      a.scan(/(..)(..)/)
+         *      // => [["cr", "ue"], ["l ", "wo"]]
+         *
          * @param {string|RegExp} pattern
          *
          */

@@ -37,6 +37,10 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
          *
          * Different to Javascript flat(), which only flattens one dimension.
          *
+         * @example
+         *
+         * [[1, 2], [3, [4, 5]]].flatten() // => [1, 2, 3, 4, 5]
+         *
          * @returns {Array}
          */
         flatten() {
@@ -111,6 +115,10 @@ Object.assign(Array.prototype, {
      * Returns a new array that is a one dimensional flattening of itself.
      *
      * Different to Javascript flat(), which only flattens one dimension.
+     *
+     * @example
+     *
+     * [[1, 2], [3, [4, 5]]].flatten() // => [1, 2, 3, 4, 5]
      *
      * @returns {Array}
      */

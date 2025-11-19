@@ -14,13 +14,24 @@ if (typeof require === 'function' && typeof module !== 'undefined' && module.exp
  *
  * As JavaScript does not support bracket methods, we have a getter and setter instead.
  *
- * For node js only, does not work inside a browser.
+ * For Node.js only, does not work inside a browser.
  *
  */
 class Dir {
     /**
      * Expands pattern, which is a pattern string or an Array of pattern
      * strings, and returns an array containing the matching filenames.
+     *
+     * @example
+     *
+     *   // find all js files in current directory
+     *   Dir.glob('*.js');
+     *
+     *   // find all js files in specified directory
+     *   Dir.glob('*.js', null, '/home/user/project');
+     *
+     *   // find all js and txt files in specified directory
+     *   Dir.glob(['*.js', '*.txt'], null, '/home/user/project');
      *
      * @param {string|Array<string>} pattern
      * @param {object} options of npm package 'glob'
@@ -56,6 +67,11 @@ class Dir {
     /**
      * Returns the path to the current working directory of this process as a string.
      *
+     * @example
+     *
+     *  console.log(Dir.pwd());
+     *  // => /home/user/project
+     *
      * @returns {string}
      */
     static pwd() {
@@ -68,6 +84,12 @@ class Dir {
      * When called without an argument, changes the directory to the value of the
      * environment variable HOME, or LOGDIR or the operating systems home directory by API.
      *
+     * @example
+     *
+     * Dir.chdir('/home/user/project');
+     *
+     * Dir.chdir(); // changes to home directory
+     *
      * @param {string} dir
      * @throws {Error} if directory can not be changed
      */
@@ -79,7 +101,11 @@ class Dir {
     }
 
     /**
-     * Deletes the named directory.
+     * Deletes the given directory.
+     *
+     * @example
+     *
+     * Dir.delete('/path/to/directory');
      *
      * @param {string} file_name
      * @param {Object} opts
@@ -100,6 +126,11 @@ class Dir {
     /**
      * Returns true if the named file is a directory, false otherwise.
      *
+     * @example
+     *
+     * Dir.isExisting('/path/to/existing_directory'); // => true
+     * Dir.isExisting('/path/to/not_existing_directory'); // => false
+     *
      * @param {string} file_name
      * @returns {boolean}
      */
@@ -107,7 +138,16 @@ class Dir {
         return File.isDirectory(file_name);
     }
 
-    static getHome(user) {
+    /**
+     * Returns the home directory of the current user.
+     *
+     * @example
+     *
+     * Dir.getHome(); // => /home/username
+     *
+     * @return {string}
+     */
+    static getHome() {
         return File.getHomePath();
     }
 }
