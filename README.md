@@ -57,7 +57,7 @@ require('ruby-nice/array'); // only monkey patch arrays
 require('ruby-nice/string'); // only monkey patch strings
 require('ruby-nice'); // requiring from 'ruby-nice' will implicitely load all monkey patches at once
 const File = require('ruby-nice/file'); // load this ported ruby class only
-    // or named import (will also implicitely load all monkey patches)
+// or named import (will also implicitely load all monkey patches)
 const { File } = require('ruby-nice'); // load ported ruby class
 
 // -- node js ESM modules --
@@ -76,6 +76,7 @@ import File from 'ruby-nice/file'; // load this ported ruby class only
 "sample".capitalize() // capitalize a string
 // => "Sample"
         
+    
 [1,2,3].getSample() // get random element of an Array
 // => 3
 
@@ -97,15 +98,27 @@ import File from 'ruby-nice/file'; // load this ported ruby class only
 // => sam has the role dev
 
 
+// use map() on object
+{ a: 1, b: 2}.mapObject((key, value, index) => {
+    return value;
+})
+// => [1,2]
+    
+
+// times loop
+(5).timesWithIndex((i) => {
+   console.log("iteration " + i); 
+});
+
+
+// read text file
+const content = File.read("/home/user/document.txt");
+
 // write text file
 File.write("/home/user/document.txt", "some content");
 
 
-// use map() on object
-{ a: 1, b: 2}.mapObject((key, value, index) => { 
-    return value;
-})
-// => [1,2]
+
 
 ```
 
